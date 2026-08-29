@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>HW1-ROHINI RAMASHESHU</title>
+    </head>
+    <body>
+        <h1>Open-Source Package Vulnerability Report</h1>
+        <form id ="vulnForm">
+            <label for="packageName">Package Name</label>
+            <input type="text" id="packageName" name="packageName" placeholder="e.g. lodash, express, requests" required autofocus>
+            <label for="affectedVersion">AffectedVersion</label>
+            <input type="text" id="affectedVersion" name="affectedVersion" placeholder="e.g.4.2.5" required >
+            <label for="emailId">EmailId</label>
+            <input type="email" id="emailId" name="emailId" placeholder="abc@gmail.com" required >
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Describe the vulnerability in detail..." required></textarea>
+            <label for="severity">Severity</label>
+<select id="severity" name="severity" required>
+  <option value="">-- Select severity --</option>
+  <option value="Low">Low</option>
+  <option value="Medium">Medium</option>
+  <option value="High">High</option>
+  <option value="Critical">Critical</option>
+</select>
+    <input type="checkbox" id="checkBox" name="checkBox" required>
+    <label for="checkBox">I agree to the terms and conditions.</label>
+    <button type="submit">Submit Vulnerability Report</button>
+        </form>
+    </body>
+</html>
