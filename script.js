@@ -27,4 +27,20 @@ form.addEventListener("submit", (event) => {
   }
 
   console.log("Validation passed!");
+
+  const formData = {
+    packageName: document.getElementById("packageName").value,
+    affectedVersion: document.getElementById("affectedVersion").value,
+    emailId: document.getElementById("emailId").value,
+    description: description,
+    severity: document.getElementById("severity").value
+  };
+
+  const jsonString = JSON.stringify(formData);
+  console.log("JSON string:", jsonString);
+
+  const parsedObject = JSON.parse(jsonString);
+  const { packageName, emailId } = parsedObject;
+  console.log("Package Name:", packageName);
+  console.log("Email:", emailId);
 });
