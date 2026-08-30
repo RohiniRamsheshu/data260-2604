@@ -13,6 +13,15 @@ const validateForm = (description, checkbox) => {
 
   return true;
 };
+const createSubmissionCounter = () => {
+  let count = 0;
+  return () => {
+    count = count + 1;
+    return count;
+  };
+};
+
+const trackSubmission = createSubmissionCounter();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -41,6 +50,12 @@ form.addEventListener("submit", (event) => {
 
   const parsedObject = JSON.parse(jsonString);
   const { packageName, emailId } = parsedObject;
-  console.log("Package Name:", packageName);
+    console.log("Package Name:", packageName);
   console.log("Email:", emailId);
+
+  const updatedObject = { ...parsedObject, submissionDate: new Date().toString() };
+  console.log("Updated object with date:", updatedObject);
+
+  const submissionCount = trackSubmission();
+  console.log("Submission count:", submissionCount);
 });
