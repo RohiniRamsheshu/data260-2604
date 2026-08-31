@@ -14,8 +14,7 @@
 
 - Hardware: MacBook Air M2, 8GB RAM
 - Local model used: qwen2.5:3b (substituted for qwen3:8b due to 8GB RAM constraint)
-- Tagged commit hash: [INSERT AFTER TAGGING - see final step]
-
+- Tagged commit hash: 68ac1105b1a37bc7bf7b7eb305df15f67d9e4c47
 ## Part 1 — HTML/JavaScript Form
 
 Built a vulnerability report form with required fields (package name, affected version, email, description, severity dropdown, terms checkbox) and JavaScript validation using arrow functions, JSON conversion, destructuring, spread operator, and closures for submission tracking.
