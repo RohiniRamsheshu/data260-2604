@@ -1,0 +1,11 @@
+{
+  "index_html_exists": true,
+  "script_js_exists": true,
+  "dockerfile_exists": true,
+  "domain_schema_exists": true,
+  "agents_demo_exists": true,
+  "model_client_exists": true,
+  "nondeterminism_results_exist": true,
+  "ollama_reachable": true,
+  "all_passed": true
+}
