@@ -3,30 +3,132 @@
     <head>
         <meta charset="UTF-8">
         <title>HW1-ROHINI RAMASHESHU</title>
+        <style>
+            * { box-sizing: border-box; }
+            body {
+                font-family: system-ui, sans-serif;
+                margin: 0;
+                padding: 16px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            label {
+                font-weight: bold;
+                margin-bottom: 4px;
+            }
+            input, textarea, select, button {
+                width: 100%;
+                padding: 10px;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            button {
+                background: #2563eb;
+                color: white;
+                border: none;
+                cursor: pointer;
+                margin-top: 8px;
+            }
+            button:hover {
+                background: #1d4ed8;
+            }
+            .checkbox-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-direction: row;
+            }
+            .checkbox-row input {
+                width: auto;
+            }
+
+            /* State containers */
+            #loading-state, #empty-state, #error-state {
+                padding: 12px;
+                border-radius: 4px;
+                margin: 12px 0;
+                display: none;
+            }
+            #loading-state {
+                background: #eff6ff;
+                color: #1d4ed8;
+            }
+            #empty-state {
+                background: #f3f4f6;
+                color: #4b5563;
+            }
+            #error-state {
+                background: #fef2f2;
+                color: #b91c1c;
+            }
+
+            #entity-list {
+                list-style: none;
+                padding: 0;
+            }
+            #entity-list li {
+                border: 1px solid #e5e7eb;
+                border-radius: 4px;
+                padding: 10px;
+                margin-bottom: 8px;
+            }
+
+            @media (max-width: 375px) {
+                body { padding: 10px; }
+                h1 { font-size: 1.2rem; }
+            }
+        </style>
     </head>
     <body>
         <h1>Open-Source Package Vulnerability Report</h1>
-        <form id ="vulnForm">
+
+        <div id="loading-state">Loading records...</div>
+        <div id="empty-state">No vulnerability records yet. Add one below.</div>
+        <div id="error-state">Something went wrong loading records. Please try again.</div>
+
+        <input type="text" id="searchInput" placeholder="Search by package name or version...">
+
+        <ul id="entity-list"></ul>
+
+        <form id="vulnForm">
             <label for="packageName">Package Name</label>
             <input type="text" id="packageName" name="packageName" placeholder="e.g. lodash, express, requests" required autofocus>
-            <label for="affectedVersion">AffectedVersion</label>
-            <input type="text" id="affectedVersion" name="affectedVersion" placeholder="e.g.4.2.5" required >
-            <label for="emailId">EmailId</label>
-            <input type="email" id="emailId" name="emailId" placeholder="abc@gmail.com" required >
+
+            <label for="affectedVersion">Affected Version</label>
+            <input type="text" id="affectedVersion" name="affectedVersion" placeholder="e.g. 4.2.5" required>
+
+            <label for="emailId">Email</label>
+            <input type="email" id="emailId" name="emailId" placeholder="abc@gmail.com" required>
+
             <label for="description">Description</label>
             <textarea id="description" name="description" placeholder="Describe the vulnerability in detail..." required></textarea>
+
             <label for="severity">Severity</label>
-<select id="severity" name="severity" required>
-  <option value="">-- Select severity --</option>
-  <option value="Low">Low</option>
-  <option value="Medium">Medium</option>
-  <option value="High">High</option>
-  <option value="Critical">Critical</option>
-</select>
-    <input type="checkbox" id="checkBox" name="checkBox" required>
-    <label for="checkBox">I agree to the terms and conditions.</label>
-    <button type="submit">Submit Vulnerability Report</button>
+            <select id="severity" name="severity" required>
+                <option value="">-- Select severity --</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+            </select>
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="checkBox" name="checkBox" required>
+                <label for="checkBox" style="font-weight: normal;">I agree to the terms and conditions.</label>
+            </div>
+
+            <button type="submit">Submit Vulnerability Report</button>
         </form>
+
         <script src="script.js"></script>
     </body>
 </html>
