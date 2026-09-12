@@ -38,8 +38,13 @@ Content: {state['content']}
 def reviewer_node(state: AgentState) -> Dict[str, Any]:
     print("---NODE: Reviewer---")
     proposal = state.get("planner_proposal", {})
-    prompt = f"""You are a Reviewer agent. Review this draft for quality: exactly 3 tags, summary under 25 words.
-Respond ONLY in valid JSON with keys "has_issues" (boolean) and "feedback" (string explaining what's wrong, or "OK" if none).
+    prompt = f"""You are a Reviewer agent. Check this draft against exactly these rules:
+1. There must be exactly 3 tags.
+2. Each tag must be between 3 and 30 characters.
+3. The summary must be 25 words or fewer.
+
+Do NOT reject for style, vagueness, or subjective quality. ONLY reject if one of the 3 rules above is literally violated.
+Respond ONLY in valid JSON with keys "has_issues" (boolean) and "feedback" (string: which rule was violated, or "OK" if none).
 
 Draft: {json.dumps(proposal)}
 """
