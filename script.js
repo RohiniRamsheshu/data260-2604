@@ -24,38 +24,19 @@ const createSubmissionCounter = () => {
 const trackSubmission = createSubmissionCounter();
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
   const description = document.getElementById("description").value;
   const checkbox = document.getElementById("checkBox").checked;
 
   const isValid = validateForm(description, checkbox);
 
   if (!isValid) {
+    event.preventDefault();
     return;
   }
 
-  console.log("Validation passed!");
-
-  const formData = {
-    packageName: document.getElementById("packageName").value,
-    affectedVersion: document.getElementById("affectedVersion").value,
-    emailId: document.getElementById("emailId").value,
-    description: description,
-    severity: document.getElementById("severity").value
-  };
-
-  const jsonString = JSON.stringify(formData);
-  console.log("JSON string:", jsonString);
-
-  const parsedObject = JSON.parse(jsonString);
-  const { packageName, emailId } = parsedObject;
-    console.log("Package Name:", packageName);
-  console.log("Email:", emailId);
-
-  const updatedObject = { ...parsedObject, submissionDate: new Date().toString() };
-  console.log("Updated object with date:", updatedObject);
-
-  const submissionCount = trackSubmission();
-  console.log("Submission count:", submissionCount);
+  // Valid: let the browser submit normally to FastAPI
+  form.action = "/api/records";
+  form.method = "POST";
 });
+
+  
