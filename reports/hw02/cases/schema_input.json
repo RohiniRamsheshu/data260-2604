@@ -1,0 +1,4 @@
+{
+  "title": "Prototype pollution in lodash",
+  "content": "A vulnerability in lodash allows attackers to modify object prototypes, potentially leading to denial of service or remote code execution in applications that merge untrusted user input."
+}
