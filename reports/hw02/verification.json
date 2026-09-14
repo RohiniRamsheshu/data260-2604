@@ -1,0 +1,7 @@
+{
+  "fastapi_running": true,
+  "agent_graph_exists": true,
+  "schema_results_exist": true,
+  "ceiling_results_exist": true,
+  "all_passed": true
+}
