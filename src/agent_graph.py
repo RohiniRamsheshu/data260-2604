@@ -3,6 +3,29 @@ from langgraph.graph import StateGraph, END
 import json
 import sys
 import os
+from pydantic import BaseModel, field_validator
+
+class PlannerOutput(BaseModel):
+    tags: list[str]
+    summary: str
+
+    @field_validator("tags")
+    @classmethod
+    def check_tags(cls, v):
+        if len(v) != 3:
+            raise ValueError(f"Expected exactly 3 tags, got {len(v)}")
+        for tag in v:
+            if not (3 <= len(tag) <= 30):
+                raise ValueError(f"Tag '{tag}' must be 3-30 characters, got {len(tag)}")
+        return v
+
+    @field_validator("summary")
+    @classmethod
+    def check_summary(cls, v):
+        word_count = len(v.split())
+        if word_count > 25:
+            raise ValueError(f"Summary must be at most 25 words, got {word_count}")
+        return v
 
 sys.path.append(os.path.dirname(__file__))
 from model_client import ModelClient
@@ -15,25 +38,32 @@ class AgentState(TypedDict):
     planner_proposal: Dict[str, Any]
     reviewer_feedback: Dict[str, Any]
     turn_count: int
+    validation_error: str
+    schema_valid: bool
 
 client = ModelClient()
 
 
 def planner_node(state: AgentState) -> Dict[str, Any]:
     print("---NODE: Planner---")
-    prompt = f"""You are a Planner agent. Given a title and content, propose exactly 3 topical tags and a one-sentence summary (max 25 words).
-Respond ONLY in valid JSON with keys "tags" (list of 3 strings) and "summary" (string).
+
+    validation_error = state.get("validation_error", "")
+    error_context = f"\n\nYour previous attempt failed validation with this error: {validation_error}\nFix it." if validation_error else ""
+
+    prompt = f"""You are a Planner agent. Given a title and content, propose exactly 3 topical tags (each 3-30 characters) and a one-sentence summary (max 25 words).
+Respond ONLY in valid JSON with keys "tags" (list of 3 strings) and "summary" (string).{error_context}
 
 Title: {state['title']}
 Content: {state['content']}
 """
     response = client.complete([{"role": "user", "content": prompt}])
-    try:
-        proposal = json.loads(response)
-    except json.JSONDecodeError:
-        proposal = {"tags": [], "summary": ""}
-    return {"planner_proposal": proposal}
 
+    try:
+        raw = json.loads(response)
+        validated = PlannerOutput(**raw)
+        return {"planner_proposal": validated.model_dump(), "validation_error": "", "schema_valid": True}
+    except Exception as e:
+        return {"planner_proposal": {}, "validation_error": str(e), "schema_valid": False}
 
 def reviewer_node(state: AgentState) -> Dict[str, Any]:
     print("---NODE: Reviewer---")
@@ -66,8 +96,8 @@ def router_logic(state: AgentState) -> str:
         print("---ROUTER: Turn ceiling hit, ending---")
         return END
 
-    if not state.get("planner_proposal"):
-        print("---ROUTER: No proposal yet -> Planner---")
+    if not state.get("schema_valid", False):
+        print("---ROUTER: Schema invalid -> back to Planner---")
         return "planner"
 
     if not state.get("reviewer_feedback"):
@@ -80,7 +110,6 @@ def router_logic(state: AgentState) -> str:
 
     print("---ROUTER: No issues -> END---")
     return END
-
 
 def build_graph():
     graph = StateGraph(AgentState)
@@ -108,7 +137,9 @@ if __name__ == "__main__":
         "content": "A vulnerability in lodash allows attackers to modify object prototypes, potentially leading to denial of service or remote code execution in applications that merge untrusted user input.",
         "planner_proposal": {},
         "reviewer_feedback": {},
-        "turn_count": 0
+        "turn_count": 0,
+        "validation_error": "",
+        "schema_valid": False
     }
 
     for step in app.stream(initial_state):
