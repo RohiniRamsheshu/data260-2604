@@ -1,0 +1,63 @@
+Notes on This Corpus's Composition, for the Chunking/Retrieval Experiment
+==============================================================================
+
+This final note documents the corpus's composition and intended use for
+the retrieval-comparison experiment this corpus was assembled to support,
+distinct from the technical vulnerability content itself covered in the
+other 43 documents.
+
+Composition summary
+--------------------------
+The corpus consists of 44 local text documents, falling into three broad
+categories: (1) individual vulnerability write-ups for specific CVEs
+across the npm, PyPI, and Maven ecosystems, spanning severities from
+medium to critical and including both remote-code-execution and denial-
+of-service impact types; (2) extended case studies and historical
+incident analyses, covering both traditional code-level vulnerabilities
+(Heartbleed, Shellshock, the Equifax/Struts2 breach) and supply-chain-
+specific incidents (the XZ Utils backdoor, several npm maintainer-
+account-compromise incidents, and two protestware incidents); and (3)
+cross-cutting reference material explaining the surrounding
+infrastructure and processes -- vulnerability identifier systems, CVSS
+scoring, patch prioritization frameworks, secure coding guidance, and
+session/cookie security -- that provide context spanning multiple
+individual CVEs rather than describing any single vulnerability.
+
+Why this mix supports a meaningful chunking comparison
+-------------------------------------------------------------
+A corpus consisting only of short, uniform, single-fact documents (as an
+earlier, smaller draft of this corpus initially did) would not
+sufficiently exercise the differences between token-based, semantic, and
+sentence-window chunking, since with very short source documents, all
+three techniques tend to converge toward producing similar, whole-
+document-sized chunks. This final corpus intentionally combines short,
+dense, single-topic documents (particularly the original 12 CVE write-
+ups, before their later technical-detail expansions) with much longer,
+multi-section documents covering several related sub-topics each (the
+extended case studies and cross-cutting reference documents). This
+variety in document length and internal topical structure is specifically
+what should allow token-based chunking (blind to structure), semantic
+chunking (sensitive to topic shifts, which the longer multi-section
+documents actually contain, unlike the shorter single-topic CVE write-
+ups), and sentence-window chunking (uniformly fine-grained regardless of
+document length) to produce meaningfully different chunk sets when run
+over this same underlying corpus, which is the specific comparison this
+experiment is designed to surface.
+
+A note on document overlap and cross-references
+-------------------------------------------------------
+Several documents in this corpus deliberately reference the same
+underlying vulnerabilities from different angles -- for example, Log4Shell
+appears in its own dedicated entry, in the Java-deserialization-history
+overview, in the CWE-catalog entry, in the CVSS-worked-examples entry,
+and in the dedicated organizational-response case study. This is an
+intentional design choice, not redundant filler: it means a retrieval
+query about Log4j could plausibly match chunks from several different
+source documents, each emphasizing a different facet (technical
+mechanism, weakness classification, severity scoring, or organizational
+response) -- a realistic property of a real-world vulnerability corpus,
+where the same vulnerability is genuinely discussed from multiple
+angles across multiple sources, and a good retrieval system should
+surface the most relevant facet for a given query rather than always
+returning the same single "canonical" chunk regardless of what was
+actually asked.

@@ -1,0 +1,99 @@
+Denial-of-Service Patterns Across Open-Source Package Vulnerabilities
+==========================================================================
+
+Not every vulnerability in an open-source package leads to remote code
+execution or data exposure; a substantial share of publicly disclosed CVEs
+across the ecosystem instead allow an attacker to degrade or crash an
+application, a category broadly called denial of service (DoS). This
+document surveys the distinct technical mechanisms behind several
+DoS-class vulnerabilities referenced elsewhere in this corpus, since
+"denial of service" as a label covers a fairly wide range of underlying
+causes.
+
+Regular-expression denial of service (ReDoS)
+--------------------------------------------------
+Certain regular expression patterns exhibit exponential or high-polynomial
+time complexity on specially crafted input strings, due to how backtracking
+regex engines explore matching possibilities. lodash's date-handling
+functions, prior to version 4.17.11, used a regular expression to parse
+date-like strings that was vulnerable to this pattern: an attacker
+supplying a very long, carefully-structured string could cause the regex
+engine to spend a disproportionate amount of CPU time attempting to match
+it, effectively freezing the thread processing that request. ReDoS
+vulnerabilities are notable because the vulnerable code often looks
+entirely unremarkable -- a single regex literal, used in what looks like
+an ordinary string-validation or parsing step -- with no indication from
+reading the code alone that a particular input shape could cause
+catastrophic slowdown; identifying ReDoS vulnerabilities generally requires
+either specialized static-analysis tooling that models regex engine
+backtracking behavior, or targeted fuzzing.
+
+Uncontrolled recursion and stack exhaustion
+--------------------------------------------------
+Several vulnerabilities in this corpus stem from processing deeply nested
+or self-referential input without any depth limit. Log4j's CVE-2021-45105
+allowed a denial of service via uncontrolled recursion in self-referential
+lookups -- a logged string engineered to reference itself, or another
+lookup pattern that indirectly references itself, caused Log4j's lookup-
+resolution logic to recurse without terminating, consuming stack space or
+CPU until the process became unresponsive. Separately, certain
+jackson-databind versions were affected by a similar pattern when parsing
+deeply nested JSON: each level of nesting corresponds to another level of
+recursive function calls in a typical JSON parser implementation, and
+without an explicit maximum-depth check, a payload with enough nested
+brackets can exhaust the call stack and crash the process with a
+StackOverflowError, requiring no unusual privilege or complex payload
+construction beyond simply repeating a nesting character many thousands
+of times.
+
+Resource allocation without limits (CWE-770)
+--------------------------------------------------
+A broader category than the two specific mechanisms above, this weakness
+covers any situation where processing attacker-controlled input causes
+unbounded memory allocation, unbounded file-handle or connection creation,
+or unbounded disk usage, without any application-level or library-level
+cap. This is conceptually the simplest DoS mechanism to understand --
+"the attacker asks for something very large, and the system tries to
+provide it" -- but it can be subtle to defend against completely, since
+imposing limits requires deciding, for every resource-consuming operation
+in a codebase, what a reasonable maximum actually is, which is not always
+obvious during initial development and is easy to overlook entirely for
+less commonly exercised code paths.
+
+Why DoS vulnerabilities receive lower CVSS scores than RCE, but are not
+"minor"
+-------------------------------------------------------------------------------
+Under the CVSS framework described elsewhere in this corpus, a pure
+denial-of-service vulnerability typically scores lower than a comparable
+remote-code-execution vulnerability, because the "impact" sub-metrics
+(confidentiality, integrity, availability) reflect only an availability
+impact rather than all three. This scoring convention can understate real-
+world consequences in specific contexts: for a service where uptime is the
+primary business requirement (a payment-processing API, an emergency-
+alerting system, a high-frequency trading platform), a reliable, cheap-
+to-trigger denial-of-service vulnerability may represent a more severe
+practical business risk than a theoretically higher-scored but hard-to-
+reach remote-code-execution vulnerability elsewhere in the same
+application's dependency tree -- which is one reason security teams are
+generally advised not to prioritize remediation purely by raw CVSS score
+without also considering their own specific deployment context, as
+discussed in this corpus's dependency-management-guidance entry.
+
+Detection and mitigation approaches common across DoS vulnerability types
+-------------------------------------------------------------------------------
+Across all three mechanisms discussed above, effective mitigation
+generally combines: applying vendor patches promptly (since the specific
+unbounded operation is usually fixed at the library level once identified);
+adding application-level input-size limits ahead of the vulnerable library
+call, as defense in depth, even for input that a patched library would now
+handle safely, since defense in depth protects against as-yet-undiscovered
+similar issues in the same code path; and, for internet-facing services,
+deploying request-size and request-complexity limits at a reverse proxy or
+API gateway layer, which can reject obviously-oversized or -nested payloads
+before they ever reach application code at all.
+
+Sources: lodash GitHub issue tracker for the date-handling ReDoS fix,
+Apache Log4j security advisories for CVE-2021-45105, FasterXML
+jackson-databind issue tracker discussions on nested-JSON stack
+exhaustion, OWASP guidance on Regular Expression Denial of Service.
+Accessed 2026-09-20.

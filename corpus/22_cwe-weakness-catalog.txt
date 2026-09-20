@@ -1,0 +1,124 @@
+Common Weakness Enumeration (CWE) Categories Relevant to Open-Source
+Package Vulnerabilities
+=======================================================================
+
+The Common Weakness Enumeration (CWE) is a community-maintained catalog of
+software weakness types, maintained by MITRE, that CVE and GHSA records
+frequently reference to classify what kind of underlying flaw a specific
+vulnerability represents. Understanding these categories helps explain why
+seemingly unrelated CVEs in different packages and languages are, at a
+structural level, the same kind of mistake. This document summarizes the
+CWE categories most relevant to the vulnerabilities referenced elsewhere in
+this corpus.
+
+CWE-1321: Improperly Controlled Modification of Object Prototype
+Attributes ("Prototype Pollution")
+---------------------------------------------------------------------------
+This weakness applies specifically to prototype-based languages such as
+JavaScript, where a shared prototype object provides default properties
+and methods to all objects of a given type. The weakness occurs when code
+allows an externally-controlled input to specify an object key that
+resolves to a prototype-chain-affecting identifier (such as __proto__ or
+constructor.prototype), letting an attacker modify properties inherited by
+every object in the running process rather than just the object nominally
+being modified. lodash's CVE-2020-8203 and CVE-2019-10744, both referenced
+elsewhere in this corpus, are canonical examples of this weakness class.
+
+CWE-502: Deserialization of Untrusted Data
+-----------------------------------------------
+This weakness occurs when an application deserializes data (reconstructing
+an object or data structure from a serialized representation such as JSON,
+YAML, XML, or a language-specific binary format) without sufficiently
+restricting which types can be instantiated or trusting the source of the
+serialized data. PyYAML's CVE-2020-14343 and the broader jackson-databind
+polymorphic-deserialization CVE family are both instances of this weakness:
+in each case, the deserialization process was powerful enough to
+instantiate types with dangerous side effects, and the application (or
+library default configuration) did not sufficiently restrict which types
+were eligible.
+
+CWE-89: SQL Injection
+--------------------------
+This weakness occurs when user-controllable input is incorporated into a
+SQL query without sufficient neutralization of special characters or
+syntax, allowing an attacker to alter the query's logic -- for example,
+adding additional clauses, subqueries, or entirely separate statements.
+Django's CVE-2021-35042 (a SQL injection reachable through
+QuerySet.order_by() when passed an unsanitized column value) is an
+instance of this weakness. Parameterized queries and ORM query-builder
+APIs that never directly interpolate string values into SQL text are the
+standard mitigation, though as this specific CVE demonstrates, even a
+mature, widely-audited ORM's convenience APIs can introduce injection
+risk if a code path exists where raw string interpolation slips in.
+
+CWE-770 and related resource-exhaustion weaknesses
+--------------------------------------------------------
+CWE-770 (Allocation of Resources Without Limits or Throttling) covers
+situations where an application allocates memory, opens connections, or
+performs computation in response to attacker-controlled input without
+imposing any upper bound, allowing a relatively small malicious request to
+consume disproportionate server resources, resulting in denial of
+service. The jackson-databind deeply-nested-JSON denial-of-service issue
+referenced elsewhere in this corpus (excessive stack depth from nested
+JSON structures) and Log4j's later CVE-2021-45105 (uncontrolled recursion
+in self-referential lookups) both fall into this general category, even
+though they involve different libraries, languages, and specific trigger
+mechanisms.
+
+CWE-79: Cross-Site Scripting (XSS)
+----------------------------------------
+Although not the primary weakness class for most of the specific CVEs in
+this corpus, CWE-79 is worth including because it is one of the most
+common downstream impacts of prototype pollution in front-end JavaScript
+applications: if a templating library checks a property on
+Object.prototype to decide whether to HTML-escape a value before
+rendering, an attacker who has polluted that property can disable
+escaping and inject arbitrary HTML/script content into a rendered page,
+turning a prototype-pollution bug into a practical XSS vulnerability even
+though the original CVE was not classified as XSS itself.
+
+CWE-918: Server-Side Request Forgery (SSRF)
+-------------------------------------------------
+This weakness occurs when an application can be induced to make an HTTP
+(or other protocol) request to a destination chosen, in whole or in part,
+by an attacker, rather than a destination the application developer
+intended. Redirect-following HTTP clients that do not adequately validate
+a redirect's destination -- a pattern discussed in this corpus's entries
+for both the requests library's CVE-2018-18074 and axios's
+CVE-2023-45857 -- are commonly implicated in this weakness class, since an
+attacker-controlled redirect target can cause the client to send requests
+(potentially carrying sensitive headers, as in these two examples) to an
+unintended destination.
+
+CWE-798 and supply-chain-specific concerns
+-------------------------------------------------
+While CWE's catalog is oriented primarily around code-level weaknesses
+rather than process-level or trust-level failures, the open-source
+package ecosystem has, in recent years, increasingly needed to reason
+about weaknesses that are not expressible purely as a code defect -- for
+example, a maintainer account being compromised (as in the ua-parser-js,
+coa, and rc incidents discussed elsewhere in this corpus) or a trusted
+contributor deliberately introducing malicious code over an extended
+period (as in the XZ Utils backdoor, CVE-2024-3094). These incidents are
+sometimes mapped loosely to CWE-506 (Embedded Malicious Code) or discussed
+under the broader OWASP category of "Software and Data Integrity
+Failures," reflecting an ongoing effort within the security community to
+formally categorize supply-chain trust failures alongside traditional
+code-level weaknesses.
+
+Why this taxonomy matters for retrieval and question-answering
+--------------------------------------------------------------------
+Grouping vulnerabilities by their underlying CWE, rather than only by
+package name or CVE number, surfaces connections across the corpus that a
+purely keyword-based search would miss -- for example, recognizing that
+lodash's prototype-pollution issues and a hypothetical future prototype-
+pollution CVE in an unrelated package share a root cause, even though they
+share no vocabulary in common beyond the weakness pattern itself. This is
+directly relevant to evaluating chunking and retrieval strategies: a
+retrieval system that captures this kind of thematic/weakness-based
+similarity, rather than only surface term overlap, is demonstrating a
+more semantically useful form of understanding of the corpus.
+
+Sources: MITRE CWE catalog (cwe.mitre.org), OWASP Top 10:2021, GitHub
+Advisory Database CWE classifications for the specific CVEs referenced
+above. Accessed 2026-09-20.

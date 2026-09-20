@@ -1,0 +1,100 @@
+Secure Coding Practices for Consuming Open-Source Packages Across
+Python, JavaScript, and Java
+====================================================================
+
+This document consolidates practical, language-specific secure-coding
+guidance directly relevant to the specific vulnerability classes
+documented elsewhere in this corpus, intended as a reference for
+developers deciding how to safely use dependencies rather than only how
+to patch them after the fact.
+
+Python-specific guidance
+------------------------------
+When parsing YAML from any source that is not fully trusted (as discussed
+in this corpus's PyYAML entry), always use yaml.safe_load() or an
+explicitly restricted SafeLoader rather than yaml.load() with the default
+loader or full_load()/FullLoader, even on a patched PyYAML version --
+safe_load() is a stronger, defense-in-depth default regardless of which
+specific classes a given PyYAML version's FullLoader does or does not
+permit. When building database queries with Django or another Python
+ORM, prefer the ORM's own query-building methods (filter(), exclude(),
+order_by() with values drawn from a validated allow-list) over raw SQL or
+extra() calls, and specifically audit any code path where a value passed
+to order_by() originates from request input, given the precedent set by
+CVE-2021-35042. When using the requests library or urllib3 directly,
+keep both updated to versions on or after their respective redirect-
+handling security fixes, and, for any application that constructs
+outbound requests to a URL influenced by user input (webhook URLs,
+callback URLs, avatar/image URLs), disable automatic redirect-following
+and manually validate each redirect target before proceeding, rather than
+depending solely on the HTTP client library's built-in behavior to make
+that judgment safely by default.
+
+JavaScript/npm-specific guidance
+--------------------------------------
+Given how frequently prototype pollution has appeared across widely-used
+npm packages (lodash and others, discussed in depth in this corpus's
+dedicated entry), avoid passing user-controlled strings directly as
+"path" arguments to deep-merge or "set by path" utility functions;
+where this pattern is unavoidable, validate that no path segment equals
+"__proto__", "constructor", or "prototype" before passing the path
+through. Where feasible, run Node.js with the --disable-proto=throw flag
+to eliminate the __proto__ accessor as an exploitation vector at the
+runtime level, independent of any individual library's internal
+protections. When using axios, requests-style HTTP clients, or any
+library that automatically reflects a cookie value back as a header
+(such as axios's CSRF-token handling), verify the library version
+includes same-origin validation before following cross-origin redirects,
+and consider scoping any security-sensitive header attachment explicitly
+to the application's own origin in application code, rather than relying
+solely on library defaults. Because npm's ecosystem has experienced
+multiple maintainer-account-compromise incidents (documented in this
+corpus's supply-chain history entry), enable two-factor authentication on
+any organizational npm publishing accounts, and consider using npm's
+provenance and package-signing features where available to increase
+confidence that a downloaded package version matches what its source
+repository actually produced.
+
+Java-specific guidance
+----------------------------
+Given the recurring theme of expression-evaluation and reflective
+data-binding vulnerabilities in the Java ecosystem (Log4Shell,
+Spring4Shell, Text4Shell, and the broader jackson-databind
+deserialization family, all discussed in this corpus's Java
+deserialization history entry), a general principle applies across all of
+them: never allow attacker-influenced input to select which class gets
+instantiated, which JNDI/LDAP endpoint gets contacted, or which
+expression-language script gets evaluated. Concretely, this means:
+disabling Log4j's message-lookup substitution entirely unless a specific,
+audited need for it exists (and, regardless, staying on Log4j 2.17.1 or
+later); avoiding Spring MVC's broadest automatic data-binding modes for
+any class exposing sensitive properties, and explicitly restricting which
+fields are bindable via @InitBinder allow-listing rather than relying on
+implicit binding of every public setter; enabling jackson-databind's
+polymorphic-type-validation features (a PolymorphicTypeValidator that
+restricts eligible base types) rather than leaving default typing
+unrestricted; and, for Apache Commons Text, explicitly constructing a
+StringSubstitutor with only the specific, minimal set of lookups an
+application actually needs, rather than accepting whatever default
+lookup set a given library version ships with, since (as Text4Shell
+demonstrated) a library's own idea of a "safe default" can itself later
+prove to include dangerous functionality.
+
+A cross-cutting principle
+--------------------------------
+Across all three language ecosystems, the vulnerabilities documented in
+this corpus repeatedly illustrate the same higher-level principle:
+convenience features that generically process, evaluate, or bind
+attacker-influenced input are disproportionately likely to become
+security-critical code paths, specifically because their genericness
+makes them powerful, and their power is exactly what makes them dangerous
+once reachable from untrusted input. Treating "does untrusted input reach
+a generic evaluation, binding, merging, or deserialization feature"as a
+standing architectural review question, independent of any specific
+CVE, is a durable practice that generalizes across languages and across
+future vulnerabilities not yet discovered at the time of writing.
+
+Sources: OWASP Secure Coding Practices Quick Reference Guide, official
+security documentation for Django, Spring Framework, Log4j, and
+jackson-databind; Node.js command-line documentation for the
+--disable-proto flag. Accessed 2026-09-20.

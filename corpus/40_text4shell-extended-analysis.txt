@@ -1,0 +1,90 @@
+Extended Technical Analysis: Text4Shell and Expression-Language
+Injection Risks (CVE-2022-42889)
+====================================================================================
+
+This document expands on the Apache Commons Text entry elsewhere in this
+corpus, examining StringSubstitutor's lookup mechanism in more technical
+detail and situating Text4Shell within the broader pattern of expression-
+language injection vulnerabilities.
+
+How StringSubstitutor's lookups work
+-------------------------------------------
+StringSubstitutor implements variable interpolation: given a template
+string containing markers like ${variableName}, it looks up a
+replacement value for each marker and substitutes it into the output.
+Beyond simple key-value substitution from a supplied map, Commons Text
+supports a set of specialized "lookup" prefixes that trigger different
+resolution behaviors -- for example ${sys:propertyName} resolves a Java
+system property, ${env:VAR_NAME} resolves an environment variable, and,
+critically for this vulnerability, ${script:javascript:...} evaluates the
+given code using Java's built-in scripting engine support, while
+${dns:address|...} and ${url:UTF-8:...} trigger DNS resolution and HTTP
+requests respectively. The
+StringSubstitutor.createInterpolator() convenience method, used by
+applications wanting a fully-featured interpolator without manually
+configuring each lookup individually, included all of these lookup types
+enabled by default in the affected versions.
+
+Why the "script" lookup specifically enabled code execution
+-------------------------------------------------------------------
+The script lookup's evaluation behavior is, by design, exactly what its
+name implies: it executes the given code using whatever scripting
+engine is available on the JVM (commonly the Nashorn JavaScript engine on
+relevant JDK versions), with the same privileges as the host application
+itself. If an attacker can influence any part of a string that is passed
+into the default interpolator -- for instance, a form field, a
+configuration value sourced from user input, or any other externally-
+influenced string a vulnerable application happens to run through
+StringSubstitutor -- and can get their own ${script:javascript:...}
+expression embedded in that string, the script lookup will execute their
+supplied code directly, with no separate confirmation or sandboxing step.
+
+Why "dns" and "url" lookups matter even without full RCE
+-------------------------------------------------------------
+Even setting the script lookup aside, the dns and url lookups being
+enabled by default in an interpolator applied to untrusted input creates
+a blind server-side-request-forgery-adjacent risk: an attacker can cause
+the vulnerable application's server to perform DNS resolutions or HTTP
+requests to attacker-chosen hostnames, which can be used for network
+reconnaissance (probing which internal hosts exist and resolve, from the
+server's own network vantage point) or for exfiltrating small amounts of
+data by encoding it into a hostname the vulnerable server is induced to
+resolve.
+
+Relationship to Log4Shell's naming and actual technical distinction
+-------------------------------------------------------------------------------
+The "Text4Shell" name, chosen by the security community shortly after
+disclosure, deliberately echoes Log4Shell specifically because both
+vulnerabilities share the surface-level pattern of "an interpolation/
+lookup feature, evaluating a ${...}-style expression, ends up executing
+attacker-influenced code." However, as this corpus's Java deserialization
+history entry notes, the actual reachability of the two vulnerabilities
+differed substantially in practice: Log4j's lookup evaluation is
+triggered by essentially any logged string throughout an application,
+making it reachable from an enormous number of independent code paths
+with no additional developer action required, whereas Commons Text's
+interpolator is only reachable if application code specifically chooses
+to pass a given string through StringSubstitutor -- a narrower,
+more deliberately-invoked code path. This meant Text4Shell, despite its
+maximal CVSS score reflecting the theoretical worst case once the
+vulnerable code path is reached, affected a smaller practical share of
+real-world applications than Log4Shell did, since fewer applications
+happened to route untrusted input through Commons Text's interpolator
+specifically, compared to the near-universal usage of logging calls that
+made Log4Shell so broadly reachable.
+
+Remediation approach
+---------------------------
+The fix in Commons Text 1.10.0 changed the default lookup set used by the
+createInterpolator() convenience method to exclude script, dns, and url,
+requiring an application to explicitly opt back into those specific
+lookups if genuinely needed, rather than receiving them automatically.
+This mirrors the general "minimal capability by default, explicit opt-in
+for dangerous features" principle discussed elsewhere in this corpus's
+secure-coding-practices entry, and represents the same category of fix
+Log4j itself ultimately adopted for its own JNDI lookup feature.
+
+Sources: Apache Commons Text security advisory for CVE-2022-42889,
+GitHub Advisory Database GHSA-599f-7c49-w659, independent security
+researcher technical analyses published shortly after the October 2022
+disclosure. Accessed 2026-09-20.

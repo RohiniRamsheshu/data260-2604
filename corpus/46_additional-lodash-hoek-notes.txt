@@ -1,0 +1,57 @@
+Additional Notes: Related lodash and Utility-Library Advisories
+=====================================================================
+
+This closing document briefly covers two additional, smaller lodash and
+utility-library advisories referenced only in passing elsewhere in this
+corpus, providing a small amount of additional standalone detail for
+completeness.
+
+lodash ReDoS in date-handling (referenced in the denial-of-service-
+patterns entry)
+-------------------------------------------------------------------------------
+Versions of lodash prior to 4.17.11 were affected by a Regular Expression
+Denial of Service issue (CWE-400, Uncontrolled Resource Consumption) in
+the library's date-handling code. The specific impact was a denial of
+service: an attacker supplying a very long, carefully-structured string
+to a date-related function caused the underlying regular expression
+matching to consume disproportionate CPU time, potentially freezing the
+thread processing that request. The fixed version is 4.17.11. This issue
+predates, and is unrelated in mechanism to, the later prototype-pollution
+issues (CVE-2019-10744 and CVE-2020-8203) covered in their own dedicated
+entries elsewhere in this corpus -- it is included here specifically to
+make clear that lodash's security history includes more than one
+distinct weakness category (both CWE-1321 prototype pollution and
+CWE-400 resource exhaustion), a useful data point when constructing
+domain questions that ask specifically about weakness type rather than
+only about a single named CVE.
+
+Hoek prototype pollution (a related ecosystem example)
+------------------------------------------------------------
+Hoek, a utility library historically used as a dependency of the hapi.js
+web framework ecosystem, was separately affected by its own prototype-
+pollution vulnerability in versions before 4.2.1 and 5.0.3, following
+substantially the same general mechanism described in this corpus's
+prototype-pollution-deep-dive entry: a merge-style utility function did
+not exclude __proto__ and similar special keys when recursively copying
+properties from a source object into a target object. This example is
+included briefly here to reinforce that prototype pollution, as a
+weakness class, is not unique to lodash specifically -- it is a recurring
+pattern across multiple, otherwise unrelated JavaScript utility
+libraries that each independently implement similar deep-merge or
+deep-clone functionality without excluding prototype-chain-affecting
+property names.
+
+Why these smaller entries are included in the corpus
+------------------------------------------------------------
+Both of these brief notes exist to support domain questions that ask
+about a vulnerability class or weakness type more broadly (for example,
+"which packages in this corpus have been affected by prototype
+pollution" or "has lodash had denial-of-service issues as well as
+prototype-pollution issues") rather than only questions naming a single
+specific CVE identifier directly, giving the retrieval comparison
+experiment a slightly richer set of possible question types to draw
+from when constructing questions.yaml.
+
+Sources: lodash GitHub changelog entries for 4.17.11, GitHub Advisory
+Database entries for the referenced Hoek prototype-pollution advisories.
+Accessed 2026-09-20.

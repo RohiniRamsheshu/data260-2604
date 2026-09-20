@@ -1,0 +1,94 @@
+CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities
+=======================================================================
+
+This document walks through how the CVSS v3.1 sub-metrics apply to
+several specific vulnerabilities referenced elsewhere in this corpus,
+building on the general CVSS explanation in this corpus's vulnerability-
+databases entry, to make concrete how the same scoring framework produces
+very different scores for vulnerabilities that might otherwise seem
+similarly severe based on their plain-language description alone.
+
+Log4Shell (CVE-2021-44228): CVSS 10.0, the maximum possible score
+-------------------------------------------------------------------------------
+Attack Vector: Network (exploitable remotely over a network connection,
+with no need for local or physical access). Attack Complexity: Low (no
+special conditions beyond crafting the malicious string need to be met).
+Privileges Required: None (no authentication of any kind is needed).
+User Interaction: None (no action from a legitimate user, such as
+clicking a link, is required -- the vulnerable server processes the
+malicious input automatically as part of ordinary request handling).
+Confidentiality/Integrity/Availability Impact: all rated High, since
+successful exploitation grants full remote code execution, meaning an
+attacker can read, modify, or destroy essentially anything the compromised
+process has access to. This combination of "trivial to reach, trivially
+low complexity, zero privileges, zero user interaction, and total impact"
+is precisely what produces a maximum 10.0 score.
+
+Heartbleed (CVE-2014-0160): commonly cited around 7.5 under CVSS v3.1
+recalculation (originally scored differently under the CVSS v2 standard
+in use at the time of disclosure)
+-------------------------------------------------------------------------------
+Attack Vector: Network. Attack Complexity: Low. Privileges Required:
+None. User Interaction: None. However, unlike Log4Shell, Heartbleed's
+Integrity and Availability impacts are both rated None -- the
+vulnerability only allows reading memory, not modifying server behavior
+or crashing the process outright -- while Confidentiality impact is rated
+High, since the leaked memory can contain private keys and other highly
+sensitive data. This illustrates a key scoring nuance: a "read-only"
+information-disclosure vulnerability, even one with extremely severe
+real-world consequences (given what specifically could be leaked), scores
+meaningfully lower than a full remote-code-execution vulnerability under
+CVSS's impact sub-metrics, because CVSS explicitly separates the three
+impact dimensions rather than treating "severe consequences" as a single
+undifferentiated score.
+
+Requests library credential leak (CVE-2018-18074): CVSS 7.5, High
+-------------------------------------------------------------------------------
+Attack Vector: Network. Attack Complexity: High (this is a meaningful
+scoring difference from Log4Shell and Heartbleed -- successfully
+exploiting this issue requires the attacker to already occupy a specific
+network position capable of observing traffic, such as a man-in-the-
+middle position or control of network infrastructure between the client
+and server, which is a materially harder precondition than simply sending
+a crafted request to an internet-facing endpoint). Privileges Required:
+None. User Interaction: None. Confidentiality Impact: High (the leaked
+credential itself). Integrity and Availability Impact: None. The elevated
+Attack Complexity relative to Log4Shell and Heartbleed is the primary
+factor keeping this vulnerability's score in the "High" rather than
+"Critical" band, despite the confidentiality impact being just as severe
+in isolation.
+
+Django SQL injection (CVE-2021-35042): commonly scored in the Critical
+band once combined with realistic query context, though NVD's automated
+base scoring reflects a more conservative default assumption
+-------------------------------------------------------------------------------
+SQL injection vulnerabilities illustrate a scoring subtlety: the
+underlying weakness (unsanitized input reaching a SQL query) is constant,
+but the actual CVSS impact sub-metrics depend heavily on what data and
+capabilities the vulnerable query has access to in a realistic
+deployment -- a SQL injection reachable in a query against a database
+user with read-only access to a single non-sensitive table scores very
+differently in practice than the same code-level flaw reachable against a
+database user with broad read/write access across an entire production
+schema, even though both would receive an identical CVE identifier and
+description. This is part of why security teams are advised, as discussed
+in this corpus's dependency-management-guidance entry, to consider their
+own specific deployment context rather than relying purely on a
+published base score when prioritizing remediation.
+
+The general lesson from comparing these four scores
+------------------------------------------------------------
+Reading CVSS sub-metrics individually, rather than only the final
+aggregate number, reveals why two vulnerabilities can carry noticeably
+different scores despite superficially similar plain-language severity
+("this lets an attacker steal sensitive data") -- the specific combination
+of how easily the vulnerability can be reached (attack vector and
+complexity), what access level is needed (privileges required and user
+interaction), and precisely which of confidentiality, integrity, and
+availability are affected, and to what degree, together determine the
+final number in a way that a one-line vulnerability summary alone cannot
+convey.
+
+Sources: first.org CVSS v3.1 specification document, NVD score details
+pages for CVE-2021-44228, CVE-2014-0160, CVE-2018-18074, and
+CVE-2021-35042. Accessed 2026-09-20.

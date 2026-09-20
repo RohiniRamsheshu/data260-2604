@@ -1,0 +1,242 @@
+{
+  "domain": "Open-source package vulnerabilities (DOMAIN_ID=4)",
+  "total_files": 47,
+  "total_byte_size": 200022,
+  "files": [
+    {
+      "filename": "01_log4j_CVE-2021-44228.txt",
+      "byte_size": 4748,
+      "sha256": "2c099c286e2a11cdff5807e8ac1a4ea9e3e9af2bc541a377a9461cb806738611"
+    },
+    {
+      "filename": "02_lodash_CVE-2020-8203.txt",
+      "byte_size": 3441,
+      "sha256": "8c7e0b7c587c95aa015ab26299fd3583a2777275a111b8079c8b050d8658dd2d"
+    },
+    {
+      "filename": "03_lodash_CVE-2019-10744.txt",
+      "byte_size": 2843,
+      "sha256": "8f4f53be9ad6791cdebadb0be97967a71063ed6d2628438060828de45d34b54d"
+    },
+    {
+      "filename": "04_requests_CVE-2018-18074.txt",
+      "byte_size": 3022,
+      "sha256": "d3fd4dd1a79a65752ca55bbd35cdc0ca88e9d06c50b5cf3b7c551a2c6fa78c0b"
+    },
+    {
+      "filename": "05_django_CVE-2021-35042.txt",
+      "byte_size": 2937,
+      "sha256": "044df18ae9866b464975cce04b31b7973397072d69dc08d27083bef4e9816b3a"
+    },
+    {
+      "filename": "06_flask_CVE-2019-1010083.txt",
+      "byte_size": 1204,
+      "sha256": "a53a05d69658c2cd3bd1c2df9e80d854e7f6b47eb05bc0083193ab3cba4af49d"
+    },
+    {
+      "filename": "07_express_CVE-2024-29041.txt",
+      "byte_size": 1213,
+      "sha256": "b475cd0e75eb54578f4a54feec1506e66c636c7bbcfa449e8e39a1ee971a1e0c"
+    },
+    {
+      "filename": "08_pyyaml_CVE-2020-14343.txt",
+      "byte_size": 2820,
+      "sha256": "40ddf53f59a8446585271c8d719a40e0bdf64b91b2c98b958bc0149bb2e22e02"
+    },
+    {
+      "filename": "09_jackson-databind_CVE-2020-36518.txt",
+      "byte_size": 1515,
+      "sha256": "8f0be746dc7ceb35db14a5e5ff0cad12e31643e8aa63c9bdbfae6330d34642f8"
+    },
+    {
+      "filename": "10_axios_CVE-2023-45857.txt",
+      "byte_size": 1445,
+      "sha256": "4444083af7024901bc75909e0ef9f833bf23a69ee077605fa3af061e24486eb0"
+    },
+    {
+      "filename": "11_spring-core_CVE-2022-22965.txt",
+      "byte_size": 1981,
+      "sha256": "d16cd82d4898555efebaf432e296a94e94ee99e5a3d33127ca862dcd9ca17330"
+    },
+    {
+      "filename": "12_urllib3_CVE-2019-11324.txt",
+      "byte_size": 1244,
+      "sha256": "119de8a7476c01b4a75cf6cc3bf7e9bb86ee85cf372b7bff0f47bc2987c4b5c7"
+    },
+    {
+      "filename": "13_struts2_CVE-2017-5638.txt",
+      "byte_size": 1972,
+      "sha256": "fffa19cf2d3ad504ea35017548270c257d5af7e131bcaba280cd18bd887994b2"
+    },
+    {
+      "filename": "14_openssl_CVE-2014-0160.txt",
+      "byte_size": 2036,
+      "sha256": "8453add19b02cb8e172dea24ae8d62e655f39cd124b10338726b56aa565afd41"
+    },
+    {
+      "filename": "15_bash_CVE-2014-6271.txt",
+      "byte_size": 2153,
+      "sha256": "255f30fd09aa4980cee0ac508c5d71feaffba96113293c7de6b5dac448c9d1c7"
+    },
+    {
+      "filename": "16_xz-utils_CVE-2024-3094.txt",
+      "byte_size": 2241,
+      "sha256": "6068856cb6549a490de7b141e97f44b7e947fbe1c10480eebeef08eb1b55e66e"
+    },
+    {
+      "filename": "17_commons-text_CVE-2022-42889.txt",
+      "byte_size": 1798,
+      "sha256": "f89a680d10f7a68267fe848f900f7d3d1b5067c0e4f5f0c3d50a599a923113dd"
+    },
+    {
+      "filename": "18_event-stream_supply-chain-2018.txt",
+      "byte_size": 2427,
+      "sha256": "b86b0aa1a8c7dd860990730230a3743205502d81be3fc449c1cf27259a03c488"
+    },
+    {
+      "filename": "19_npm-supply-chain-history.txt",
+      "byte_size": 7738,
+      "sha256": "90a7550fa0f3e2f3a7a508f451a80a2dafe0cbe334aaf46de0ecc50ea186e334"
+    },
+    {
+      "filename": "20_prototype-pollution-deep-dive.txt",
+      "byte_size": 4992,
+      "sha256": "254a16037688a8027fc914e58acf46fb109d74a6291a4138dc5a65667c844ac5"
+    },
+    {
+      "filename": "21_java-deserialization-history.txt",
+      "byte_size": 4662,
+      "sha256": "5801f3d7e290b250823c2ee8c0a1751ce83e360bf71849c0552cb0e536d80bd1"
+    },
+    {
+      "filename": "22_cwe-weakness-catalog.txt",
+      "byte_size": 7362,
+      "sha256": "8f65f484b68b187db9ede4c41df2a2f3df9a4f94994eb533a4e0c18fb0804626"
+    },
+    {
+      "filename": "23_vulnerability-databases-explainer.txt",
+      "byte_size": 6183,
+      "sha256": "82e6e7ca596b22672abbf9b7fe842b97896d25737652c8f7a1ca4431a7236fa3"
+    },
+    {
+      "filename": "24_ssrf-redirect-handling.txt",
+      "byte_size": 5311,
+      "sha256": "d6917ed52e496e0d66672a83ad82a17fb019a1b202534f4ae677a2f51aee3d15"
+    },
+    {
+      "filename": "25_dependency-management-guidance.txt",
+      "byte_size": 5685,
+      "sha256": "74dbedd563172c344dde709658ee1970292db5a1079179b10a62769c96b8f124"
+    },
+    {
+      "filename": "26_denial-of-service-patterns.txt",
+      "byte_size": 6116,
+      "sha256": "3a55166d7698bd2d3ed6061ed20ff4bcad29faab1ceab802024bb30a2614bebc"
+    },
+    {
+      "filename": "27_equifax-case-study.txt",
+      "byte_size": 4916,
+      "sha256": "2e6a4e73aef08af44d77b4fa84bc61788bdc74b6139d0009867703dc2da6eecc"
+    },
+    {
+      "filename": "28_xz-backdoor-extended-analysis.txt",
+      "byte_size": 5927,
+      "sha256": "260bf2d9a01510b0e5f400b98c55a7faf699ffdbba9533378d444ae0ddd5cd22"
+    },
+    {
+      "filename": "29_secure-coding-practices.txt",
+      "byte_size": 5992,
+      "sha256": "601d7f4de60274c583680ad852c89948b23d3ce7dea2f6cfc3685c8e3cb278f8"
+    },
+    {
+      "filename": "30_open-redirect-phishing.txt",
+      "byte_size": 4306,
+      "sha256": "c3f8317210784b2d976d5017ce90c7a1b403be929dc03bbaa256f85ab58ebe8f"
+    },
+    {
+      "filename": "31_heartbleed-shellshock-extended.txt",
+      "byte_size": 6881,
+      "sha256": "a33b852f21fefff5a135c5089d649c754bce204f490454f342862473a40232ba"
+    },
+    {
+      "filename": "32_vulnerability-disclosure-process.txt",
+      "byte_size": 5877,
+      "sha256": "7dcd22f2a61de0e7d8b41bf68a2962eb75a33a6ec490fb0fd4c19fa2883c988e"
+    },
+    {
+      "filename": "33_cvss-worked-examples.txt",
+      "byte_size": 5844,
+      "sha256": "37225aea27942e8ce707cbc6cbf0f0607585b3de6d936f626b5260fc4823ca76"
+    },
+    {
+      "filename": "34_log4shell-organizational-response.txt",
+      "byte_size": 5600,
+      "sha256": "5ae9d3162eed1a7b38f7523831aacefaabb929663de2203e1c8bd5b797429cba"
+    },
+    {
+      "filename": "35_spring4shell-extended-analysis.txt",
+      "byte_size": 5568,
+      "sha256": "562f108b6a01828617e4193b9c4a980f9f3dfff6b68e7783c9d201b401a459a6"
+    },
+    {
+      "filename": "36_maintainer-account-security.txt",
+      "byte_size": 5378,
+      "sha256": "80e25935daaf162e6ed63ac9648fea3ca126fc41e1bf4881fc93125736744b7a"
+    },
+    {
+      "filename": "37_jackson-polymorphic-deep-dive.txt",
+      "byte_size": 5877,
+      "sha256": "a0bb114da81b5e0f24ac1a5f2588bf2a5a2c91a2f0c3aa041c196eb6eb5f3471"
+    },
+    {
+      "filename": "38_patch-prioritization-kev-epss.txt",
+      "byte_size": 5298,
+      "sha256": "46dadbba507c85973a532ea0227f979ddff04f0c6a10489bf28808a7b88ac0fa"
+    },
+    {
+      "filename": "39_pyyaml-python-deserialization-deep-dive.txt",
+      "byte_size": 5161,
+      "sha256": "7c3c0ea61219aa4e7cdc1c83a7c3173530b38188349de290eb079e2592869a58"
+    },
+    {
+      "filename": "40_text4shell-extended-analysis.txt",
+      "byte_size": 5400,
+      "sha256": "00346932fef90ed4cadcae19c9928aed93d6ce778ff4d3b3f19e968a1c2a60a2"
+    },
+    {
+      "filename": "41_protestware-governance.txt",
+      "byte_size": 5595,
+      "sha256": "c67ca6e1474d82527600d74e3a68bc0c7a336183f351df753f72e0b5b6da9010"
+    },
+    {
+      "filename": "42_session-cookie-security.txt",
+      "byte_size": 5828,
+      "sha256": "287044421f42c97ad3c60a49045dd1b0e5237b837f6ea92d698aea7cc33732c7"
+    },
+    {
+      "filename": "43_cna-ecosystem-databases.txt",
+      "byte_size": 5310,
+      "sha256": "de60436c13c2ba8508d3e8761f129686950316a887c806aa4631860db29cbdae"
+    },
+    {
+      "filename": "44_glossary.txt",
+      "byte_size": 5307,
+      "sha256": "eabc04c9ed6b32942c70c704a34d862b9061c09aac4e2844db611ca3f83f29a9"
+    },
+    {
+      "filename": "45_corpus-composition-notes.txt",
+      "byte_size": 3838,
+      "sha256": "a97adf1e97eafc397a946046b49f6b42ccd6c521c12a600a286705e900fbdc57"
+    },
+    {
+      "filename": "46_additional-lodash-hoek-notes.txt",
+      "byte_size": 3311,
+      "sha256": "ff6b1849bff5efc605191e251af0c53ed4290d8b6f478f51aeecfcb702184987"
+    },
+    {
+      "filename": "47_completion_note.txt",
+      "byte_size": 3719,
+      "sha256": "4bd08f9a1a9e79ec23f542b02c40946a09920e66e789ef8d9bbd575822ee0ac0"
+    }
+  ]
+}

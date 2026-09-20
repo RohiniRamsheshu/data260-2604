@@ -1,0 +1,88 @@
+Prototype Pollution in JavaScript: A Technical Deep Dive
+==========================================================
+
+Prototype pollution is a vulnerability class specific to JavaScript's
+object model, and it has affected numerous widely-used open-source npm
+packages, including lodash (CVE-2020-8203, CVE-2019-10744), jQuery,
+Hoek, minimist, and many others. This document explains the underlying
+mechanism in detail and surveys how it has appeared across the ecosystem.
+
+How JavaScript prototypes work
+--------------------------------
+Every plain JavaScript object implicitly inherits properties and methods
+from a shared prototype object, accessible via Object.prototype. When code
+looks up a property on an object and that property is not found directly
+on the object itself, the JavaScript engine automatically checks the
+object's prototype chain, ultimately reaching Object.prototype, before
+returning undefined. This is normally invisible and convenient -- it is
+why every plain object automatically has access to methods like
+toString() and hasOwnProperty() without those needing to be defined
+individually on every object.
+
+The vulnerability: writing to the shared prototype
+-----------------------------------------------------
+Prototype pollution occurs when application or library code allows an
+attacker-controlled property path to resolve to __proto__, constructor.
+prototype, or a similarly special identifier, and then writes an
+attacker-chosen value to that path. Because Object.prototype is shared by
+every object in the running process, a single successful write pollutes
+every subsequently-created (and in some cases already-existing) plain
+object application-wide -- not just the object that was ostensibly being
+modified. This is fundamentally different from a normal object-injection
+bug, where a flaw is contained to the specific object being manipulated;
+prototype pollution has global, cross-cutting blast radius within a
+single process.
+
+Common vulnerable patterns
+-----------------------------
+Several recurring code patterns have historically introduced prototype-
+pollution vulnerabilities across different libraries:
+  - Deep-merge / deep-clone utilities (lodash's merge, mergeWith,
+    defaultsDeep) that recursively copy properties from a source object
+    into a target object without excluding __proto__ or constructor as
+    special-cased keys.
+  - "Set by path string" utilities (lodash's set, setWith) that split a
+    dotted path string like "a.b.c" into segments and walk/create nested
+    objects accordingly, without validating that no segment resolves to
+    a prototype-chain-affecting identifier.
+  - Query-string and URL-parameter parsers that convert nested bracket
+    syntax (e.g. a[b][c]=1) into nested objects, which can be abused the
+    same way if a segment is literally the string "__proto__".
+  - Configuration-merging code that layers user-supplied JSON on top of
+    application defaults, a pattern that is convenient exactly because it
+    is generic and recursive -- the same genericness that makes it
+    difficult to safely validate every possible input shape.
+
+Impact once pollution occurs
+-------------------------------
+The practical impact of a successful prototype pollution depends entirely
+on what the polluted property happens to be checked against elsewhere in
+the application or its dependencies. Documented impacts across various
+real incidents have included: denial of service (an unexpected property
+value causing a downstream function to throw or infinite-loop); cross-
+site scripting (if a templating engine checks a property on
+Object.prototype as part of deciding whether to escape output);
+authentication or authorization bypass (if a security check inspects a
+property that can be polluted to a truthy value); and, in specific gadget
+chains combining prototype pollution with certain other libraries, remote
+code execution.
+
+Detection and mitigation
+---------------------------
+Static analysis tools (such as ESLint plugins configured with security
+rules) can flag risky patterns like bracket-notation property access
+built from unsanitized input. At the library level, the durable fix is
+for utility functions to explicitly reject or ignore "__proto__",
+"constructor", and "prototype" as path segments or merge keys. At the
+application level, using Object.freeze(Object.prototype) defensively (in
+environments where this doesn't break legitimate functionality) can
+prevent any successful pollution attempt from actually persisting a
+change, since a frozen prototype rejects further property writes.
+Node.js also supports the --disable-proto=throw command-line flag to
+disable the __proto__ accessor property entirely, closing one specific
+common exploitation vector at the runtime level.
+
+Sources: GitHub Advisory Database entries for lodash, Hoek, and minimist
+prototype-pollution CVEs; OWASP prototype-pollution cheat sheet; Snyk
+vulnerability research on JavaScript prototype pollution. Accessed
+2026-09-20.

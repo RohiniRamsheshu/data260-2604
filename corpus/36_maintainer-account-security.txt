@@ -1,0 +1,86 @@
+Maintainer Account Security as a Supply-Chain Control
+==========================================================
+
+This document expands on a theme touched on across several entries in
+this corpus -- the ua-parser-js, coa, and rc incidents in the npm supply-
+chain history entry, and the maintainer-trust dynamics discussed in the
+XZ Utils backdoor extended analysis -- by focusing specifically on
+package-registry account security as its own distinct control category,
+separate from code-level vulnerability management.
+
+Why a maintainer's personal account security is a downstream risk for
+everyone
+-------------------------------------------------------------------------------
+When a package registry account with publish rights to a widely-depended-
+upon package is compromised -- whether through a reused, previously-
+breached password, a successful phishing attempt, or a session-token
+theft -- the attacker inherits the same level of trust every downstream
+consumer already extends to that package. This is a structurally
+different risk than a code-level vulnerability: no code review of the
+package's actual source at any prior point in time would have revealed
+this risk, because the malicious code is introduced only after the
+account compromise occurs, and it is published through the exact same
+legitimate release channel every previous, trustworthy version came
+through. This is precisely why the ua-parser-js, coa, and rc incidents,
+despite affecting entirely unrelated packages with no shared code, are
+frequently grouped together in security analysis: the common factor is
+account-security failure, not any shared code defect.
+
+Two-factor authentication as a baseline control
+-------------------------------------------------------
+In direct response to a wave of maintainer-account-compromise incidents
+in 2021, npm began requiring two-factor authentication for maintainers of
+a defined set of "high-impact" packages (determined by download volume
+and dependency-tree centrality), and has since expanded 2FA requirements
+more broadly across the registry. Similar requirements and encouragement
+have since been adopted, in varying forms, by PyPI and other major
+package registries. The rationale is straightforward: a compromised
+password alone is no longer sufficient to gain publish access if a
+second factor (a hardware security key, an authenticator app code, or
+similar) is also required, meaningfully raising the difficulty of the
+kind of credential-based account takeover that enabled several of the
+2021-2022 incidents described elsewhere in this corpus.
+
+Provenance and package-signing as a complementary control
+-------------------------------------------------------------------
+Beyond preventing account compromise in the first place, some registries
+have introduced mechanisms allowing downstream consumers to verify that a
+published package version was actually built from a specific, publicly
+auditable source-code commit, through an automated build pipeline, rather
+than being uploaded directly and opaquely by a maintainer's local
+machine. npm's provenance feature, built on the Sigstore project's
+signing infrastructure, is one example: a package published with
+provenance carries a cryptographically verifiable attestation linking
+the published artifact back to the exact source repository, commit, and
+build workflow that produced it. This does not prevent a compromised
+maintainer account from publishing a malicious version outright if the
+attacker also controls the linked build pipeline, but it does prevent a
+simpler class of attack where a compromised account is used to upload an
+artifact that was never built from the project's actual, publicly visible
+source code at all, since consumers (or automated tooling) can check that
+the provenance attestation is present and matches the expected source
+repository before trusting a given package version.
+
+Trust delegation and the limits of any single control
+-------------------------------------------------------------
+The XZ Utils backdoor, discussed extensively elsewhere in this corpus,
+illustrates the limits of account-security controls alone: "Jia Tan"
+did not compromise anyone else's account -- the malicious commits and
+releases came from an account that had been granted entirely legitimate,
+voluntarily-delegated co-maintainer trust over an extended period.
+Two-factor authentication and package-signing provenance both assume the
+account or signing identity itself is trustworthy; neither control
+directly addresses the separate, harder problem of a trusted contributor
+eventually using that legitimately-granted trust maliciously. This is why
+current supply-chain security guidance increasingly discusses maintainer-
+account security, package-signing/provenance, and human-level trust and
+succession practices (for example, requiring more than one maintainer's
+review before a release for widely-depended-upon packages, rather than
+allowing any single maintainer, however trusted, to publish unilaterally)
+as three distinct, complementary layers, rather than treating any one of
+them as sufficient on its own.
+
+Sources: npm's official blog posts announcing 2FA requirements for
+high-impact packages, npm and Sigstore documentation on package
+provenance, Open Source Security Foundation (OpenSSF) guidance on
+maintainer and supply-chain trust practices. Accessed 2026-09-20.

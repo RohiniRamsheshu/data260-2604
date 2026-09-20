@@ -1,0 +1,84 @@
+Case Study: The 2017 Equifax Data Breach and CVE-2017-5638
+================================================================
+
+This document provides an extended case study of the 2017 Equifax data
+breach, since it remains one of the most thoroughly investigated and
+publicly documented examples of how a known, patched open-source package
+vulnerability translated into a real-world large-scale data breach,
+offering concrete lessons for the "why patching matters" question that
+often accompanies discussion of individual CVEs.
+
+Background: the vulnerable component
+------------------------------------------
+Equifax, one of the three major U.S. consumer credit reporting agencies,
+operated a web portal (an online dispute-filing system for consumers)
+built using Apache Struts 2, a Java web application framework. As detailed
+in this corpus's dedicated Struts2 entry, Struts 2 versions before 2.3.32
+and 2.5.10.1 contained CVE-2017-5638, a critical remote-code-execution
+vulnerability in the framework's file-upload handling, triggerable via a
+crafted Content-Type HTTP header with no authentication required.
+
+Timeline
+--------------
+Apache Struts publicly disclosed CVE-2017-5638 on March 7, 2017, alongside
+the release of patched versions 2.3.32 and 2.5.10.1. The U.S. Computer
+Emergency Readiness Team (US-CERT) issued a corresponding alert the same
+week, and the vulnerability received widespread security-industry
+coverage given its maximum CVSS severity score and trivial
+exploitability. According to Equifax's own subsequent disclosures and the
+U.S. Government Accountability Office's later investigative report,
+attackers began exploiting the still-unpatched vulnerability in Equifax's
+systems on May 13, 2017 -- more than two months after the public
+disclosure and patch availability. The intrusion continued undetected
+until July 29, 2017, when Equifax's security team identified anomalous
+network traffic and began an internal investigation. Equifax publicly
+disclosed the breach on September 7, 2017.
+
+Scale of impact
+--------------------
+The breach ultimately exposed the personal information of approximately
+147 million people, primarily U.S. consumers, including full names,
+Social Security numbers, birth dates, addresses, and, for a smaller subset
+of affected individuals, driver's license numbers and credit card
+numbers. Given that Social Security numbers are used across the U.S.
+financial system as a persistent identity credential that cannot easily be
+"reissued" the way a credit card number can, the breach was widely
+characterized as having long-term identity-theft risk implications for
+the vast majority of the affected U.S. adult population.
+
+Why the patch was not applied in time
+-------------------------------------------
+Equifax's own public statements and the subsequent GAO investigation
+identified multiple contributing organizational failures rather than a
+single root cause: an internal vulnerability-scanning process that failed
+to correctly identify all systems running the vulnerable Struts version;
+a since-expired SSL/TLS inspection certificate that had caused a network
+monitoring device to stop decrypting and inspecting a category of traffic
+for an extended period prior to the breach, delaying detection even after
+the intrusion began; and, more broadly, an acknowledged gap between the
+existence of a documented, publicly available patch and the organization's
+actual ability to identify every affected system and apply that patch
+across its infrastructure within the two-month exploitation window.
+
+Broader lessons for vulnerability management
+--------------------------------------------------
+The Equifax case is frequently cited in vulnerability-management training
+and policy discussions for several specific, generalizable lessons: (a) a
+patch being publicly available does not equal a patch being applied --
+organizational and process gaps between disclosure and actual remediation
+represent a distinct risk surface in their own right, separate from the
+underlying code vulnerability; (b) accurate asset inventory (knowing
+precisely which systems run which software, including transitive
+framework dependencies) is a prerequisite for effective patching at scale,
+since an organization cannot patch a vulnerable component it does not know
+it has; and (c) detection capability matters as a compensating control
+even when patching lags, since the roughly eleven-week gap between initial
+exploitation and detection in this case significantly increased the
+ultimate scope of data exposed, compared to a scenario with faster
+detection even under the same delayed-patch conditions.
+
+Sources: U.S. Government Accountability Office report GAO-18-559,
+"Data Protection: Actions Taken by Equifax and Federal Agencies in
+Response to the 2017 Breach"; Apache Struts Security Bulletin S2-045;
+Equifax public breach disclosure statements, September 2017. Accessed
+2026-09-20.

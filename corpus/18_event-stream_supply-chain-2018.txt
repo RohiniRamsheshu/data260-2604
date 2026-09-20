@@ -1,0 +1,41 @@
+Vulnerability ID: GHSA-r6fq-c6j4-vjxx (npm advisory for event-stream)
+Package: event-stream (and its dependency flatmap-stream)
+Ecosystem: npm
+Common name: event-stream / flatmap-stream supply-chain incident (2018)
+Severity: Critical (malicious code injection, not a traditional code
+vulnerability)
+
+Description: In late 2018, the widely-used npm package event-stream (at
+the time downloaded roughly 2 million times per week) was found to contain
+malicious code introduced through a dependency, flatmap-stream, which had
+been added by a new "contributor" who had gained publishing rights to
+event-stream after offering, unsolicited, to help maintain the package --
+the original maintainer, no longer actively using the package, had handed
+over access in good faith. The attacker then published a new version of
+flatmap-stream containing obfuscated code that specifically targeted the
+Copay Bitcoin wallet application (which depended on event-stream
+transitively), attempting to steal cryptocurrency wallet private keys and
+exfiltrate them to a remote server, but only when running inside the
+Copay application context -- making the malicious payload nearly invisible
+to unrelated projects that also depended on event-stream without ever
+triggering the payload's conditions.
+
+Significance for the open-source package ecosystem: this incident is
+widely cited as an early, high-profile demonstration of "maintainer
+takeover" as a supply-chain attack vector -- distinct from a code-level
+vulnerability like a buffer overflow or injection flaw, the malicious
+functionality was deliberately and directly published by someone who had
+legitimately (if briefly) gained trusted publishing access, and it evaded
+detection specifically because most users only saw event-stream's
+dependency tree pull in flatmap-stream, not the malicious code itself,
+which was only reachable in the presence of the specific target
+application's code.
+
+Remediation: npm removed the malicious flatmap-stream version; event-
+stream's later releases removed the flatmap-stream dependency entirely.
+Downstream projects were advised to audit their dependency trees for the
+affected version ranges and to pin dependencies rather than automatically
+accepting the latest compatible version of transitive dependencies.
+
+Sources: npm security advisory for event-stream, Copay/BitPay incident
+disclosure, coverage in the GitHub Advisory Database. Accessed 2026-09-20.

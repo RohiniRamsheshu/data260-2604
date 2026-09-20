@@ -1,0 +1,87 @@
+Prioritizing Patches: CVSS Score, Exploitability, and the CISA KEV
+Catalog
+================================================================================
+
+Building on this corpus's dependency-management-guidance and CVSS-
+worked-examples entries, this document focuses specifically on the gap
+between a vulnerability's theoretical severity score and its practical,
+real-world exploitation status, and how organizations reconcile the two
+when deciding what to patch first.
+
+The limitation of CVSS base scores for prioritization alone
+-------------------------------------------------------------------
+CVSS base scores, as explained elsewhere in this corpus, describe a
+vulnerability's severity under a reasonably general set of assumptions
+about exploitability and impact, but they do not, by design, reflect
+whether the vulnerability is actually being exploited by real attackers
+at a given point in time. Two vulnerabilities can share an identical
+9.8 CVSS score, yet one might have no known public exploit code and no
+observed real-world exploitation whatsoever, while the other is being
+actively used in ongoing attack campaigns against organizations similar
+to one's own -- a distinction the base score alone cannot convey, since
+CVSS base scores are computed once, near the time of disclosure, and are
+not automatically revised as real-world exploitation evidence emerges
+afterward (a separate "temporal" and "environmental" metric group exists
+within the CVSS specification to capture exactly this kind of evolving
+context, though these optional metric groups are less consistently
+published than the base score across most public vulnerability
+databases).
+
+The CISA Known Exploited Vulnerabilities (KEV) catalog
+------------------------------------------------------------
+The U.S. Cybersecurity and Infrastructure Security Agency maintains a
+continuously updated public catalog specifically listing vulnerabilities
+with confirmed evidence of active exploitation in the wild, along with a
+required remediation deadline for U.S. federal civilian agencies (though
+the catalog is used far more broadly, by private-sector organizations
+worldwide, as a general prioritization signal rather than only as a
+federal compliance requirement). Several vulnerabilities referenced in
+this corpus, including Log4Shell and the Struts2 vulnerability
+implicated in the Equifax breach, have appeared on this catalog,
+reflecting documented, confirmed active exploitation rather than only
+theoretical exploitability. Unlike a CVSS score, KEV catalog inclusion is
+a binary, evidence-based signal -- a vulnerability is added specifically
+because CISA has confirmed real exploitation activity, not because of any
+score threshold -- and notably, KEV-listed vulnerabilities span a wide
+range of CVSS scores, including some that would not otherwise appear to
+be a top remediation priority based on severity score alone.
+
+Exploit Prediction Scoring System (EPSS) as a complementary signal
+------------------------------------------------------------------------
+A separate, related effort, the Exploit Prediction Scoring System (EPSS),
+maintained by FIRST (the same organization that maintains the CVSS
+specification), produces a probabilistic score estimating the likelihood
+that a given vulnerability will be exploited in the wild within the next
+30 days, based on statistical modeling over historical exploitation and
+vulnerability-characteristic data. EPSS is explicitly designed to
+complement, rather than replace, CVSS: CVSS answers "how bad would
+exploitation be," while EPSS attempts to answer "how likely is
+exploitation to actually happen soon," and organizations increasingly
+combine both signals (alongside KEV catalog status and asset-specific
+context, such as whether the vulnerable component actually faces
+untrusted input in a given deployment) to build a more complete
+prioritization picture than any single score can provide alone.
+
+A worked prioritization scenario
+--------------------------------------
+Consider an organization with two open vulnerability findings: one is a
+9.8 CVSS-scored issue in an internal batch-processing tool with no
+external network exposure and no KEV listing; the other is a 7.5
+CVSS-scored issue in a public-facing web application, actively listed on
+the CISA KEV catalog with a high EPSS score. Prioritizing purely by raw
+CVSS score would rank the first finding as more urgent; incorporating
+exploitability context (KEV status, EPSS score, and actual network
+exposure) would generally reverse that prioritization, since the second
+finding, despite its lower base severity score, represents a
+demonstrably more immediate real-world risk given its combination of
+active-exploitation evidence and actual reachability from untrusted
+input. This kind of reasoning -- combining severity, exploitability
+evidence, and deployment-specific context, rather than sorting a
+vulnerability backlog by CVSS score alone -- is the general
+prioritization approach recommended across most current vulnerability-
+management guidance.
+
+Sources: CISA Known Exploited Vulnerabilities catalog and its
+methodology documentation, FIRST.org EPSS documentation and model
+methodology papers, NIST Special Publication 800-40 (Guide to Enterprise
+Patch Management Planning). Accessed 2026-09-20.

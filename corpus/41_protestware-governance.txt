@@ -1,0 +1,93 @@
+Protestware and Governance Questions in Open-Source Maintainership
+=======================================================================
+
+This document expands on two related incidents referenced in this
+corpus's npm-supply-chain-history entry -- the colors.js/faker.js
+sabotage and the node-ipc "protestware" incident -- to explore the
+governance questions they raise, which are distinct from the technical
+account-compromise and code-vulnerability questions covered elsewhere in
+this corpus.
+
+Distinguishing protestware from a traditional supply-chain attack
+-------------------------------------------------------------------------------
+Every other supply-chain incident discussed in this corpus involves an
+attacker gaining access they were not legitimately entitled to -- whether
+through account compromise (ua-parser-js, coa, rc) or an extended,
+deceptive trust-building campaign (the XZ Utils backdoor). The colors.js
+and node-ipc incidents are structurally different: in both cases, the
+person publishing the disruptive or protest-motivated change was the
+legitimate, rightful maintainer of the package, exercising what they
+would likely describe as their prerogative over their own project, not
+someone circumventing any access control at all. This distinction matters
+significantly for how the incidents are analyzed and what mitigations are
+even conceptually applicable -- two-factor authentication and provenance
+signing, discussed in this corpus's maintainer-account-security entry,
+address unauthorized access; they do nothing to address a legitimate
+maintainer choosing to publish disruptive or harmful code within their
+own, rightfully-held authority.
+
+The colors.js/faker.js maintainer's stated motivation
+-------------------------------------------------------------
+The maintainer of colors and faker published a public statement framing
+his actions as protest against what he characterized as large
+corporations profiting from his and other unpaid maintainers' free labor
+without any compensation or support, after (according to his own
+account) becoming frustrated with the broader pattern of commercial
+reliance on unpaid open-source infrastructure work. This incident is
+widely cited in subsequent discussions of "open-source sustainability" --
+the question of how foundational, widely-depended-upon infrastructure
+software, often maintained by a single unpaid or under-resourced
+individual, should be funded and supported given how much economic
+value large organizations derive from depending on it for free.
+
+The node-ipc incident's different ethical framing
+--------------------------------------------------------
+The node-ipc maintainer's stated motivation was explicitly political --
+protest against the Russian invasion of Ukraine -- rather than the
+labor-compensation grievance behind the colors.js incident. This
+incident drew notably sharper criticism across the open-source community
+than the colors.js case, on the grounds that its payload (in one variant,
+overwriting arbitrary files on affected systems) was indiscriminate: it
+affected any user whose system happened to geolocate to the targeted
+countries, regardless of that individual user's own views, actions, or
+even nationality (geolocation by IP address is an imprecise signal that
+does not reliably correspond to nationality, citizenship, or personal
+political responsibility), and regardless of whether the affected system
+belonged to an ordinary individual developer or ran in a context where
+data loss could cause serious real-world harm.
+
+Package registries' evolving response
+------------------------------------------
+Following both incidents, npm removed the affected malicious versions
+and, in later cases, has taken a more active stance discouraging
+"protestware" broadly in its terms of service, treating deliberately
+harmful payloads as a policy violation regardless of the publishing
+maintainer's underlying motivation or legitimate authority over the
+package. This reflects a governance position that a package's downstream
+consumers are entitled to assume a published version will not
+deliberately harm them, as a baseline expectation independent of
+whatever grievance, however legitimate in the abstract, a maintainer
+might hold.
+
+Why this matters for dependency risk assessment
+-------------------------------------------------------
+For organizations assessing dependency risk, protestware incidents
+introduce a risk category that traditional vulnerability scanning
+(oriented around detecting known code-level flaws or known-malicious
+package versions) does not straightforwardly anticipate: a package can
+be entirely free of known vulnerabilities and have no history of
+account-compromise incidents, while still carrying a nonzero risk that
+its legitimate maintainer chooses, at some future point, to publish a
+deliberately disruptive version. This is one of several reasons the
+dependency-management-guidance entry in this corpus recommends pinning
+and controlled, deliberate version updates (rather than automatically
+accepting the newest published version of every dependency) as a general
+practice, since it provides at least some window to detect and evaluate
+a newly-published version, from any cause, before it is automatically
+deployed into production systems.
+
+Sources: public maintainer statements and GitHub issue threads for both
+the colors.js and node-ipc incidents, npm registry policy updates
+following both incidents, contemporaneous industry commentary on open-
+source maintainer sustainability and protestware as emerging risk
+categories. Accessed 2026-09-20.

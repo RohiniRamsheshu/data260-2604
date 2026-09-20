@@ -1,0 +1,74 @@
+Open Redirect Vulnerabilities and Their Role in Phishing Campaigns
+=======================================================================
+
+This document expands on the open-redirect vulnerability class,
+referenced in this corpus's express.js entry (CVE-2024-29041), explaining
+why a vulnerability that "merely" redirects a browser to an unintended
+destination is treated as a genuine security issue worth patching,
+despite not directly compromising the vulnerable server itself.
+
+What an open redirect is, precisely
+------------------------------------------
+An open redirect exists when an application accepts a URL or path
+fragment as input (commonly through a query parameter such as
+?next=, ?returnTo=, or ?redirect=, used to send a user back to their
+original destination after completing an action like logging in) and
+issues an HTTP redirect to that value without validating that it points
+to a location within the application's own trusted domain, or an
+explicitly approved external allow-list. In Express's case
+(CVE-2024-29041), the specific issue was a malformed-URL parsing
+weakness in res.location()/res.redirect() rather than a missing
+allow-list check in application code -- meaning even developers who
+believed they were only ever redirecting to legitimate, hardcoded
+values could still be exposed if a malformed URL, interacting with the
+framework's own internal handling bug, produced an unintended redirect
+target.
+
+Why attackers value open redirects despite no direct server compromise
+-------------------------------------------------------------------------------
+An open redirect's practical exploitation is almost always phishing-
+oriented rather than technical-compromise-oriented: an attacker crafts a
+link that begins with a trusted, legitimate domain (for example,
+https://trusted-bank.example.com/redirect?next=https://attacker.example/
+fake-login), then distributes that link via email, SMS, or social media.
+Because the visible domain in the link is the trusted one, victims --
+and, notably, many automated link-scanning and email-security filters
+that check only the initial domain rather than following the full
+redirect chain -- are more likely to trust and click the link than they
+would a link pointing directly at an unfamiliar, attacker-controlled
+domain. Once the redirect fires, the victim lands on the attacker's
+site, which can then present a convincing fake login page, a malware
+download, or any other phishing payload, benefiting from the initial
+credibility boost the trusted domain provided.
+
+Relationship to broader phishing infrastructure
+-------------------------------------------------------
+Open redirects are frequently used as one link in a longer redirect
+chain designed specifically to evade automated detection: an attacker
+might chain an open redirect on one trusted, high-reputation domain into
+a second open redirect on a different service, before finally landing on
+the actual malicious destination, since each additional hop makes fully
+automated analysis (which may have a limited redirect-following depth or
+time budget) less likely to reach and flag the final malicious page
+before a human victim does.
+
+Mitigation guidance
+--------------------------
+The standard mitigation is to never redirect to a URL taken directly from
+user input without validation. Concretely, this means either restricting
+redirect targets to relative paths only (which cannot specify a different
+domain at all), or, where an absolute URL is genuinely required,
+validating the target's hostname against an explicit allow-list before
+issuing the redirect. Framework-level fixes, such as the Express.js patch
+for CVE-2024-29041, close specific parsing edge cases that could bypass an
+application's own allow-list logic, but do not substitute for
+applications actually implementing allow-list validation in the first
+place -- a framework fix protects against the specific malformed-URL
+technique that was discovered and patched, not against an application
+that simply redirects to any URL a user supplies with no validation at
+all.
+
+Sources: OWASP Unvalidated Redirects and Forwards Cheat Sheet, GitHub
+Advisory Database GHSA-rv95-896h-c2vc for the Express.js issue, general
+phishing-technique research published by major email-security vendors.
+Accessed 2026-09-20.

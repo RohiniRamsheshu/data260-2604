@@ -1,0 +1,85 @@
+CVE Numbering Authorities and Ecosystem-Specific Advisory Databases
+=========================================================================
+
+This document closes out the corpus's reference material by explaining
+how CVE identifiers actually get assigned in practice, and why several
+ecosystem-specific advisory databases (referenced throughout this
+corpus's individual vulnerability entries) exist alongside the central
+CVE and NVD systems rather than being redundant with them.
+
+CVE Numbering Authorities (CNAs)
+--------------------------------------
+Rather than a single central body reviewing and assigning every CVE
+identifier worldwide, the CVE Program operates through a distributed
+network of CVE Numbering Authorities -- organizations authorized to
+assign CVE IDs directly within their own defined scope, without needing
+to route every request through MITRE centrally. A CNA's scope is
+typically defined around a specific vendor's own products (many major
+software vendors are their own CNA for vulnerabilities in their own
+products), a specific open-source project or foundation (the Apache
+Software Foundation, for example, is a CNA covering its own projects,
+including Log4j, Struts, and Commons Text, all referenced elsewhere in
+this corpus), or a broader remit covering multiple projects a given
+security-research organization works with. GitHub itself operates as a
+CNA, which is part of why so many npm and other open-source ecosystem
+vulnerabilities are published as a GHSA first, with GitHub's own CNA
+status allowing a corresponding CVE ID to be assigned as part of the same
+publication workflow rather than requiring a separate request to a
+different organization.
+
+Why ecosystem-specific databases exist alongside CVE/NVD
+------------------------------------------------------------------
+Several package ecosystems maintain their own advisory databases distinct
+from, though often cross-referenced with, the central CVE/NVD system:
+the GitHub Advisory Database (covering npm, PyPI, Maven, RubyGems,
+Composer/PHP, NuGet, Go, and others, all in one place), PyPA's Python
+Packaging Advisory Database (specifically for PyPI packages), and
+distribution-specific trackers such as Debian's and Ubuntu's own security
+advisory databases, which track vulnerabilities as they apply to the
+specific package versions shipped in that distribution's own repositories
+(which can lag behind, or in some cases patch differently than, the
+upstream project's own versioning). These exist primarily because a
+central, general-purpose database like NVD, using CPE strings to describe
+affected products, is a less precise fit for expressing "affected version
+ranges" in the specific semantic-versioning or ecosystem-specific
+versioning conventions each package ecosystem actually uses, compared to
+a database purpose-built around that ecosystem's own version syntax --
+this precision gap is a primary motivation behind OSV's design, as
+explained in this corpus's vulnerability-databases entry.
+
+Cross-referencing and potential inconsistency between sources
+-------------------------------------------------------------------------
+Because the same underlying vulnerability can be independently described,
+at different times, by the original project's own security advisory, a
+GHSA entry, an NVD entry, and one or more distribution-specific advisory
+entries, minor inconsistencies between these sources are not unusual --
+for example, an affected-version range described slightly differently
+across two sources, due to a downstream distribution back-porting a fix
+into an older version number than the upstream project's own patched
+release, or a severity score computed independently by two different
+organizations using slightly different assumptions about a typical
+deployment's configuration. Security researchers and dependency-scanning
+tool authors generally treat the affected project's own official security
+advisory as the most authoritative single source for exact affected-
+version and remediation details, using NVD, GHSA, OSV, and distribution-
+specific entries as complementary, cross-referenced views rather than
+assuming perfect, mechanical consistency across every source describing
+the same vulnerability.
+
+Why this corpus cites multiple source types per entry
+------------------------------------------------------------------
+Reflecting this reality, most individual vulnerability entries elsewhere
+in this corpus cite more than one source type -- typically a combination
+of NVD, a GHSA or vendor security advisory, and, where relevant, a
+distribution-specific or industry incident report -- specifically because
+no single source type is guaranteed to be the single most complete or
+most promptly updated record for every vulnerability discussed, and cross-
+referencing multiple independently-maintained sources against each other
+is standard practice when compiling accurate vulnerability documentation,
+rather than relying on any one database as a sole source of truth.
+
+Sources: CVE Program documentation on CVE Numbering Authorities
+(cve.org/ProgramOrganization/CNAs), GitHub Advisory Database
+documentation on its CNA status, PyPA Advisory Database documentation,
+Debian and Ubuntu Security Team public documentation on their respective
+security tracker processes. Accessed 2026-09-20.

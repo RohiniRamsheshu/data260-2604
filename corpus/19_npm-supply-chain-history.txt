@@ -1,0 +1,130 @@
+A History of npm Supply-Chain Attacks (2018-2024)
+==================================================
+
+This document surveys a sequence of real, publicly documented supply-chain
+compromises in the npm ecosystem, illustrating the range of techniques
+attackers have used to inject malicious code into widely-depended-upon
+open-source packages. Unlike a traditional code vulnerability (a bug that
+can be triggered), a supply-chain attack involves the malicious code being
+deliberately introduced into a package's published distribution, so every
+downstream consumer who installs the affected version receives the
+attacker's payload directly.
+
+1. event-stream / flatmap-stream (November 2018)
+--------------------------------------------------
+See the dedicated entry for GHSA-r6fq-c6j4-vjxx. A new contributor gained
+publish access to the popular event-stream package after volunteering to
+help maintain it, then added a malicious dependency (flatmap-stream) that
+targeted the Copay Bitcoin wallet specifically, attempting to steal wallet
+private keys. The attack was notable for its selectivity: it only activated
+inside the Copay application, evading detection by the vast majority of
+event-stream's other users. This incident established "maintainer
+takeover via unsolicited goodwill contribution" as a recognized
+supply-chain attack pattern.
+
+2. ua-parser-js (October 2021)
+-------------------------------
+The widely used user-agent-parsing library ua-parser-js (millions of weekly
+downloads) had several versions published directly to npm containing a
+password-stealing trojan and a cryptocurrency miner, after the maintainer's
+npm account credentials were compromised (through a phishing or credential-
+reuse attack, according to the maintainer's own public post-mortem). Unlike
+event-stream, this compromise did not require months of building trust as
+a contributor -- it exploited weak account security on an already-trusted
+maintainer's existing publishing rights. The maintainer detected the
+unauthorized publishes within hours and worked with the npm security team
+to deprecate the malicious versions, but because npm packages are widely
+auto-installed by CI/CD pipelines and build systems, a large number of
+downstream builds were briefly exposed before the versions were pulled.
+
+3. coa and rc (November 2021)
+------------------------------
+In a similar pattern to ua-parser-js, the packages coa (a command-line
+argument parser) and rc (a configuration loader), both with substantial
+weekly download counts, had new versions published containing password-
+stealing malware after their respective maintainer accounts were
+compromised. Security researchers noted the timing proximity to the
+ua-parser-js incident and suspected a common campaign targeting npm
+maintainer credentials broadly, rather than three unrelated, independent
+account compromises.
+
+4. colors.js and faker.js sabotage (January 2022)
+---------------------------------------------------
+In a different category from credential-theft malware, the maintainer of
+the widely used colors (terminal string styling) and faker (fake-data
+generation) packages deliberately published versions of his own packages
+that were intentionally broken -- colors was modified to print an infinite
+loop of garbled text ("LIBERTY LIBERTY LIBERTY") instead of functioning
+normally, disrupting any application that depended on it. This was not an
+external attacker but the legitimate maintainer, acting in protest over
+what he described as a lack of compensation or corporate support for
+unpaid open-source maintenance work. The incident is frequently cited in
+discussions of open-source maintainer burnout and the risks of depending
+on unpaid, single-maintainer infrastructure packages, distinct from a
+malicious third-party takeover.
+
+5. node-ipc "protestware" (March 2022)
+------------------------------------------
+The node-ipc package, a dependency of the popular Vue.js CLI tooling
+(through unicorn-utils), had a version published that detected the
+system's geolocation and, if it resolved to Russia or Belarus, either
+overwrote arbitrary files on disk with a heart emoji or, in one variant,
+left a message file on the user's desktop as a political protest related
+to the Russian invasion of Ukraine. Because this logic executed
+automatically on install/require for any user regardless of their actual
+involvement in the underlying political situation, and because it was
+introduced through a heavily-depended-upon transitive dependency, it drew
+significant criticism as an irresponsible use of supply-chain reach for
+protest purposes, and prompted broader industry discussion about
+"protestware" as a distinct risk category alongside financially-motivated
+supply-chain attacks.
+
+6. ctx and phpass typosquatting (May 2022)
+----------------------------------------------
+Attackers published malicious PyPI packages named ctx (a typosquat of an
+existing benign package) and a compromised version of the actual phpass
+package, both configured to exfiltrate environment variables -- a common
+technique for stealing API keys, cloud credentials, and secrets that
+developers often store in environment variables during local development
+or in CI pipelines -- to an attacker-controlled endpoint whenever the
+package was imported. This incident is frequently cited as a canonical
+example of "typosquatting," where an attacker publishes a package under a
+name deceptively similar to a popular, legitimate one, hoping developers
+will mistype an install command or misremember a package name.
+
+7. polyfill.io CDN compromise (2024)
+----------------------------------------
+Although not an npm package per se, the widely embedded polyfill.io CDN
+service (which many websites referenced directly via a <script src=
+"https://polyfill.io/..."> tag to provide browser-compatibility polyfills)
+changed ownership, and the new operators began serving malicious JavaScript
+to a subset of visitors from the same URL that had previously been trusted
+and widely embedded across thousands of websites, redirecting mobile users
+to scam sites. This incident is frequently discussed alongside npm-specific
+supply-chain attacks because it demonstrates the same underlying risk --
+trusting a piece of externally-hosted, automatically-updating code that a
+project does not control -- applies just as much to CDN-hosted script
+dependencies as it does to npm package dependencies.
+
+General lessons across these incidents
+---------------------------------------
+Across all seven cases, a few recurring themes emerge that are broadly
+applicable to any organization consuming open-source packages: (a) pinning
+dependencies to specific, audited versions rather than accepting automatic
+updates reduces exposure to a newly-published malicious version; (b)
+maintainer account security (strong, unique passwords, two-factor
+authentication on package registry accounts) is a supply-chain security
+control, not just a personal-account hygiene matter; (c) a package having
+millions of downloads and years of good history does not guarantee its
+next published version is safe, since maintainer accounts and access
+rights can change hands or be compromised at any time; and (d) automated
+dependency-scanning tools that check for known-malicious package versions
+(distinct from traditional CVE-based vulnerability scanning) are a
+necessary complement to standard vulnerability management, since a
+supply-chain attack often has no CVE at all, or receives one only after
+the fact.
+
+Sources: npm security advisories, Sonatype and Snyk supply-chain security
+research blogs, public maintainer post-mortems (ua-parser-js GitHub issue
+threads), GitHub Advisory Database entries for the packages discussed
+above. Accessed 2026-09-20.

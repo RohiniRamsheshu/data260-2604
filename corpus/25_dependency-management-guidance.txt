@@ -1,0 +1,90 @@
+Dependency Management and Vulnerability Remediation: Practical Guidance
+for Open-Source Package Consumers
+=========================================================================
+
+Every vulnerability documented elsewhere in this corpus was, at some
+point, a "known unknown" for the applications depending on the affected
+package -- a flaw that existed in the code long before it was publicly
+disclosed, discovered, and assigned an identifier. This document covers
+the practical side of the open-source package vulnerability lifecycle:
+how organizations discover that they are affected, and what remediation
+actually involves in practice, beyond simply "upgrade the package."
+
+Discovering exposure: software composition analysis (SCA)
+------------------------------------------------------------------
+Software Composition Analysis tools (examples include npm audit, pip-audit,
+OWASP Dependency-Check, Snyk, and GitHub's built-in Dependabot alerts)
+work by comparing the exact versions of every direct and transitive
+dependency in a project's dependency tree against a vulnerability
+database (commonly OSV, GHSA, or NVD data, as explained in this corpus's
+vulnerability-databases entry) and reporting any version that falls
+within a known-affected range. This is meaningfully different from
+manually checking a handful of "important" dependencies, because modern
+applications frequently have hundreds or thousands of transitive
+dependencies (dependencies of dependencies, several levels deep) that a
+developer never explicitly chose or is even aware of -- the Log4Shell
+incident specifically highlighted this, since many organizations did not
+realize they depended on log4j-core at all until an SCA scan surfaced it
+several layers down their dependency tree.
+
+The gap between "a fix exists" and "we have deployed the fix"
+--------------------------------------------------------------------
+Publishing a patched version of a package is necessary but not sufficient
+for remediation across an organization's actual running systems. Common
+practical obstacles include: (a) a direct dependency pinning an old,
+vulnerable version of a transitive dependency, requiring either an update
+to the direct dependency itself or an explicit "override"/"resolution"
+entry in the project's lockfile to force a newer transitive version; (b) a
+patched version introducing a breaking API change, requiring code changes
+beyond simply bumping a version number in a manifest file; (c) vendored or
+bundled copies of a library (where the source code is copied directly into
+a project rather than referenced as a package dependency), which SCA tools
+frequently fail to detect at all, since there is no package-manager
+metadata identifying the vendored code's version; and (d) organizational
+friction, where a patch requires a deployment through a slow-moving change
+-management or testing process, creating a window during which a publicly
+known vulnerability remains exploitable in production. The 2017 Equifax
+breach, discussed in this corpus's Struts2 entry, is frequently cited as
+an example of exactly this last failure mode: a patch was available for
+over two months before the breach occurred.
+
+Version pinning, lockfiles, and reproducibility
+-------------------------------------------------------
+Package managers across ecosystems (npm's package-lock.json, Python's
+requirements.txt with pinned versions or a poetry.lock/Pipfile.lock, and
+Maven's dependency management section with explicit versions) allow a
+project to record the exact resolved version of every dependency, rather
+than a version range that could resolve differently at different times.
+Pinning has a security trade-off: it protects against an automatically-
+resolved dependency silently pulling in a newly-published malicious or
+compromised version (as happened in several of the supply-chain incidents
+described elsewhere in this corpus), but it also means a project will not
+automatically receive a security patch for a known vulnerability without
+someone actively updating the pinned version -- meaning pinning must be
+paired with active, ongoing SCA monitoring to be a net security benefit
+rather than simply delaying eventual, necessary updates.
+
+Prioritizing remediation across many findings
+--------------------------------------------------
+A realistic organization running SCA tooling across many projects will
+typically surface dozens or hundreds of findings simultaneously, most of
+which are not exploitable in that specific application's actual usage
+pattern. Practical prioritization commonly considers: the CVSS severity
+score (discussed in this corpus's vulnerability-databases entry); whether
+the vulnerable code path is actually reachable given how the application
+uses the library (a vulnerability in an unused function of a large
+library may not be practically exploitable at all); whether the
+vulnerability is known to be actively exploited in the wild (tracked, for
+US federal agencies and as a broadly-referenced signal industry-wide, by
+CISA's Known Exploited Vulnerabilities, or KEV, catalog); and whether the
+affected component faces untrusted input directly (an internet-facing web
+application versus an internal batch-processing tool with no external
+input) -- this last factor is precisely why Log4Shell's severity was
+treated as maximal nearly universally, since logging calls are reachable
+from essentially any user-supplied input across nearly every kind of
+application.
+
+Sources: OWASP Software Composition Analysis guidance, CISA Known
+Exploited Vulnerabilities catalog documentation, npm and pip official
+documentation on lockfiles, U.S. GAO report on the 2017 Equifax breach.
+Accessed 2026-09-20.

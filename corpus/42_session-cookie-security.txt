@@ -1,0 +1,98 @@
+Session and Cookie Security Across Python and Node.js Web Frameworks
+=========================================================================
+
+This document broadens the framework-level security discussion in this
+corpus (touching on the Flask, Express, and Django entries) to cover
+session and cookie security more generally, since this is directly
+relevant background for any application, including the authentication
+system built alongside this corpus's RAG comparison work, that manages
+logged-in user sessions.
+
+Signed cookies versus server-side session stores
+-------------------------------------------------------
+Web frameworks generally support two broad approaches to tracking a
+logged-in user across requests. In a signed-cookie (or "client-side
+session") approach, the entire session's data is serialized, encrypted
+and/or cryptographically signed, and stored directly in the cookie sent
+to the browser -- the server holds no session state of its own between
+requests, and instead reconstructs the session by verifying and
+decoding the cookie on each incoming request. Starlette's
+SessionMiddleware and Flask's default session implementation both use
+this model. The alternative, a server-side session store, keeps the
+actual session data in a database, in-memory store, or cache on the
+server, and the cookie sent to the browser contains only a short,
+random session identifier used to look up the corresponding server-side
+record.
+
+Trade-offs between the two approaches
+-------------------------------------------
+Signed, client-side cookies avoid needing any server-side storage
+infrastructure and scale trivially across multiple server instances with
+no shared session store required, but they impose a practical size limit
+(cookies are capped at roughly 4KB by browser convention) and mean that
+"logging out" or "invalidating a session early" (for example, in
+response to a suspected account compromise) cannot simply delete a
+server-side record -- the previously-issued cookie remains
+cryptographically valid until it either expires on its own or the
+server's signing secret is rotated (which invalidates every outstanding
+session at once, not just the one an administrator wanted to revoke).
+Server-side session stores avoid this limitation, at the cost of
+requiring shared, available session-storage infrastructure and
+introducing a lookup on every request.
+
+Why the signing/encryption secret is the entire security boundary for
+client-side sessions
+-------------------------------------------------------------------------------
+For a signed-cookie session system, the secret key used to sign (and, in
+some configurations, encrypt) the session cookie is the single point on
+which the entire authentication boundary rests: anyone who obtains this
+secret can forge an arbitrary, validly-signed session cookie claiming to
+be any user, entirely offline, with no need to interact with the running
+application at all. This is why such secrets should never be hardcoded
+into source code committed to a shared or public repository, should be
+sourced from environment variables or a dedicated secrets-management
+system in any real deployment, and should differ between development,
+staging, and production environments -- two environments sharing the
+same secret effectively share the same authentication trust boundary,
+meaning a cookie forged (or legitimately issued) in one environment
+would also be accepted by the other.
+
+The Set-Cookie attributes and what each protects against
+-------------------------------------------------------------
+Modern browsers support several Set-Cookie attributes that constrain how
+and when a cookie is sent, each addressing a distinct threat: the
+HttpOnly attribute prevents JavaScript running on the page (via
+document.cookie) from reading the cookie's value at all, which
+specifically mitigates cookie theft via a cross-site-scripting
+vulnerability elsewhere on the same page, since even a successful XSS
+payload cannot exfiltrate an HttpOnly cookie's contents directly; the
+Secure attribute instructs the browser to never send the cookie over an
+unencrypted HTTP connection, only over HTTPS, which mitigates network-
+level interception of the cookie (a similar threat model to the
+Authorization-header-leakage issues discussed in this corpus's requests
+and urllib3 entries, but for cookies specifically rather than a header);
+and the SameSite attribute (with values Strict, Lax, or None) restricts
+whether the cookie is sent along with requests originating from a
+different site, which mitigates cross-site request forgery (CSRF)
+attacks that rely on a victim's browser automatically attaching their
+existing session cookie to a forged request sent from an attacker-
+controlled page.
+
+Idle timeout as a complementary control to any storage model
+-------------------------------------------------------------------
+Regardless of whether a session is tracked via a signed cookie or a
+server-side store, an idle timeout -- invalidating a session after a
+period of inactivity, rather than only after a long fixed expiration set
+at login time -- reduces the window during which a session left open on
+an unattended, unlocked device (a shared computer, an unlocked phone
+left unattended) remains usable by anyone else with physical access to
+that device. This is a distinct threat model from cookie theft over the
+network or via XSS, which the HttpOnly, Secure, and SameSite attributes
+address; idle timeout instead addresses the risk of the legitimate
+device itself being accessed by someone other than the authenticated
+user during a period of inactivity.
+
+Sources: OWASP Session Management Cheat Sheet, MDN Web Docs
+documentation on the Set-Cookie header and its attributes, Starlette and
+Flask official documentation on session middleware configuration.
+Accessed 2026-09-20.

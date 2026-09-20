@@ -1,0 +1,82 @@
+Java Deserialization and Expression-Language Vulnerabilities: A Unified History
+====================================================================================
+
+Several of the most severe vulnerabilities discovered in the Java open-
+source ecosystem over the past decade share a common underlying theme:
+untrusted input reaching a feature that can construct or invoke arbitrary
+Java objects, classes, or expressions. This document traces that theme
+across Log4Shell, Spring4Shell, the jackson-databind deserialization
+family, and Text4Shell, showing how the same category of risk recurs
+across otherwise unrelated libraries.
+
+Log4Shell (CVE-2021-44228)
+------------------------------
+See the dedicated entry for full detail. In short: Log4j2's JNDI-based
+message-lookup feature would resolve attacker-controlled JNDI URIs,
+allowing a remote LDAP server to supply a Java class reference that the
+JVM would load and execute. The trigger was simply logging a string that
+contained the malicious lookup pattern -- an extremely low bar to reach
+given how ubiquitous logging calls are throughout any non-trivial
+application.
+
+jackson-databind polymorphic deserialization family (multiple CVEs,
+2017-2023)
+---------------------------------------------------------------------------
+jackson-databind supports "polymorphic typing," a feature that lets a JSON
+payload specify which concrete Java class should be instantiated for a
+given field, useful for supporting inheritance hierarchies in a data
+model. When an application enables default typing (or does not carefully
+restrict which classes are eligible for polymorphic deserialization),
+an attacker can supply a JSON payload naming a class that, when
+instantiated and populated with attacker-chosen field values, triggers
+unintended and dangerous side effects during construction or property-
+setting -- a technique broadly known as a "deserialization gadget chain."
+Because many common utility and logging classes across the Java ecosystem
+have historically been usable as gadgets in such chains, Jackson has
+published a long-running series of CVEs (each typically adding a specific
+dangerous class to an internal blocklist) rather than a single definitive
+fix, since the underlying risk is inherent to unrestricted polymorphic
+deserialization rather than any one specific class.
+
+Spring4Shell (CVE-2022-22965)
+----------------------------------
+See the dedicated entry for full detail. Spring MVC's automatic data-
+binding mechanism, which maps incoming request parameters onto Java bean
+properties, could be abused on JDK 9+ to reach and mutate normally-
+inaccessible properties via the ClassLoader, ultimately allowing an
+attacker to write a malicious file to a location the web server would
+subsequently execute (in the publicly demonstrated exploitation path,
+this required a Tomcat-based, WAR-deployed application). Despite the
+"4Shell" nickname echoing Log4Shell, the two vulnerabilities are
+technically unrelated except in severity and timing.
+
+Text4Shell (CVE-2022-42889)
+--------------------------------
+See the dedicated entry for full detail. Apache Commons Text's variable-
+interpolation feature (StringSubstitutor) included, by default, "lookup"
+handlers capable of triggering script execution or network requests when
+evaluating ${...} expressions found in a string being interpolated. Any
+application passing untrusted input into the default interpolator was
+exposed.
+
+The common thread
+----------------------
+In each case, a legitimate, intentionally-designed feature -- JNDI lookups
+for directory-service integration, polymorphic typing for flexible data
+models, reflective data binding for convenient form handling, and
+expression interpolation for dynamic string templating -- was powerful
+enough to reach dangerous operations (class loading, arbitrary
+instantiation, or command execution) and was reachable from
+attacker-influenced input without sufficient restriction on which classes,
+lookups, or code paths were actually permitted. This pattern is often
+summarized in Java security guidance as "never let untrusted input choose
+which class gets instantiated or which expression gets evaluated" -- a
+principle that, if consistently applied at the library-design level
+across all four of these libraries from the start, would likely have
+prevented each of these specific incidents, independent of any individual
+coding bug.
+
+Sources: FasterXML jackson-databind security advisories, Apache Software
+Foundation security bulletins for Log4j, Spring Framework, and Commons
+Text, OWASP guidance on unsafe deserialization (A08:2021 - Software and
+Data Integrity Failures). Accessed 2026-09-20.

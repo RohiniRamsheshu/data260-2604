@@ -1,0 +1,84 @@
+Extended Technical Analysis: PyYAML and Python Deserialization Risks
+=========================================================================
+
+This document expands on the PyYAML entry elsewhere in this corpus,
+covering the broader history of PyYAML's loader security model and how
+it compares to deserialization risk handling in other Python libraries.
+
+The evolution of PyYAML's loader API
+-------------------------------------------
+PyYAML has offered multiple distinct loading functions and Loader
+classes over its history, each representing a different point on the
+spectrum between "supports the full range of YAML's Python-specific
+tagging features" and "safe to use on untrusted input." yaml.load()
+originally defaulted to the full, unrestricted Loader with no safety
+warning, a design choice now widely regarded, in hindsight, as an unsafe
+default -- and one that led to a substantial number of real-world
+incidents of applications unknowingly exposing a full deserialization
+vulnerability simply by calling the library's most obvious, top-level
+load() function on user-supplied YAML. In response, PyYAML introduced
+yaml.safe_load() as an explicitly safety-oriented alternative, and later
+required an explicit Loader argument to yaml.load() itself (removing the
+implicit unsafe default), specifically to force developers to make a
+deliberate, visible choice about which loading behavior they intended,
+rather than silently inheriting an unsafe default. FullLoader and
+full_load() were introduced as a middle option, intended to support most
+of YAML's Python-specific tagging convenience features that safe_load()
+deliberately excludes, while still being safer than the original
+unrestricted Loader -- the vulnerability discussed in this corpus's
+PyYAML entry (CVE-2020-14343) specifically demonstrated that this middle
+option's safety guarantees were, in early releases, incomplete.
+
+Why "safer" is not the same as "safe" for untrusted input
+-------------------------------------------------------------------
+The core lesson from PyYAML's loader history, frequently cited in
+Python security guidance, is that a middle-ground loader designed to be
+"safer than the fully unrestricted option, while still supporting more
+convenience features than the fully safe option" is inherently a harder
+security property to fully guarantee than a minimal, restrictive-by-
+design safe_load(), precisely because it must continue to support a
+richer set of features, any one of which could turn out to have an
+unanticipated dangerous interaction. This is not a criticism unique to
+PyYAML: the same structural tension -- a convenience-oriented "mostly
+safe" option being harder to fully secure than a minimal, restrictive
+option -- recurs in jackson-databind's polymorphic-typing denylist
+approach (discussed in this corpus's dedicated deep-dive entry) and, more
+broadly, across nearly every deserialization library that tries to
+balance flexibility against security through an intermediate,
+partially-restricted mode rather than a strictly minimal allow-list.
+
+Comparison to Python's pickle module
+--------------------------------------------
+Python's built-in pickle module, used for serializing arbitrary Python
+objects (not specific to YAML), is even more explicit in its own
+documentation about being fundamentally unsafe to unpickle data from an
+untrusted or unauthenticated source, since pickle's design intentionally
+allows deserialization to invoke arbitrary Python callables as part of
+reconstructing an object graph, with no equivalent "safe" loading mode
+comparable to PyYAML's safe_load() available at all within the standard
+library itself. This makes pickle a useful contrast case: where PyYAML
+at least offers a genuinely safe, restrictive loading option for
+developers who choose to use it, pickle's standard guidance is simply
+"do not use this on data you do not fully trust," full stop, with no
+safer built-in alternative offered for the untrusted-input use case.
+
+Practical guidance synthesis
+------------------------------------
+Combining the lessons from PyYAML's loader evolution and the pickle
+comparison, current Python security guidance generally recommends: for
+any YAML content that does not originate from a fully trusted, internal-
+only source, always use yaml.safe_load() (or an explicitly-constructed
+SafeLoader) rather than load(), full_load(), or FullLoader, regardless of
+which specific PyYAML version is in use, since safe_load()'s restrictive-
+by-design nature is structurally more robust against undiscovered future
+issues than any of the "safer, but not fully safe" alternatives; and, for
+any use case requiring pickle-style arbitrary Python object
+serialization, treat the serialized data with the same level of
+trust as the ability to execute arbitrary Python code directly, since
+that is, in practical security terms, exactly what deserializing
+untrusted pickle data grants an attacker.
+
+Sources: PyYAML official documentation on Loader classes, Python
+standard library documentation's security warning for the pickle module,
+OWASP guidance on unsafe deserialization across multiple language
+ecosystems. Accessed 2026-09-20.

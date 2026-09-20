@@ -1,0 +1,96 @@
+Extended Technical Analysis: jackson-databind Polymorphic Deserialization
+==============================================================================
+
+This document expands on the jackson-databind entry elsewhere in this
+corpus, explaining the specific mechanics of "polymorphic typing" and why
+this single feature has generated an unusually long-running series of
+individual CVEs rather than being resolved by any one definitive patch.
+
+What polymorphic typing is for
+------------------------------------
+In an ordinary Java class hierarchy, a field might be declared with an
+abstract or interface type, while the actual object assigned to it at
+runtime is some concrete subclass. When serializing such an object to
+JSON, jackson-databind can optionally embed type information (typically
+an additional JSON property naming the concrete class) alongside the
+serialized data, specifically so that deserialization can later
+reconstruct an instance of the correct concrete subclass, rather than
+only being able to deserialize into the single, statically-declared
+field type. This is a genuinely useful feature for applications that
+need to serialize and later faithfully reconstruct polymorphic object
+graphs -- for example, a plugin system where different plugin
+implementations, all conforming to a shared interface, need to be
+persisted and later reloaded as their correct concrete type.
+
+Where the risk enters: attacker-controlled type selection
+-------------------------------------------------------------
+The security risk arises specifically when an application enables this
+feature broadly (for example, via the enableDefaultTyping() global
+configuration option, rather than restricting polymorphic typing to a
+small, explicitly-annotated set of known-safe class hierarchies) and then
+deserializes JSON originating from an untrusted source. Under broad
+default typing, the JSON payload itself effectively gets to choose which
+Java class jackson-databind instantiates, limited only by what classes
+happen to be present on the application's classpath. If any class
+reachable on the classpath has a side effect during construction, or
+during one of its setter methods being invoked with attacker-chosen
+values, that side effect is now attacker-triggerable purely by crafting
+an appropriately-shaped JSON payload -- this general technique is known
+as a "deserialization gadget chain," where "gadget" refers to any
+individual class whose ordinary, otherwise-benign behavior can be
+chained together with other gadgets to produce an unintended, dangerous
+overall effect (commonly file writes, network connections, or in some
+documented chains, full remote code execution via classes that wrap
+scripting engines or reflection utilities).
+
+Why Jackson's fix strategy has been an evolving blocklist rather than a
+single patch
+-------------------------------------------------------------------------------
+Rather than removing polymorphic typing entirely (which would break
+legitimate use cases the feature was designed for) or attempting to
+enumerate every possible dangerous gadget class in advance, Jackson's
+maintainers have historically responded to each newly-discovered
+exploitable gadget class by adding that specific class to an internal
+denylist of types that default typing will refuse to instantiate,
+regardless of what the JSON payload requests. This produces the long-
+running CVE series characteristic of jackson-databind's security history:
+each new publicly-disclosed gadget class discovery generally results in a
+new CVE and a new patch release adding that class to the denylist, rather
+than a single upgrade fully and permanently closing the underlying risk
+category for all possible future gadget discoveries.
+
+The recommended alternative: an explicit allow-list via
+PolymorphicTypeValidator
+-------------------------------------------------------------------------------
+Jackson's own security guidance, particularly in more recent versions,
+recommends that applications needing polymorphic typing configure an
+explicit PolymorphicTypeValidator specifying exactly which base types and
+subtypes are permitted, rather than relying on Jackson's own,
+continuously-updated denylist as the sole protection. An allow-list-based
+approach is structurally more robust against this vulnerability class,
+because it does not depend on Jackson's maintainers having already
+discovered and denylisted every dangerous class present on a given
+application's specific classpath -- a denylist can only ever protect
+against gadget classes that have already been publicly identified as
+dangerous, whereas an allow-list restricts deserialization to a
+deliberately narrow, application-specific set of types regardless of what
+else happens to be present on the classpath.
+
+Broader relevance to the deserialization vulnerability class
+-------------------------------------------------------------------
+This same allow-list-over-denylist principle generalizes to
+deserialization vulnerabilities across other languages and libraries
+discussed elsewhere in this corpus -- for instance, PyYAML's
+recommendation to use safe_load() (an explicit, minimal, safe-by-default
+set of constructible types) rather than attempting to enumerate and
+individually block every dangerous Python object constructor reachable
+through full_load(). In both cases, the more durable security posture
+comes from restricting what can be constructed from untrusted input to a
+deliberately narrow, known-safe set, rather than attempting to
+enumerate and exclude every specific dangerous possibility after each is
+individually discovered.
+
+Sources: FasterXML jackson-databind security documentation and GitHub
+issue tracker discussions of specific gadget-chain CVEs, OWASP guidance
+on insecure deserialization (A08:2021), academic and industry research
+on Java deserialization gadget chains. Accessed 2026-09-20.

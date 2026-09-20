@@ -1,0 +1,87 @@
+Redirect-Handling and SSRF-Adjacent Vulnerabilities in HTTP Client
+Libraries
+=============================================================================
+
+Several vulnerabilities referenced in this corpus -- the requests
+library's CVE-2018-18074, urllib3's CVE-2019-11324, and axios's
+CVE-2023-45857 -- share a common underlying theme: an HTTP client library
+automatically following a redirect and carrying forward sensitive
+information (an Authorization header or an anti-CSRF token) to a
+destination that may not be the one the developer or user intended to
+trust. This document examines that theme in more depth.
+
+Why HTTP clients follow redirects automatically
+-----------------------------------------------------
+Most HTTP client libraries, by default, transparently follow 3xx redirect
+responses so that calling code does not need to manually detect a
+redirect status and issue a second request itself -- this is a deliberate
+convenience feature, present in requests, urllib3, axios, and effectively
+every mainstream HTTP client across every language. The convenience comes
+with an implicit trust assumption: the library assumes that whatever
+information was appropriate to send to the original destination is also
+appropriate to send to wherever the redirect points, unless the library
+specifically checks otherwise.
+
+The specific failure pattern: header leakage across a trust boundary
+----------------------------------------------------------------------------
+In both the requests (CVE-2018-18074) and urllib3 (CVE-2019-11324) cases,
+the trust assumption broke down specifically around the Authorization
+header, which typically carries a credential (a bearer token, an API key,
+or basic-auth credentials). requests' issue involved a same-hostname
+scheme downgrade (https to http) -- the *destination* looked unchanged
+from a naive same-origin perspective, but the *protocol* changed from
+encrypted to plaintext, exposing the credential to network eavesdroppers.
+urllib3's issue was broader: failing to strip the Authorization header on
+a genuinely cross-origin redirect, meaning the credential could be sent to
+an entirely different host than the one it was originally intended for.
+Although the failure conditions differ (same-host protocol downgrade vs.
+true cross-origin redirect), both represent the same class of mistake:
+insufficiently validating that a redirect destination is still
+appropriate to receive previously-attached sensitive headers.
+
+The axios case: token leakage via a different mechanism
+------------------------------------------------------------
+Axios's CVE-2023-45857 involves a conceptually similar failure but a
+different specific header and purpose: the XSRF-TOKEN cookie value, which
+axios automatically reflects back as an X-XSRF-TOKEN request header to
+implement a common anti-CSRF pattern (the "double-submit cookie"
+technique). If a request is redirected cross-origin, axios continuing to
+attach this token header to the redirected request can expose the token
+value to a third-party host, which could undermine the CSRF protection
+the token exists to provide, since an attacker who can observe or induce
+the token's value could potentially use it to construct a valid forged
+request against the original site.
+
+Server-Side Request Forgery (SSRF) as the more severe sibling issue
+----------------------------------------------------------------------------
+While the three specific CVEs discussed above involve client-side
+credential or token leakage via redirects, the broader and often more
+severe SSRF vulnerability class involves a server-side application being
+induced to make a request to an attacker-chosen destination -- for
+example, an internal metadata service, an internal-only admin API, or an
+otherwise-unreachable internal network address -- because the server
+accepted a URL from user input (for instance, a "webhook callback URL" or
+an "avatar image URL" field) and fetched it without restricting the
+destination to a safe allow-list. Unrestricted redirect-following compounds
+SSRF risk further: even if an application validates the initial URL
+against an allow-list, a malicious server at that initially-allowed URL
+can respond with a redirect to an internal address, and if the HTTP client
+follows redirects without re-validating the new destination, the
+allow-list check is effectively bypassed.
+
+General mitigation guidance
+----------------------------------
+Security guidance for this class of issue generally recommends: (a)
+keeping HTTP client libraries updated to versions that correctly strip
+sensitive headers across untrusted redirect boundaries; (b) where an
+application controls outbound requests to URLs derived from user input,
+disabling automatic redirect-following entirely and instead validating
+each hop's destination explicitly before deciding whether to follow it;
+and (c) for anti-CSRF tokens specifically, scoping token headers to be
+attached only for requests to the application's own origin, rather than
+relying on a library's default same-origin heuristics to hold correctly
+across every possible redirect scenario.
+
+Sources: NVD entries for CVE-2018-18074, CVE-2019-11324, and
+CVE-2023-45857; OWASP Server-Side Request Forgery Prevention Cheat Sheet;
+axios and urllib3 GitHub security advisory pages. Accessed 2026-09-20.

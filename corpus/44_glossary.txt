@@ -1,0 +1,113 @@
+Glossary of Terms Used Across This Corpus
+==============================================
+
+This glossary consolidates terminology introduced across the other
+documents in this corpus, for quick reference when a term's full
+explanation appears in a different document than the one currently being
+read.
+
+Attack surface: the complete set of points at which an untrusted party
+could attempt to interact with or supply input to a system, larger
+attack surfaces generally correlate with greater exposure to
+vulnerabilities of any kind.
+
+CNA (CVE Numbering Authority): an organization authorized to assign CVE
+identifiers directly within a defined scope, discussed in this corpus's
+CNA-ecosystem-databases entry.
+
+CVSS (Common Vulnerability Scoring System): a standardized 0.0-10.0
+severity scoring framework, discussed at length in this corpus's
+vulnerability-databases and CVSS-worked-examples entries.
+
+CWE (Common Weakness Enumeration): MITRE's catalog of underlying software
+weakness types (such as CWE-1321 for prototype pollution or CWE-89 for
+SQL injection), discussed in this corpus's dedicated CWE catalog entry.
+
+Deserialization: the process of reconstructing an in-memory object or
+data structure from a serialized (stored or transmitted) representation;
+"unsafe deserialization" refers to this process being exploitable when
+applied to untrusted input, discussed across this corpus's PyYAML and
+jackson-databind entries.
+
+EPSS (Exploit Prediction Scoring System): a probabilistic score
+estimating near-term exploitation likelihood, discussed in this corpus's
+patch-prioritization entry.
+
+Gadget chain: a sequence of otherwise-individually-benign object
+behaviors, chained together during deserialization or a similar
+generic-evaluation process, to produce an unintended and often dangerous
+overall effect, discussed in this corpus's jackson-polymorphic-deep-dive
+entry.
+
+GHSA (GitHub Security Advisory): GitHub's own vulnerability advisory
+identifier scheme, discussed in this corpus's vulnerability-databases
+entry.
+
+KEV (Known Exploited Vulnerabilities catalog): CISA's public list of
+vulnerabilities with confirmed active real-world exploitation, discussed
+in this corpus's patch-prioritization entry.
+
+NVD (National Vulnerability Database): NIST's database republishing CVE
+records with additional structured metadata including CVSS scores,
+discussed in this corpus's vulnerability-databases entry.
+
+Open redirect: a vulnerability allowing an application to be induced to
+redirect a browser to an attacker-chosen destination, discussed in this
+corpus's open-redirect-phishing entry.
+
+OSV (Open Source Vulnerabilities): Google's unified, machine-readable
+vulnerability schema and database, discussed in this corpus's
+vulnerability-databases entry.
+
+Prototype pollution: a JavaScript-specific weakness (CWE-1321) allowing
+modification of properties inherited by every object in a running
+process, discussed extensively in this corpus's prototype-pollution-
+deep-dive entry.
+
+Protestware: software deliberately modified by its own legitimate
+maintainer to disrupt users as an act of protest, discussed in this
+corpus's protestware-governance entry, distinct from an unauthorized
+supply-chain attack.
+
+ReDoS (Regular Expression Denial of Service): a denial-of-service
+mechanism exploiting exponential or high-polynomial backtracking time
+complexity in certain regular expression patterns, discussed in this
+corpus's denial-of-service-patterns entry.
+
+Responsible/coordinated disclosure: a vulnerability-reporting model in
+which details are kept private until a patch is ready, discussed in this
+corpus's vulnerability-disclosure-process entry.
+
+RCE (Remote Code Execution): a vulnerability class allowing an attacker
+to execute arbitrary code on a target system, typically without prior
+authentication, as seen in this corpus's Log4Shell, Spring4Shell,
+Struts2, and Text4Shell entries among others.
+
+SBOM (Software Bill of Materials): a structured, machine-readable
+manifest listing a piece of software's direct and transitive
+dependencies, discussed in this corpus's Log4Shell organizational-
+response entry.
+
+SSRF (Server-Side Request Forgery): a weakness (CWE-918) allowing an
+attacker to induce a server to make a request to an attacker-influenced
+destination, discussed in this corpus's SSRF-redirect-handling entry.
+
+Supply-chain attack: a security incident in which malicious code is
+introduced into a legitimate software distribution channel, rather than
+exploited as a pre-existing code-level flaw, discussed across this
+corpus's npm-supply-chain-history and XZ Utils backdoor entries.
+
+Transitive dependency: a dependency that is not directly declared by a
+project but is instead pulled in because a directly-declared dependency
+itself depends on it, discussed in this corpus's dependency-management-
+guidance entry.
+
+Typosquatting: publishing a malicious package under a name deceptively
+similar to a legitimate, popular package, hoping developers install it by
+mistake, discussed in this corpus's npm-supply-chain-history entry (the
+ctx and phpass incident).
+
+Sources: this glossary consolidates terminology as used and defined
+across the other documents in this corpus; no additional external
+sources beyond those already cited in the corresponding detailed entries.
+Accessed 2026-09-20.
