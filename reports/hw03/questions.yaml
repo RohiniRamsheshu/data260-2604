@@ -1,0 +1,36 @@
+# questions.yaml
+# HW3 - Domain: Open-source package vulnerabilities (DOMAIN_ID = 4)
+# Committed BEFORE running the graded retrieval comparison, per assignment
+# instructions, so expected answers are not influenced by seeing retrieval
+# output.
+
+questions:
+  - id: q1
+    question: "What version of lodash fixes the prototype pollution vulnerability CVE-2020-8203?"
+    expected_answer: "lodash 4.17.20 (the vulnerability affects versions prior to 4.17.19; it is fixed in 4.17.20)."
+    expected_source_file: "02_lodash_CVE-2020-8203.txt"
+    single_source: true
+
+  - id: q2
+    question: "What CVSS v3.1 base score did Log4Shell (CVE-2021-44228) receive, and what does that score reflect?"
+    expected_answer: "10.0, the maximum possible score, reflecting network attack vector, low attack complexity, no privileges required, no user interaction, and high impact to confidentiality, integrity, and availability."
+    expected_source_file: "01_log4j_CVE-2021-44228.txt"
+    single_source: true
+
+  - id: q3
+    question: "Which Django release line introduced the SQL injection vulnerability CVE-2021-35042, and which QuerySet method was the vulnerable code path?"
+    expected_answer: "It was introduced in Django 3.2 (versions before 3.2.5); the vulnerable code path was QuerySet.order_by() when passed an unsanitized column value."
+    expected_source_file: "05_django_CVE-2021-35042.txt"
+    single_source: true
+
+  - id: q4
+    question: "How did the attacker behind the XZ Utils backdoor gain the access needed to introduce malicious code, compared to how the attacker behind the event-stream supply-chain incident gained access?"
+    expected_answer: "The XZ Utils attacker ('Jia Tan') spent roughly two years making legitimate-looking contributions to gain co-maintainer status and commit access. The event-stream attacker gained publish access more quickly, after volunteering to help maintain a package whose original maintainer was no longer actively using it."
+    expected_source_file: "16_xz-utils_CVE-2024-3094.txt and 18_event-stream_supply-chain-2018.txt"
+    single_source: false
+
+  - id: q5
+    question: "Beyond the unpatched Struts2 vulnerability itself, what organizational failure contributed to the scale and duration of the 2017 Equifax breach?"
+    expected_answer: "An expired SSL/TLS inspection certificate had caused a network monitoring device to stop decrypting and inspecting a category of traffic, delaying detection of the intrusion for an extended period after exploitation began."
+    expected_source_file: "27_equifax-case-study.txt"
+    single_source: true
