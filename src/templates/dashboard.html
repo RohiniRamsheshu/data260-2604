@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body text-center">
+    <h1 class="card-title">Welcome, {{ username }} 👋</h1>
+    <p class="card-text text-muted">
+      This is your protected dashboard. Only logged-in users can see this.
+    </p>
+    <a href="/logout" class="btn btn-outline-danger">Log out</a>
+  </div>
+</div>
+{% endblock %}

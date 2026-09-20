@@ -1,0 +1,170 @@
+<h1 id="data-260-homework-2-report">DATA-260 Homework 2 Report</h1>
+<p><strong>Name</strong>: Rohini Ramasheshu</p>
+<h2 id="configuration-values">Configuration Values</h2>
+<ul>
+<li>SID4: 2604</li>
+<li>PORT_BASE: 8804</li>
+<li>PREFIX: s2604</li>
+<li>SEED: 2604</li>
+<li>VERIFY_SEED: 262604</li>
+<li>DOMAIN_ID: 4 (Open-source package vulnerabilities)</li>
+</ul>
+<h2 id="hardware-model">Hardware &amp; Model</h2>
+<ul>
+<li>Hardware: MacBook Air M2, 8GB RAM</li>
+<li>Local model used: qwen2.5:3b (substituted for qwen3:8b, documented
+in HW1 due to 8GB RAM constraint)</li>
+<li>Tagged commit hash: 20cafe2392e080d4dcd58e4dac7ba9b40ce17300</li>
+</ul>
+<h2 id="part-1-html-css">Part 1 — HTML &amp; CSS</h2>
+<p>Restyled the HW1 form to remain usable at 375px width using a
+flex-column layout with a max-width container. Added visible loading,
+empty, and error state containers, toggled via JavaScript based on fetch
+outcomes.</p>
+<h2 id="part-2-fastapi-backend">Part 2 — FastAPI Backend</h2>
+<p>Built a FastAPI backend on PORT_BASE 8804 (<code>src/main.py</code>)
+with an in-memory records list. Implemented: - <strong>Add</strong>:
+<code>POST /api/records</code> — form data saved, redirects to home view
+showing updated list. - <strong>Update ID 1</strong>:
+<code>POST /api/records/1/update</code> — updates package name and
+version for record ID 1, redirects home. - <strong>Delete highest
+ID</strong>: <code>POST /api/records/delete-highest</code> — removes the
+record with the max ID, redirects home. - <strong>Search</strong>:
+<code>GET /api/records?q=...</code> — filters by package name or
+version, wired to a live-search input on the frontend.</p>
+<p>All four operations were verified end-to-end via curl and the browser
+UI (see RUN_LOG.txt).</p>
+<h2 id="part-3-stateful-agent-graph">Part 3 — Stateful Agent Graph</h2>
+<p>Refactored the HW1 sequential Planner/Reviewer pipeline into a
+LangGraph <code>StateGraph</code> (<code>src/agent_graph.py</code>)
+implementing the Supervisor pattern: - <strong>AgentState</strong>
+(TypedDict): shared state holding title, content, planner_proposal,
+reviewer_feedback, turn_count, validation_error, schema_valid. -
+<strong>Nodes</strong>: <code>planner_node</code>,
+<code>reviewer_node</code>, <code>supervisor_node</code> — each a pure
+function taking state and returning a partial update dict. -
+<strong>Router (<code>router_logic</code>)</strong>: reads state and
+routes to “planner”, “reviewer”, or END based on turn ceiling, schema
+validity, and reviewer feedback. - All LLM calls route through
+<code>src/model_client.py</code> (the HW1 adapter), not directly through
+Ollama/LangChain, per the assignment requirement.</p>
+<p><strong>Self-correction loop tested</strong>: initially the
+Reviewer’s prompt used subjective quality judgment, causing every run to
+loop to the turn ceiling without ever approving. Rewriting the
+Reviewer’s prompt to check only 3 objective rules (exact tag count, tag
+length range, summary word count) produced a realistic mix of
+early-approval and looped runs, confirming the loop and ceiling both
+function correctly.</p>
+<h2 id="part-4-output-schema-and-loop-safety">Part 4 — Output Schema and
+Loop Safety</h2>
+<h3 id="pydantic-validation">Pydantic validation</h3>
+<p>Added a <code>PlannerOutput</code> Pydantic model validating: exactly
+3 tags, each 3-30 characters, and a summary of at most 25 words. On
+validation failure, the error message is fed back into the Planner’s
+next prompt, and the router sends control back to Planner (not Reviewer)
+until schema_valid is True or the turn ceiling is reached.</p>
+<h3 id="experiment-1-30-runs-fixed-input-turn-ceiling-6">Experiment 1:
+30 runs, fixed input, turn ceiling = 6</h3>
+<p>Fixed input saved at
+<code>reports/hw02/cases/schema_input.json</code>. Raw results:
+<code>reports/hw02/raw/schema_validation_runs.csv</code>.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Count</th>
+<th>Mean latency (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Valid first attempt</td>
+<td>10</td>
+<td>2,014</td>
+</tr>
+<tr>
+<td>Valid after 1 retry</td>
+<td>0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Valid after 2+ retries</td>
+<td>0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Hit turn ceiling</td>
+<td>20</td>
+<td>7,296 (1 outlier excluded, 448,863ms - likely local resource
+contention)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding</strong>: outcomes were strictly bimodal. Either the
+Planner passed schema validation and the Reviewer approved on the first
+attempt (10/30), or the loop never recovered before hitting the ceiling
+(20/30). No run succeeded after exactly 1 or 2+ retries. With
+TURN_CEILING=6, there is only room for roughly two full Planner-Reviewer
+cycles - if the first is rejected, there is little room left to recover,
+which directly motivated the ceiling comparison below.</p>
+<h3
+id="experiment-2-turn-ceiling-comparison-2-vs-10-20-runs-each">Experiment
+2: Turn ceiling comparison (2 vs 10, 20 runs each)</h3>
+<p>Raw results:
+<code>reports/hw02/raw/ceiling_comparison_runs.csv</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Ceiling</th>
+<th>Completion rate</th>
+<th>Mean latency (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>0% (0/20)</td>
+<td>1,760</td>
+</tr>
+<tr>
+<td>10</td>
+<td>65% (13/20)</td>
+<td>5,760</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision</strong>: ceiling=2 completed 0% of runs (0/20) -
+essentially no chance to self-correct once the first attempt is
+rejected. Ceiling=10 completed 65% (13/20), at roughly 3.3x the mean
+latency (5,760ms vs 1,760ms). Since a completion rate of 0% makes
+ceiling=2 unusable in practice, ceiling=10 (or similar) is recommended
+for deployment despite the latency cost, as partial completion is far
+more valuable than near-total failure.</p>
+<h3 id="experiment-3-adversarial-input">Experiment 3: Adversarial
+input</h3>
+<p>Adversarial input (deliberately minimal/low-information):
+<code>{"title": "x", "content": "n/a"}</code>, saved at
+<code>reports/hw02/cases/adversarial_input.json</code>. Run 5 times;
+results in <code>reports/hw02/raw/adversarial_runs.csv</code>.</p>
+<p><strong>Why it causes trouble</strong>: with almost no real content,
+the Planner has nothing substantive to generate tags or a summary from,
+making it likely to produce vague, generic, or repetitive output that
+struggles to satisfy the Reviewer’s criteria consistently, pushing runs
+toward the turn ceiling more often than a well-formed input.</p>
+<p><strong>Proposed fix</strong>: add an input-quality pre-check before
+the Planner runs - if title/content fall below a minimum length or
+information threshold, short-circuit with a clear “insufficient input”
+response rather than letting the graph loop uselessly toward the
+ceiling.</p>
+<h2 id="ai-use">AI Use</h2>
+<p>See <code>AI_USE.md</code> for full disclosure.</p>
+<h2 id="reproducible-run-instructions">Reproducible run
+instructions</h2>
+<p>See <code>README.md</code> in the repository root for full setup and
+run instructions for every component (FastAPI backend, LangGraph agent,
+experiments).</p>
