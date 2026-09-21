@@ -1,0 +1,97 @@
+{
+  "overall_pass": true,
+  "checks_passed": 18,
+  "checks_total": 18,
+  "checks": [
+    {
+      "check": "corpus_min_200kb",
+      "passed": true,
+      "detail": "47 files, 200022 bytes"
+    },
+    {
+      "check": "sources_md_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/SOURCES.md"
+    },
+    {
+      "check": "corpus_manifest_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/CORPUS_MANIFEST.json"
+    },
+    {
+      "check": "corpus_manifest_matches_files",
+      "passed": true,
+      "detail": "manifest says 47 files"
+    },
+    {
+      "check": "questions_yaml_has_5",
+      "passed": true,
+      "detail": "5 questions found"
+    },
+    {
+      "check": "at_least_2_single_source_questions",
+      "passed": true,
+      "detail": "4 single-source questions"
+    },
+    {
+      "check": "raw_retrieval_results.csv_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.csv"
+    },
+    {
+      "check": "raw_retrieval_results.json_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.json"
+    },
+    {
+      "check": "raw_retrieval_results.jsonl_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.jsonl"
+    },
+    {
+      "check": "metrics_md_exists",
+      "passed": true,
+      "detail": "/Users/rohiniramasheshu/data260-2604/reports/hw03/METRICS.md"
+    },
+    {
+      "check": "run_log_non_empty",
+      "passed": true,
+      "detail": "22370 bytes"
+    },
+    {
+      "check": "auth_file_src/auth.py",
+      "passed": true,
+      "detail": "src/auth.py"
+    },
+    {
+      "check": "auth_file_src/templates/home.html",
+      "passed": true,
+      "detail": "src/templates/home.html"
+    },
+    {
+      "check": "auth_file_src/templates/login.html",
+      "passed": true,
+      "detail": "src/templates/login.html"
+    },
+    {
+      "check": "auth_file_src/templates/dashboard.html",
+      "passed": true,
+      "detail": "src/templates/dashboard.html"
+    },
+    {
+      "check": "rag_file_src/rag/chunking.py",
+      "passed": true,
+      "detail": "src/rag/chunking.py"
+    },
+    {
+      "check": "rag_file_src/rag/retrieval.py",
+      "passed": true,
+      "detail": "src/rag/retrieval.py"
+    },
+    {
+      "check": "rag_file_src/rag/run_comparison.py",
+      "passed": true,
+      "detail": "src/rag/run_comparison.py"
+    }
+  ]
+}
