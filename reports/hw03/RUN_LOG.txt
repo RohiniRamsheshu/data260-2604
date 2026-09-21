@@ -1,0 +1,211 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loaded 5 questions from /Users/rohiniramasheshu/data260-2604/reports/hw03/questions.yaml
+Loading embedding model: sentence-transformers/all-MiniLM-L6-v2 ...
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4776.74it/s]
+Loaded 47 documents from /Users/rohiniramasheshu/data260-2604/corpus
+[token] 284 nodes (chunk_size=200, overlap=20)
+[semantic] 98 nodes (buffer_size=1)
+[sentence_window] 658 nodes (window_size=3)
+Building in-memory VectorStoreIndex for 'token' (284 nodes)...
+Building in-memory VectorStoreIndex for 'semantic' (98 nodes)...
+Building in-memory VectorStoreIndex for 'sentence_window' (658 nodes)...
+
+=== Technique: token | Query: 'What version of lodash fixes the prototype pollution vulnerability CVE-2020-8203?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0727, 0.0273, 0.0918, -0.0859, 0.1729, -0.0379, -0.0504, 0.0319]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.8183       0.8246      239        later CVE), which is why upgrading past one patched version does not guarantee protection against the other -- both fixes are required for full coverage of loda
+2    0.7846       0.7266      644        without checking whether a key resolves to the prototype chain, the attacker-controlled value ends up attached to every object in the application, not just the 
+3    0.7635       0.8047      644        Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to
+4    0.7162       0.7886      702        Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low
+5    0.6831       0.5550      786        arrays -- for example, passing a request body field directly into one of these helper functions. Successful exploitation causes an existing property to be added
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 11.235 ms
+
+=== Technique: semantic | Query: 'What version of lodash fixes the prototype pollution vulnerability CVE-2020-8203?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0727, 0.0273, 0.0918, -0.0859, 0.1729, -0.0379, -0.0504, 0.0319]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7742       0.7911      1199       Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to
+2    0.7321       0.7954      1225       Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low
+3    0.6473       0.6414      2242       No configuration workaround is documented; the fix is purely a version upgrade.  Sources: GitHub Advisory Database GHSA-p6mc-m468-83gw, NVD CVE-2020-8203, lodas
+4    0.5391       0.6194      3290       Additional Notes: Related lodash and Utility-Library Advisories =====================================================================  This closing document bri
+5    0.4765       0.3736      2850       Prototype Pollution in JavaScript: A Technical Deep Dive ==========================================================  Prototype pollution is a vulnerability clas
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 7.014 ms
+
+=== Technique: sentence_window | Query: 'What version of lodash fixes the prototype pollution vulnerability CVE-2020-8203?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0727, 0.0273, 0.0918, -0.0859, 0.1729, -0.0379, -0.0504, 0.0319]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.8003       0.8031      58         Description: Prototype Pollution vulnerability in lodash. 
+2    0.7980       0.8031      58         Description: Prototype Pollution vulnerability in lodash. 
+3    0.7754       0.7695      301        pick, set, setWith, update, updateWith, zipObjectDeep in the later CVE), which is why upgrading past one patched version does not guarantee protection against t
+4    0.7735       0.8096      197        Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low
+5    0.7649       0.7977      190        Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 12.311 ms
+
+=== Technique: token | Query: 'What CVSS v3.1 base score did Log4Shell (CVE-2021-44228) receive, and what does that score reflect?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0105, 0.0077, -0.062, -0.0177, 0.0422, 0.0509, -0.0237, 0.0966]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.6734       0.6152      967        CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t
+2    0.6283       0.6125      761        High (7.0-8.9), and Critical (9.0-10.0). The score is calculated from several sub-metrics describing exploitability (attack vector -- network, adjacent, local, 
+3    0.5444       0.6196      198        summary alone cannot convey.  Sources: first.org CVSS v3.1 specification document, NVD score details pages for CVE-2021-44228, CVE-2014-0160, CVE-2018-18074, an
+4    0.5238       0.5442      833        is actually being exploited by real attackers at a given point in time. Two vulnerabilities can share an identical 9.8 CVSS score, yet one might have no known p
+5    0.5094       0.5172      948        entry, to consider their own specific deployment context rather than relying purely on a published base score when prioritizing remediation.  The general lesson
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 8.736 ms
+
+=== Technique: semantic | Query: 'What CVSS v3.1 base score did Log4Shell (CVE-2021-44228) receive, and what does that score reflect?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0105, 0.0077, -0.062, -0.0177, 0.0422, 0.0509, -0.0237, 0.0966]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.6734       0.6152      1906       CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t
+2    0.4814       0.4672      2506       Vulnerability ID: CVE-2021-44228 (also tracked as GHSA-jfh8-c2jp-5v3q) Package: log4j-core (Apache Log4j 2) Ecosystem: Maven (Java) Common name: Log4Shell Sever
+3    0.4801       0.4986      1472       Privileges Required: None. User Interaction: None. However, unlike Log4Shell, Heartbleed's Integrity and Availability impacts are both rated None -- the vulnera
+4    0.4699       0.3503      2466       User Interaction: None. Confidentiality Impact: High (the leaked credential itself). Integrity and Availability Impact: None. The elevated Attack Complexity rel
+5    0.4529       0.4617      5277       Prioritizing Patches: CVSS Score, Exploitability, and the CISA KEV Catalog ================================================================================  Bui
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 7.007 ms
+
+=== Technique: sentence_window | Query: 'What CVSS v3.1 base score did Log4Shell (CVE-2021-44228) receive, and what does that score reflect?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0105, 0.0077, -0.062, -0.0177, 0.0422, 0.0509, -0.0237, 0.0966]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.5658       0.5875      452        Two vulnerabilities can share an identical CVSS score for very different underlying reasons -- for example, Log4Shell's 10.0 score reflects trivial remote explo
+2    0.5553       0.4901      558        CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t
+3    0.5382       0.6353      148        Sources: first.org CVSS v3.1 specification document, NVD score details pages for CVE-2021-44228, CVE-2014-0160, CVE-2018-18074, and CVE-2021-35042. 
+4    0.5366       0.5568      346        Vulnerability ID: CVE-2021-44228 (also tracked as GHSA-jfh8-c2jp-5v3q) Package: log4j-core (Apache Log4j 2) Ecosystem: Maven (Java) Common name: Log4Shell Sever
+5    0.5358       0.5586      758        Two vulnerabilities can share an identical 9.8 CVSS score, yet one might have no known public exploit code and no observed real-world exploitation whatsoever, w
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 12.208 ms
+
+=== Technique: token | Query: 'Which Django release line introduced the SQL injection vulnerability CVE-2021-35042, and which QuerySet method was the vulnerable code path?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0528, -0.0017, -0.0758, 0.059, -0.0655, 0.0286, -0.0061, 0.0539]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7326       0.7153      617        Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t
+2    0.5893       0.5864      941        position or control of network infrastructure between the client and server, which is a materially harder precondition than simply sending a crafted request to 
+3    0.5619       0.5057      813        string could avoid Django's normal quoting/escaping of identifiers and instead be interpolated close to raw into the generated SQL, allowing an attacker to appe
+4    0.5458       0.5757      861        input is incorporated into a SQL query without sufficient neutralization of special characters or syntax, allowing an attacker to alter the query's logic -- for
+5    0.5240       0.4817      746        should also validate any user-supplied ordering field against an explicit allow-list rather than passing it straight into order_by().  Sources: Django security 
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 8.495 ms
+
+=== Technique: semantic | Query: 'Which Django release line introduced the SQL injection vulnerability CVE-2021-35042, and which QuerySet method was the vulnerable code path?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0528, -0.0017, -0.0758, 0.059, -0.0655, 0.0286, -0.0061, 0.0539]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7076       0.6630      2389       Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t
+2    0.6337       0.6081      2466       User Interaction: None. Confidentiality Impact: High (the leaked credential itself). Integrity and Availability Impact: None. The elevated Attack Complexity rel
+3    0.5442       0.5020      548        An attacker can supply a value engineered to inject additional SQL into the ORDER BY clause, potentially extracting data the query was never intended to expose.
+4    0.4501       0.4572      1655       Vulnerability ID: CVE-2020-14343 Package: PyYAML Ecosystem: PyPI (Python) Severity: Critical, CVSS 3.1 base score 9.8  Affected versions: PyYAML before 5.4 (fix
+5    0.4474       0.3811      6162       Understanding CVE, GHSA, OSV, NVD, and CVSS: How Vulnerability Data Is Identified, Scored, and Distributed =====================================================
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 6.749 ms
+
+=== Technique: sentence_window | Query: 'Which Django release line introduced the SQL injection vulnerability CVE-2021-35042, and which QuerySet method was the vulnerable code path?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0528, -0.0017, -0.0758, 0.059, -0.0655, 0.0286, -0.0061, 0.0539]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7276       0.7772      334        Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t
+2    0.6636       0.6480      927        Django SQL injection (CVE-2021-35042): commonly scored in the Critical band once combined with realistic query context, though NVD's automated base scoring refl
+3    0.6604       0.6527      153        Django's CVE-2021-35042 (a SQL injection reachable through QuerySet.order_by() when passed an unsanitized column value) is an instance of this weakness. 
+4    0.6224       0.5679      328        Description: QuerySet.order_by() in Django 3.2 before 3.2.5 allows SQL injection if order_by is passed a suitably crafted "column" value that originates from an
+5    0.6104       0.4208      155        Exploitation scenario: a typical vulnerable pattern is a list or search view that lets users choose how results are sorted via a URL query parameter, e.g. 
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 11.978 ms
+
+=== Technique: token | Query: 'How did the attacker behind the XZ Utils backdoor gain the access needed to introduce malicious code, compared to how the attacker behind the event-stream supply-chain incident gained access?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0341, 0.0623, -0.0496, -0.0024, 0.0794, 0.0127, 0.0415, 0.0548]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.6356       0.5695      881        specifically, SSH logins on a system running a very recent development build of a Linux distribution were taking noticeably longer than expected, and consuming 
+2    0.6272       0.6048      269        contributor" social-engineering as a supply-chain attack vector, distinct from typical code-vulnerability CVEs.  Sources: openwall.com oss-security mailing list
+3    0.6014       0.5338      364        rather than a one-off failure specific to this particular maintainer or project.  Sources: Andres Freund's original oss-security mailing list disclosure post; C
+4    0.5925       0.6510      923        Tan" made increasingly substantial, seemingly legitimate contributions to the xz-utils project, eventually earning co-maintainer status and commit access from t
+5    0.5832       0.7080      918        Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 8.803 ms
+
+=== Technique: semantic | Query: 'How did the attacker behind the XZ Utils backdoor gain the access needed to introduce malicious code, compared to how the attacker behind the event-stream supply-chain incident gained access?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0341, 0.0623, -0.0496, -0.0024, 0.0794, 0.0127, 0.0415, 0.0548]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.5937       0.6039      2220       Vulnerability ID: CVE-2024-3094 Package: xz-utils / liblzma Ecosystem: C library, packaged across major Linux distributions; a dependency of OpenSSH on some dis
+2    0.5832       0.7080      2700       Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand
+3    0.5398       0.5371      3227       The activation conditions and payload ------------------------------------------- The backdoor was engineered to activate only under a fairly narrow set of cond
+4    0.5019       0.5066      1211       A History of npm Supply-Chain Attacks (2018-2024) ==================================================  This document surveys a sequence of real, publicly documen
+5    0.4886       0.4738      2406       Vulnerability ID: GHSA-r6fq-c6j4-vjxx (npm advisory for event-stream) Package: event-stream (and its dependency flatmap-stream) Ecosystem: npm Common name: even
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 7.005 ms
+
+=== Technique: sentence_window | Query: 'How did the attacker behind the XZ Utils backdoor gain the access needed to introduce malicious code, compared to how the attacker behind the event-stream supply-chain incident gained access?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0341, 0.0623, -0.0496, -0.0024, 0.0794, 0.0127, 0.0415, 0.0548]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.6472       0.5194      262        Sources: Andres Freund's original oss-security mailing list disclosure post; CISA emergency advisory on the XZ Utils backdoor; extensive community timeline reco
+2    0.6417       0.6544      176        How the backdoor was technically hidden -------------------------------------------- The malicious logic was not placed directly and visibly in the project's ma
+3    0.6160       0.6548      527        Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand
+4    0.6071       0.6038      509        The multi-year social-engineering campaign -------------------------------------------------- Unlike a vulnerability introduced through a single malicious commi
+5    0.5872       0.6385      417        Distinguishing protestware from a traditional supply-chain attack ------------------------------------------------------------------------------- Every other su
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 12.468 ms
+
+=== Technique: token | Query: 'Beyond the unpatched Struts2 vulnerability itself, what organizational failure contributed to the scale and duration of the 2017 Equifax breach?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0259, -0.0262, 0.0012, 0.0443, 0.0406, 0.0352, -0.0853, 0.021]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7198       0.7449      835        same week, and the vulnerability received widespread security-industry coverage given its maximum CVSS severity score and trivial exploitability. According to E
+2    0.6573       0.6736      866        Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended 
+3    0.6348       0.5725      680        a Java web application framework. As detailed in this corpus's dedicated Struts2 entry, Struts 2 versions before 2.3.32 and 2.5.10.1 contained CVE-2017-5638, a 
+4    0.6264       0.6456      976        root cause: an internal vulnerability-scanning process that failed to correctly identify all systems running the vulnerable Struts version; a since-expired SSL/
+5    0.6105       0.6609      784        version number in a manifest file; (c) vendored or bundled copies of a library (where the source code is copied directly into a project rather than referenced a
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 9.148 ms
+
+=== Technique: semantic | Query: 'Beyond the unpatched Struts2 vulnerability itself, what organizational failure contributed to the scale and duration of the 2017 Equifax breach?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0259, -0.0262, 0.0012, 0.0443, 0.0406, 0.0352, -0.0853, 0.021]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.6573       0.6736      4645       Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended 
+2    0.6171       0.6052      328        Remediation: upgrade to Struts 2.3.32 or 2.5.10.1 or later. As defense-in-depth, deployments can also switch the Multipart parser away from the Jakarta-based im
+3    0.5670       0.6019      271        Government Accountability Office report GAO-18-559, "Data Protection: Actions Taken by Equifax and Federal Agencies in Response to the 2017 Breach"; Apache Stru
+4    0.5032       0.5721      60         GAO report on the 2017 Equifax breach. Accessed 2026-09-20. 
+5    0.4175       0.3946      2700       Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 7.043 ms
+
+=== Technique: sentence_window | Query: 'Beyond the unpatched Struts2 vulnerability itself, what organizational failure contributed to the scale and duration of the 2017 Equifax breach?' ===
+Query embedding dim: 384
+Query embedding[:8]: [-0.0259, -0.0262, 0.0012, 0.0443, 0.0406, 0.0352, -0.0853, 0.021]
+rank store_score  cosine_sim  chunk_len  preview
+1    0.7491       0.7733      207        The 2017 Equifax breach, discussed in this corpus's Struts2 entry, is frequently cited as an example of exactly this last failure mode: a patch was available fo
+2    0.7314       0.7890      259        Real-world impact: this vulnerability was exploited in the 2017 Equifax data breach, in which attackers compromised sensitive personal data of approximately 147
+3    0.7057       0.6745      876        Why the patch was not applied in time ------------------------------------------- Equifax's own public statements and the subsequent GAO investigation identifie
+4    0.6669       0.6705      527        Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended 
+5    0.6265       0.6989      237        Government Accountability Office's later investigative report, attackers began exploiting the still-unpatched vulnerability in Equifax's systems on May 13, 2017
+Query vector shape: (384,)
+Stacked doc vectors shape: (5, 384)
+Retrieval latency: 12.230 ms
+
+Saved 75 rows to /Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.jsonl
+Saved /Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.json
+Saved /Users/rohiniramasheshu/data260-2604/reports/hw03/raw/retrieval_results.csv
+Sun Sep 20 17:16:17 PDT 2026
