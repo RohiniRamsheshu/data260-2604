@@ -9,7 +9,7 @@
     "chunk_len": 239,
     "preview": "later CVE), which is why upgrading past one patched version does not guarantee protection against the other -- both fixes are required for full coverage of loda",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 11.235
+    "latency_ms": 18.386
   },
   {
     "question_id": "q1",
@@ -21,7 +21,7 @@
     "chunk_len": 644,
     "preview": "without checking whether a key resolves to the prototype chain, the attacker-controlled value ends up attached to every object in the application, not just the ",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 11.235
+    "latency_ms": 18.386
   },
   {
     "question_id": "q1",
@@ -33,7 +33,7 @@
     "chunk_len": 644,
     "preview": "Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 11.235
+    "latency_ms": 18.386
   },
   {
     "question_id": "q1",
@@ -45,7 +45,7 @@
     "chunk_len": 702,
     "preview": "Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 11.235
+    "latency_ms": 18.386
   },
   {
     "question_id": "q1",
@@ -57,7 +57,7 @@
     "chunk_len": 786,
     "preview": "arrays -- for example, passing a request body field directly into one of these helper functions. Successful exploitation causes an existing property to be added",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 11.235
+    "latency_ms": 18.386
   },
   {
     "question_id": "q1",
@@ -69,7 +69,7 @@
     "chunk_len": 1199,
     "preview": "Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 7.014
+    "latency_ms": 10.077
   },
   {
     "question_id": "q1",
@@ -81,7 +81,7 @@
     "chunk_len": 1225,
     "preview": "Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 7.014
+    "latency_ms": 10.077
   },
   {
     "question_id": "q1",
@@ -93,7 +93,7 @@
     "chunk_len": 2242,
     "preview": "No configuration workaround is documented; the fix is purely a version upgrade.  Sources: GitHub Advisory Database GHSA-p6mc-m468-83gw, NVD CVE-2020-8203, lodas",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 7.014
+    "latency_ms": 10.077
   },
   {
     "question_id": "q1",
@@ -105,7 +105,7 @@
     "chunk_len": 3290,
     "preview": "Additional Notes: Related lodash and Utility-Library Advisories =====================================================================  This closing document bri",
     "source_file": "46_additional-lodash-hoek-notes.txt",
-    "latency_ms": 7.014
+    "latency_ms": 10.077
   },
   {
     "question_id": "q1",
@@ -117,7 +117,7 @@
     "chunk_len": 2850,
     "preview": "Prototype Pollution in JavaScript: A Technical Deep Dive ==========================================================  Prototype pollution is a vulnerability clas",
     "source_file": "20_prototype-pollution-deep-dive.txt",
-    "latency_ms": 7.014
+    "latency_ms": 10.077
   },
   {
     "question_id": "q1",
@@ -129,7 +129,7 @@
     "chunk_len": 58,
     "preview": "Description: Prototype Pollution vulnerability in lodash. ",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 12.311
+    "latency_ms": 14.655
   },
   {
     "question_id": "q1",
@@ -141,7 +141,7 @@
     "chunk_len": 58,
     "preview": "Description: Prototype Pollution vulnerability in lodash. ",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 12.311
+    "latency_ms": 14.655
   },
   {
     "question_id": "q1",
@@ -153,7 +153,7 @@
     "chunk_len": 301,
     "preview": "pick, set, setWith, update, updateWith, zipObjectDeep in the later CVE), which is why upgrading past one patched version does not guarantee protection against t",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 12.311
+    "latency_ms": 14.655
   },
   {
     "question_id": "q1",
@@ -165,7 +165,7 @@
     "chunk_len": 197,
     "preview": "Vulnerability ID: CVE-2019-10744 (GHSA-jf85-cpcp-j695) Package: lodash Ecosystem: npm Severity: Critical, CVSS 3.1 base score 9.1  Affected versions: lodash low",
     "source_file": "03_lodash_CVE-2019-10744.txt",
-    "latency_ms": 12.311
+    "latency_ms": 14.655
   },
   {
     "question_id": "q1",
@@ -177,7 +177,7 @@
     "chunk_len": 190,
     "preview": "Vulnerability ID: CVE-2020-8203 (GHSA-p6mc-m468-83gw) Package: lodash Ecosystem: npm Severity: High, CVSS 3.1 base score 7.4  Affected versions: lodash prior to",
     "source_file": "02_lodash_CVE-2020-8203.txt",
-    "latency_ms": 12.311
+    "latency_ms": 14.655
   },
   {
     "question_id": "q2",
@@ -189,7 +189,7 @@
     "chunk_len": 967,
     "preview": "CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 8.736
+    "latency_ms": 11.968
   },
   {
     "question_id": "q2",
@@ -201,7 +201,7 @@
     "chunk_len": 761,
     "preview": "High (7.0-8.9), and Critical (9.0-10.0). The score is calculated from several sub-metrics describing exploitability (attack vector -- network, adjacent, local, ",
     "source_file": "23_vulnerability-databases-explainer.txt",
-    "latency_ms": 8.736
+    "latency_ms": 11.968
   },
   {
     "question_id": "q2",
@@ -213,7 +213,7 @@
     "chunk_len": 198,
     "preview": "summary alone cannot convey.  Sources: first.org CVSS v3.1 specification document, NVD score details pages for CVE-2021-44228, CVE-2014-0160, CVE-2018-18074, an",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 8.736
+    "latency_ms": 11.968
   },
   {
     "question_id": "q2",
@@ -225,7 +225,7 @@
     "chunk_len": 833,
     "preview": "is actually being exploited by real attackers at a given point in time. Two vulnerabilities can share an identical 9.8 CVSS score, yet one might have no known p",
     "source_file": "38_patch-prioritization-kev-epss.txt",
-    "latency_ms": 8.736
+    "latency_ms": 11.968
   },
   {
     "question_id": "q2",
@@ -237,7 +237,7 @@
     "chunk_len": 948,
     "preview": "entry, to consider their own specific deployment context rather than relying purely on a published base score when prioritizing remediation.  The general lesson",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 8.736
+    "latency_ms": 11.968
   },
   {
     "question_id": "q2",
@@ -249,7 +249,7 @@
     "chunk_len": 1906,
     "preview": "CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 7.007
+    "latency_ms": 7.82
   },
   {
     "question_id": "q2",
@@ -261,7 +261,7 @@
     "chunk_len": 2506,
     "preview": "Vulnerability ID: CVE-2021-44228 (also tracked as GHSA-jfh8-c2jp-5v3q) Package: log4j-core (Apache Log4j 2) Ecosystem: Maven (Java) Common name: Log4Shell Sever",
     "source_file": "01_log4j_CVE-2021-44228.txt",
-    "latency_ms": 7.007
+    "latency_ms": 7.82
   },
   {
     "question_id": "q2",
@@ -273,7 +273,7 @@
     "chunk_len": 1472,
     "preview": "Privileges Required: None. User Interaction: None. However, unlike Log4Shell, Heartbleed's Integrity and Availability impacts are both rated None -- the vulnera",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 7.007
+    "latency_ms": 7.82
   },
   {
     "question_id": "q2",
@@ -285,7 +285,7 @@
     "chunk_len": 2466,
     "preview": "User Interaction: None. Confidentiality Impact: High (the leaked credential itself). Integrity and Availability Impact: None. The elevated Attack Complexity rel",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 7.007
+    "latency_ms": 7.82
   },
   {
     "question_id": "q2",
@@ -297,7 +297,7 @@
     "chunk_len": 5277,
     "preview": "Prioritizing Patches: CVSS Score, Exploitability, and the CISA KEV Catalog ================================================================================  Bui",
     "source_file": "38_patch-prioritization-kev-epss.txt",
-    "latency_ms": 7.007
+    "latency_ms": 7.82
   },
   {
     "question_id": "q2",
@@ -309,7 +309,7 @@
     "chunk_len": 452,
     "preview": "Two vulnerabilities can share an identical CVSS score for very different underlying reasons -- for example, Log4Shell's 10.0 score reflects trivial remote explo",
     "source_file": "23_vulnerability-databases-explainer.txt",
-    "latency_ms": 12.208
+    "latency_ms": 13.987
   },
   {
     "question_id": "q2",
@@ -321,7 +321,7 @@
     "chunk_len": 558,
     "preview": "CVSS Scoring Worked Examples Across This Corpus's Vulnerabilities =======================================================================  This document walks t",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 12.208
+    "latency_ms": 13.987
   },
   {
     "question_id": "q2",
@@ -333,7 +333,7 @@
     "chunk_len": 148,
     "preview": "Sources: first.org CVSS v3.1 specification document, NVD score details pages for CVE-2021-44228, CVE-2014-0160, CVE-2018-18074, and CVE-2021-35042. ",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 12.208
+    "latency_ms": 13.987
   },
   {
     "question_id": "q2",
@@ -345,7 +345,7 @@
     "chunk_len": 346,
     "preview": "Vulnerability ID: CVE-2021-44228 (also tracked as GHSA-jfh8-c2jp-5v3q) Package: log4j-core (Apache Log4j 2) Ecosystem: Maven (Java) Common name: Log4Shell Sever",
     "source_file": "01_log4j_CVE-2021-44228.txt",
-    "latency_ms": 12.208
+    "latency_ms": 13.987
   },
   {
     "question_id": "q2",
@@ -357,7 +357,7 @@
     "chunk_len": 758,
     "preview": "Two vulnerabilities can share an identical 9.8 CVSS score, yet one might have no known public exploit code and no observed real-world exploitation whatsoever, w",
     "source_file": "38_patch-prioritization-kev-epss.txt",
-    "latency_ms": 12.208
+    "latency_ms": 13.987
   },
   {
     "question_id": "q3",
@@ -369,7 +369,7 @@
     "chunk_len": 617,
     "preview": "Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 8.495
+    "latency_ms": 12.023
   },
   {
     "question_id": "q3",
@@ -381,7 +381,7 @@
     "chunk_len": 941,
     "preview": "position or control of network infrastructure between the client and server, which is a materially harder precondition than simply sending a crafted request to ",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 8.495
+    "latency_ms": 12.023
   },
   {
     "question_id": "q3",
@@ -393,7 +393,7 @@
     "chunk_len": 813,
     "preview": "string could avoid Django's normal quoting/escaping of identifiers and instead be interpolated close to raw into the generated SQL, allowing an attacker to appe",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 8.495
+    "latency_ms": 12.023
   },
   {
     "question_id": "q3",
@@ -405,7 +405,7 @@
     "chunk_len": 861,
     "preview": "input is incorporated into a SQL query without sufficient neutralization of special characters or syntax, allowing an attacker to alter the query's logic -- for",
     "source_file": "22_cwe-weakness-catalog.txt",
-    "latency_ms": 8.495
+    "latency_ms": 12.023
   },
   {
     "question_id": "q3",
@@ -417,7 +417,7 @@
     "chunk_len": 746,
     "preview": "should also validate any user-supplied ordering field against an explicit allow-list rather than passing it straight into order_by().  Sources: Django security ",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 8.495
+    "latency_ms": 12.023
   },
   {
     "question_id": "q3",
@@ -429,7 +429,7 @@
     "chunk_len": 2389,
     "preview": "Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 6.749
+    "latency_ms": 11.412
   },
   {
     "question_id": "q3",
@@ -441,7 +441,7 @@
     "chunk_len": 2466,
     "preview": "User Interaction: None. Confidentiality Impact: High (the leaked credential itself). Integrity and Availability Impact: None. The elevated Attack Complexity rel",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 6.749
+    "latency_ms": 11.412
   },
   {
     "question_id": "q3",
@@ -453,7 +453,7 @@
     "chunk_len": 548,
     "preview": "An attacker can supply a value engineered to inject additional SQL into the ORDER BY clause, potentially extracting data the query was never intended to expose.",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 6.749
+    "latency_ms": 11.412
   },
   {
     "question_id": "q3",
@@ -465,7 +465,7 @@
     "chunk_len": 1655,
     "preview": "Vulnerability ID: CVE-2020-14343 Package: PyYAML Ecosystem: PyPI (Python) Severity: Critical, CVSS 3.1 base score 9.8  Affected versions: PyYAML before 5.4 (fix",
     "source_file": "08_pyyaml_CVE-2020-14343.txt",
-    "latency_ms": 6.749
+    "latency_ms": 11.412
   },
   {
     "question_id": "q3",
@@ -477,7 +477,7 @@
     "chunk_len": 6162,
     "preview": "Understanding CVE, GHSA, OSV, NVD, and CVSS: How Vulnerability Data Is Identified, Scored, and Distributed =====================================================",
     "source_file": "23_vulnerability-databases-explainer.txt",
-    "latency_ms": 6.749
+    "latency_ms": 11.412
   },
   {
     "question_id": "q3",
@@ -489,7 +489,7 @@
     "chunk_len": 334,
     "preview": "Vulnerability ID: CVE-2021-35042 Package: django Ecosystem: PyPI (Python) Severity: Critical (SQL injection)  Affected versions: Django 3.2 before 3.2.5 (only t",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 11.978
+    "latency_ms": 17.408
   },
   {
     "question_id": "q3",
@@ -501,7 +501,7 @@
     "chunk_len": 927,
     "preview": "Django SQL injection (CVE-2021-35042): commonly scored in the Critical band once combined with realistic query context, though NVD's automated base scoring refl",
     "source_file": "33_cvss-worked-examples.txt",
-    "latency_ms": 11.978
+    "latency_ms": 17.408
   },
   {
     "question_id": "q3",
@@ -513,7 +513,7 @@
     "chunk_len": 153,
     "preview": "Django's CVE-2021-35042 (a SQL injection reachable through QuerySet.order_by() when passed an unsanitized column value) is an instance of this weakness. ",
     "source_file": "22_cwe-weakness-catalog.txt",
-    "latency_ms": 11.978
+    "latency_ms": 17.408
   },
   {
     "question_id": "q3",
@@ -525,7 +525,7 @@
     "chunk_len": 328,
     "preview": "Description: QuerySet.order_by() in Django 3.2 before 3.2.5 allows SQL injection if order_by is passed a suitably crafted \"column\" value that originates from an",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 11.978
+    "latency_ms": 17.408
   },
   {
     "question_id": "q3",
@@ -537,7 +537,7 @@
     "chunk_len": 155,
     "preview": "Exploitation scenario: a typical vulnerable pattern is a list or search view that lets users choose how results are sorted via a URL query parameter, e.g. ",
     "source_file": "05_django_CVE-2021-35042.txt",
-    "latency_ms": 11.978
+    "latency_ms": 17.408
   },
   {
     "question_id": "q4",
@@ -549,7 +549,7 @@
     "chunk_len": 881,
     "preview": "specifically, SSH logins on a system running a very recent development build of a Linux distribution were taking noticeably longer than expected, and consuming ",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 8.803
+    "latency_ms": 11.528
   },
   {
     "question_id": "q4",
@@ -561,7 +561,7 @@
     "chunk_len": 269,
     "preview": "contributor\" social-engineering as a supply-chain attack vector, distinct from typical code-vulnerability CVEs.  Sources: openwall.com oss-security mailing list",
     "source_file": "16_xz-utils_CVE-2024-3094.txt",
-    "latency_ms": 8.803
+    "latency_ms": 11.528
   },
   {
     "question_id": "q4",
@@ -573,7 +573,7 @@
     "chunk_len": 364,
     "preview": "rather than a one-off failure specific to this particular maintainer or project.  Sources: Andres Freund's original oss-security mailing list disclosure post; C",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 8.803
+    "latency_ms": 11.528
   },
   {
     "question_id": "q4",
@@ -585,7 +585,7 @@
     "chunk_len": 923,
     "preview": "Tan\" made increasingly substantial, seemingly legitimate contributions to the xz-utils project, eventually earning co-maintainer status and commit access from t",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 8.803
+    "latency_ms": 11.528
   },
   {
     "question_id": "q4",
@@ -597,7 +597,7 @@
     "chunk_len": 918,
     "preview": "Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 8.803
+    "latency_ms": 11.528
   },
   {
     "question_id": "q4",
@@ -609,7 +609,7 @@
     "chunk_len": 2220,
     "preview": "Vulnerability ID: CVE-2024-3094 Package: xz-utils / liblzma Ecosystem: C library, packaged across major Linux distributions; a dependency of OpenSSH on some dis",
     "source_file": "16_xz-utils_CVE-2024-3094.txt",
-    "latency_ms": 7.005
+    "latency_ms": 10.138
   },
   {
     "question_id": "q4",
@@ -621,7 +621,7 @@
     "chunk_len": 2700,
     "preview": "Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 7.005
+    "latency_ms": 10.138
   },
   {
     "question_id": "q4",
@@ -633,7 +633,7 @@
     "chunk_len": 3227,
     "preview": "The activation conditions and payload ------------------------------------------- The backdoor was engineered to activate only under a fairly narrow set of cond",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 7.005
+    "latency_ms": 10.138
   },
   {
     "question_id": "q4",
@@ -645,7 +645,7 @@
     "chunk_len": 1211,
     "preview": "A History of npm Supply-Chain Attacks (2018-2024) ==================================================  This document surveys a sequence of real, publicly documen",
     "source_file": "19_npm-supply-chain-history.txt",
-    "latency_ms": 7.005
+    "latency_ms": 10.138
   },
   {
     "question_id": "q4",
@@ -657,7 +657,7 @@
     "chunk_len": 2406,
     "preview": "Vulnerability ID: GHSA-r6fq-c6j4-vjxx (npm advisory for event-stream) Package: event-stream (and its dependency flatmap-stream) Ecosystem: npm Common name: even",
     "source_file": "18_event-stream_supply-chain-2018.txt",
-    "latency_ms": 7.005
+    "latency_ms": 10.138
   },
   {
     "question_id": "q4",
@@ -669,7 +669,7 @@
     "chunk_len": 262,
     "preview": "Sources: Andres Freund's original oss-security mailing list disclosure post; CISA emergency advisory on the XZ Utils backdoor; extensive community timeline reco",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 12.468
+    "latency_ms": 16.026
   },
   {
     "question_id": "q4",
@@ -681,7 +681,7 @@
     "chunk_len": 176,
     "preview": "How the backdoor was technically hidden -------------------------------------------- The malicious logic was not placed directly and visibly in the project's ma",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 12.468
+    "latency_ms": 16.026
   },
   {
     "question_id": "q4",
@@ -693,7 +693,7 @@
     "chunk_len": 527,
     "preview": "Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 12.468
+    "latency_ms": 16.026
   },
   {
     "question_id": "q4",
@@ -705,7 +705,7 @@
     "chunk_len": 509,
     "preview": "The multi-year social-engineering campaign -------------------------------------------------- Unlike a vulnerability introduced through a single malicious commi",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 12.468
+    "latency_ms": 16.026
   },
   {
     "question_id": "q4",
@@ -717,7 +717,7 @@
     "chunk_len": 417,
     "preview": "Distinguishing protestware from a traditional supply-chain attack ------------------------------------------------------------------------------- Every other su",
     "source_file": "41_protestware-governance.txt",
-    "latency_ms": 12.468
+    "latency_ms": 16.026
   },
   {
     "question_id": "q5",
@@ -729,7 +729,7 @@
     "chunk_len": 835,
     "preview": "same week, and the vulnerability received widespread security-industry coverage given its maximum CVSS severity score and trivial exploitability. According to E",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 9.148
+    "latency_ms": 11.017
   },
   {
     "question_id": "q5",
@@ -741,7 +741,7 @@
     "chunk_len": 866,
     "preview": "Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended ",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 9.148
+    "latency_ms": 11.017
   },
   {
     "question_id": "q5",
@@ -753,7 +753,7 @@
     "chunk_len": 680,
     "preview": "a Java web application framework. As detailed in this corpus's dedicated Struts2 entry, Struts 2 versions before 2.3.32 and 2.5.10.1 contained CVE-2017-5638, a ",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 9.148
+    "latency_ms": 11.017
   },
   {
     "question_id": "q5",
@@ -765,7 +765,7 @@
     "chunk_len": 976,
     "preview": "root cause: an internal vulnerability-scanning process that failed to correctly identify all systems running the vulnerable Struts version; a since-expired SSL/",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 9.148
+    "latency_ms": 11.017
   },
   {
     "question_id": "q5",
@@ -777,7 +777,7 @@
     "chunk_len": 784,
     "preview": "version number in a manifest file; (c) vendored or bundled copies of a library (where the source code is copied directly into a project rather than referenced a",
     "source_file": "25_dependency-management-guidance.txt",
-    "latency_ms": 9.148
+    "latency_ms": 11.017
   },
   {
     "question_id": "q5",
@@ -789,7 +789,7 @@
     "chunk_len": 4645,
     "preview": "Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended ",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 7.043
+    "latency_ms": 8.973
   },
   {
     "question_id": "q5",
@@ -801,7 +801,7 @@
     "chunk_len": 328,
     "preview": "Remediation: upgrade to Struts 2.3.32 or 2.5.10.1 or later. As defense-in-depth, deployments can also switch the Multipart parser away from the Jakarta-based im",
     "source_file": "13_struts2_CVE-2017-5638.txt",
-    "latency_ms": 7.043
+    "latency_ms": 8.973
   },
   {
     "question_id": "q5",
@@ -813,7 +813,7 @@
     "chunk_len": 271,
     "preview": "Government Accountability Office report GAO-18-559, \"Data Protection: Actions Taken by Equifax and Federal Agencies in Response to the 2017 Breach\"; Apache Stru",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 7.043
+    "latency_ms": 8.973
   },
   {
     "question_id": "q5",
@@ -825,7 +825,7 @@
     "chunk_len": 60,
     "preview": "GAO report on the 2017 Equifax breach. Accessed 2026-09-20. ",
     "source_file": "25_dependency-management-guidance.txt",
-    "latency_ms": 7.043
+    "latency_ms": 8.973
   },
   {
     "question_id": "q5",
@@ -837,7 +837,7 @@
     "chunk_len": 2700,
     "preview": "Extended Technical Analysis: The XZ Utils Backdoor (CVE-2024-3094) =======================================================================  This document expand",
     "source_file": "28_xz-backdoor-extended-analysis.txt",
-    "latency_ms": 7.043
+    "latency_ms": 8.973
   },
   {
     "question_id": "q5",
@@ -849,7 +849,7 @@
     "chunk_len": 207,
     "preview": "The 2017 Equifax breach, discussed in this corpus's Struts2 entry, is frequently cited as an example of exactly this last failure mode: a patch was available fo",
     "source_file": "25_dependency-management-guidance.txt",
-    "latency_ms": 12.23
+    "latency_ms": 15.312
   },
   {
     "question_id": "q5",
@@ -861,7 +861,7 @@
     "chunk_len": 259,
     "preview": "Real-world impact: this vulnerability was exploited in the 2017 Equifax data breach, in which attackers compromised sensitive personal data of approximately 147",
     "source_file": "13_struts2_CVE-2017-5638.txt",
-    "latency_ms": 12.23
+    "latency_ms": 15.312
   },
   {
     "question_id": "q5",
@@ -873,7 +873,7 @@
     "chunk_len": 876,
     "preview": "Why the patch was not applied in time ------------------------------------------- Equifax's own public statements and the subsequent GAO investigation identifie",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 12.23
+    "latency_ms": 15.312
   },
   {
     "question_id": "q5",
@@ -885,7 +885,7 @@
     "chunk_len": 527,
     "preview": "Case Study: The 2017 Equifax Data Breach and CVE-2017-5638 ================================================================  This document provides an extended ",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 12.23
+    "latency_ms": 15.312
   },
   {
     "question_id": "q5",
@@ -897,6 +897,6 @@
     "chunk_len": 237,
     "preview": "Government Accountability Office's later investigative report, attackers began exploiting the still-unpatched vulnerability in Equifax's systems on May 13, 2017",
     "source_file": "27_equifax-case-study.txt",
-    "latency_ms": 12.23
+    "latency_ms": 15.312
   }
 ]
