@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from src.auth import router as auth_router
 from src.auth_api import router as auth_api_router
-
+from src.crud_api import router as crud_api_router
 app = FastAPI()   # <-- must be created before any app.xxx() call
 
 app.add_middleware(
@@ -16,7 +16,7 @@ app.add_middleware(
 )
 app.include_router(auth_router)
 app.include_router(auth_api_router)   # <-- moved here, after app exists
-
+app.include_router(crud_api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
