@@ -1,0 +1,22 @@
+{
+  "homework": "HW04",
+  "SID4": "2604",
+  "commit_hash": "62ca4da2815029b9ef717ab950e81fe48e219dd0",
+  "model_configuration": "FastAPI + MySQL 8.0 + SQLAlchemy",
+  "SEED": 2604,
+  "VERIFY_SEED": 262604,
+  "checks": [
+    {
+      "check": "backend_running",
+      "status": "PASS"
+    },
+    {
+      "check": "naive_endpoint_data",
+      "status": "PASS"
+    },
+    {
+      "check": "fixed_endpoint_data",
+      "status": "PASS"
+    }
+  ]
+}
