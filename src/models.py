@@ -20,12 +20,97 @@ class Vulnerability(Base):
     __tablename__ = "vulnerabilities"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    package_name = Column(String(255), nullable=False)   # primary field
-    cve_id = Column(String(50), nullable=False)           # secondary field
 
-    # Relationship to related test data (Part 3, N+1 demo)
-    advisories = relationship("Advisory", back_populates="vulnerability")
+    package_name = Column(
+        String(255),
+        nullable=False
+    )
 
+    cve_id = Column(
+        String(50),
+        nullable=False,
+        unique=True
+    )
+
+    severity = Column(
+        Integer,
+        nullable=False,
+        default=0
+    )
+
+    researcher_id = Column(
+        Integer,
+        ForeignKey("researchers.id", ondelete="RESTRICT"),
+        nullable=False
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False
+    )
+
+    updated_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        nullable=False
+    )
+
+    researcher = relationship(
+        "Researcher",
+        back_populates="vulnerabilities"
+    )
+
+    advisories = relationship(
+        "Advisory",
+        back_populates="vulnerability"
+    )
+
+class Researcher(Base):
+    """Related entity for HW5."""
+
+    __tablename__ = "researchers"
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True
+    )
+
+    first_name = Column(
+        String(100),
+        nullable=False
+    )
+
+    last_name = Column(
+        String(100),
+        nullable=False
+    )
+
+    email = Column(
+        String(255),
+        nullable=False,
+        unique=True
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False
+    )
+
+    updated_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        nullable=False
+    )
+
+    vulnerabilities = relationship(
+        "Vulnerability",
+        back_populates="researcher"
+    )
 
 class Advisory(Base):
     """
