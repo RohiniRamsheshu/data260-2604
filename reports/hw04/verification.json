@@ -1,7 +1,7 @@
 {
   "homework": "HW04",
   "SID4": "2604",
-  "commit_hash": "62ca4da2815029b9ef717ab950e81fe48e219dd0",
+  "commit_hash": "83a3a37fc7d50d9d7d83c58e0e44e939bccdc397",
   "model_configuration": "FastAPI + MySQL 8.0 + SQLAlchemy",
   "SEED": 2604,
   "VERIFY_SEED": 262604,

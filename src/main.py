@@ -6,7 +6,20 @@ from starlette.middleware.sessions import SessionMiddleware
 from src.auth import router as auth_router
 from src.auth_api import router as auth_api_router
 from src.crud_api import router as crud_api_router
+
 app = FastAPI()   # <-- must be created before any app.xxx() call
+
+# Explicit CORS configuration for React frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,  # Mandatory for HTTP-only session cookies
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.add_middleware(
     SessionMiddleware,
@@ -14,12 +27,7 @@ app.add_middleware(
     https_only=False,
     same_site="lax",
 )
+
 app.include_router(auth_router)
 app.include_router(auth_api_router)   # <-- moved here, after app exists
 app.include_router(crud_api_router)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
