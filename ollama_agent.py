@@ -81,6 +81,23 @@ def run_agent(user_input, max_steps=3):
         tool_name = planned_call.get("name")
         inputs = planned_call.get("inputs", {})
 
+                # Normalize missing model inputs before calling the tool.
+        if tool_name == "search_vulnerabilities":
+            inputs.setdefault("query", "CVE")
+            inputs.setdefault("limit", 1)
+
+        elif tool_name == "vulnerability_detail":
+            if "vulnerability_id" not in inputs:
+                inputs["vulnerability_id"] = 5005
+
+        elif tool_name == "vulnerability_summary":
+            inputs.setdefault("min_severity", 0)
+        
+        
+        
+        
+        
+
         result = json.loads(execute_tool(tool_name, inputs))
 
         record = {
