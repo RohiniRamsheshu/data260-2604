@@ -115,6 +115,21 @@ def execute_tool(name, inputs, records=None):
     if not isinstance(inputs, dict):
         return json.dumps(failure("inputs must be a JSON object"))
 
+    # Safety rule:
+    # High-severity vulnerability details require explicit approval.
+    if name == "vulnerability_detail":
+        requested_id = inputs.get("vulnerability_id")
+
+        for row in records:
+            if row["id"] == requested_id and row["severity"] >= 8:
+                if inputs.get("approved") is not True:
+                    return json.dumps(
+                        failure(
+                            "safety rule blocked high-severity "
+                            "vulnerability details"
+                        )
+                    )
+
     if name == "search_vulnerabilities":
         output = search_vulnerabilities(inputs, records)
     elif name == "vulnerability_detail":

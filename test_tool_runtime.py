@@ -71,7 +71,21 @@ def test_summary_invalid():
 def test_unknown_tool():
     output = get_result("not_a_real_tool", {})
     assert output["ok"] is False
+def test_safety_rule_blocks_high_severity():
+    output = get_result(
+        "vulnerability_detail",
+        {"vulnerability_id": 5006},
+    )
+    assert output["ok"] is False
+    assert "safety rule" in output["error"]
 
+
+def test_safety_rule_allows_normal_record():
+    output = get_result(
+        "vulnerability_detail",
+        {"vulnerability_id": 5005},
+    )
+    assert output["ok"] is True
 
 tests = [
     ("search valid", test_search_valid),
@@ -81,6 +95,14 @@ tests = [
     ("summary valid", test_summary_valid),
     ("summary invalid", test_summary_invalid),
     ("unknown tool", test_unknown_tool),
+        (
+        "safety rule blocks high severity",
+        test_safety_rule_blocks_high_severity,
+    ),
+    (
+        "safety rule allows normal record",
+        test_safety_rule_allows_normal_record,
+    ),
 ]
 
 
