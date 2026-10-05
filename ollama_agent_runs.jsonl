@@ -1,0 +1,4 @@
+{"user_input": "Find vulnerabilities related to CVE", "step": 1, "tool": "search_vulnerabilities", "inputs": {}, "result": {"ok": false, "data": null, "error": "query must not be empty"}}
+{"user_input": "Show vulnerability with ID 5005", "step": 1, "tool": "vulnerability_detail", "inputs": {"vulnerability_id": 5005}, "result": {"ok": true, "data": {"id": 5005, "package_name": "package_1", "cve_id": "CVE-2026-1001", "severity": 5, "researcher_id": 1}, "error": null}}
+{"user_input": "Show vulnerability with ID 5006", "step": 1, "tool": "vulnerability_detail", "inputs": {"vulnerability_id": 5006}, "result": {"ok": false, "data": null, "error": "safety rule blocked high-severity vulnerability details"}}
+{"user_input": "Give me a summary of vulnerabilities with severity at least 5", "step": 1, "tool": "vulnerability_summary", "inputs": {"min_severity": 5}, "result": {"ok": true, "data": {"total_vulnerabilities": 2, "by_severity": {"5": 1, "8": 1}}, "error": null}}
