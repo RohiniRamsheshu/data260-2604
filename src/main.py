@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
-app.include_router(auth_api_router)   # <-- moved here, after app exists
+app.include_router(auth_api_router)
+app.include_router(hw5_router)   # <-- moved here, after app exists
 app.include_router(crud_api_router)
-app.include_router(hw5_router)
 
