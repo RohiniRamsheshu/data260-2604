@@ -1,0 +1,23 @@
+{
+  "hw": "HW5",
+  "seed": 262604,
+  "checks": [
+    "FastAPI backend implemented and tested",
+    "Researcher CRUD implemented",
+    "Vulnerability CRUD implemented",
+    "Redux Toolkit client implemented",
+    "TheMealDB MCP server exposes four tools",
+    "Domain MCP server exposes exactly three tools",
+    "Domain tools use the shared ok-data-error envelope",
+    "Retry experiment completed at 0%, 20%, and 50%",
+    "Offline execute_tool tests pass 9/9",
+    "Ollama agent completed four scenarios",
+    "Safety rule blocks high-severity detail requests"
+  ],
+  "offline_tests": {
+    "passed": 9,
+    "total": 9
+  },
+  "ollama_scenarios": 4,
+  "status": "complete"
+}
