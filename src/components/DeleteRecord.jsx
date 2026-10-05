@@ -1,47 +1,61 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { deleteVulnerability } from "../store.js";
 
 export default function DeleteRecord() {
-  const [id, setId] = useState('');
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  const [id, setId] = useState("");
+  const [error, setError] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    setError("");
+    setDeleting(true);
 
     try {
-      const res = await fetch(`http://localhost:8804/api/vulnerabilities/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-
-      if (res.ok) {
-        navigate('/');
-      } else {
-        const data = await res.json();
-        setError(data.detail || 'Failed to delete record');
-      }
-    } catch (err) {
-      setError('Network error');
+      await dispatch(deleteVulnerability(Number(id))).unwrap();
+      navigate("/");
+    } catch (errorMessage) {
+      setError(errorMessage);
+    } finally {
+      setDeleting(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+    <div style={{ maxWidth: "500px", margin: "0 auto" }}>
       <h2>Delete Vulnerability Record</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <form onSubmit={handleDelete}>
-        <div style={{ marginBottom: '10px' }}>
+        <div style={{ marginBottom: "10px" }}>
           <label>Record ID to Delete: </label>
+
           <input
             type="number"
+            min="1"
             value={id}
-            onChange={(e) => setId(e.target.value)}
+            onChange={(event) => setId(event.target.value)}
             required
           />
         </div>
-        <button type="submit" style={{ backgroundColor: 'red', color: 'white' }}>
-          Delete Vulnerability
+
+        <button
+          type="submit"
+          disabled={deleting}
+          style={{
+            backgroundColor: "red",
+            color: "white",
+            padding: "8px 12px",
+          }}
+        >
+          {deleting ? "Deleting..." : "Delete Vulnerability"}
         </button>
       </form>
     </div>
