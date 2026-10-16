@@ -1,0 +1,122 @@
+[
+  {
+    "memory_size": 4,
+    "probe_id": "topic",
+    "question": "What topic was discussed earlier in the conversation?",
+    "answer": "The conversation context provided does not contain any specific topic that was discussed.",
+    "score": 1,
+    "latency_ms": 7056.5
+  },
+  {
+    "memory_size": 4,
+    "probe_id": "purpose",
+    "question": "Why are we storing messages in MongoDB?",
+    "answer": "I do not have specific information about why messages are stored in MongoDB in this conversation context. For accurate and relevant answers, I would need more details about the purpose and environment in which messages are stored.",
+    "score": 1,
+    "latency_ms": 1488.63
+  },
+  {
+    "memory_size": 4,
+    "probe_id": "memory_sizes",
+    "question": "Which memory sizes were compared in the experiment?",
+    "answer": "The question cannot be answered with the given conversation context as no experiment related to memory sizes was discussed.",
+    "score": 1,
+    "latency_ms": 856.0
+  },
+  {
+    "memory_size": 4,
+    "probe_id": "tokens",
+    "question": "What are prompt tokens?",
+    "answer": "I do not have information about prompt tokens from the provided conversation context. Could you please provide information about prompt tokens or ask a question related to the given context?",
+    "score": 1,
+    "latency_ms": 1027.68
+  },
+  {
+    "memory_size": 4,
+    "probe_id": "latency",
+    "question": "What does latency measure?",
+    "answer": "Latency measures the time it takes for a signal to travel from one point to another. In networking, it specifically refers to the time it takes for a single packet of data to be transmitted from a sender to a receiver.",
+    "score": 2,
+    "latency_ms": 1371.0
+  },
+  {
+    "memory_size": 12,
+    "probe_id": "topic",
+    "question": "What topic was discussed earlier in the conversation?",
+    "answer": "There is not enough information in the provided conversation context to determine what topic was discussed earlier.",
+    "score": 1,
+    "latency_ms": 1019.94
+  },
+  {
+    "memory_size": 12,
+    "probe_id": "purpose",
+    "question": "Why are we storing messages in MongoDB?",
+    "answer": "I do not have specific information about why messages are stored in MongoDB based on the conversation context provided. To answer this question accurately, I would need more context or information about the specific system or application using MongoDB for message storage.",
+    "score": 1,
+    "latency_ms": 1399.31
+  },
+  {
+    "memory_size": 12,
+    "probe_id": "memory_sizes",
+    "question": "Which memory sizes were compared in the experiment?",
+    "answer": "The memory sizes that were compared in the experiment are not specified in the provided conversation context.",
+    "score": 1,
+    "latency_ms": 693.18
+  },
+  {
+    "memory_size": 12,
+    "probe_id": "tokens",
+    "question": "What are prompt tokens?",
+    "answer": "I'm sorry, but there is no information provided in the conversation context about prompt tokens. The question about prompt tokens cannot be answered based on the given conversation.",
+    "score": 1,
+    "latency_ms": 1033.47
+  },
+  {
+    "memory_size": 12,
+    "probe_id": "latency",
+    "question": "What does latency measure?",
+    "answer": "Latency measures the time it takes for a single data packet to travel from a source to a destination, including processing and queuing delays.",
+    "score": 2,
+    "latency_ms": 938.49
+  },
+  {
+    "memory_size": 30,
+    "probe_id": "topic",
+    "question": "What topic was discussed earlier in the conversation?",
+    "answer": "MongoDB memory systems were discussed earlier in the conversation.",
+    "score": 5,
+    "latency_ms": 1506.18
+  },
+  {
+    "memory_size": 30,
+    "probe_id": "purpose",
+    "question": "Why are we storing messages in MongoDB?",
+    "answer": "Messages are stored in MongoDB to persistently store data, which means the data will be saved and available even if the application stops running or is restarted.",
+    "score": 5,
+    "latency_ms": 1057.91
+  },
+  {
+    "memory_size": 30,
+    "probe_id": "memory_sizes",
+    "question": "Which memory sizes were compared in the experiment?",
+    "answer": "The memory sizes of 4, 12, and 30 messages were compared in the experiment.",
+    "score": 5,
+    "latency_ms": 801.49
+  },
+  {
+    "memory_size": 30,
+    "probe_id": "tokens",
+    "question": "What are prompt tokens?",
+    "answer": "Prompt tokens are the text sent to the model for processing.",
+    "score": 5,
+    "latency_ms": 518.78
+  },
+  {
+    "memory_size": 30,
+    "probe_id": "latency",
+    "question": "What does latency measure?",
+    "answer": "Latency measures the time required to receive a response from the model.",
+    "score": 5,
+    "latency_ms": 575.68
+  }
+]

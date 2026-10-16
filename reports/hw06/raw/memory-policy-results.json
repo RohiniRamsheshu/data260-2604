@@ -1,0 +1,18 @@
+[
+  {
+    "policy": "full_30_messages",
+    "prompt_tokens_per_turn": 264,
+    "completion_tokens_per_turn": 85,
+    "total_input_tokens": 79200000,
+    "total_output_tokens": 25500000,
+    "estimated_cost_usd": 206.7
+  },
+  {
+    "policy": "compressed_12_plus_summary",
+    "prompt_tokens_per_turn": 150,
+    "completion_tokens_per_turn": 69,
+    "total_input_tokens": 45000000,
+    "total_output_tokens": 20700000,
+    "estimated_cost_usd": 148.5
+  }
+]

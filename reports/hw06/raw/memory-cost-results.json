@@ -1,0 +1,23 @@
+[
+  {
+    "memory_size": 4,
+    "prompt_tokens": 56,
+    "completion_tokens": 76,
+    "latency_ms": 8058.89,
+    "reply_preview": "Memory size is important in an AI chat system because it affects the amount of data the system can process and store. Ad"
+  },
+  {
+    "memory_size": 12,
+    "prompt_tokens": 120,
+    "completion_tokens": 69,
+    "latency_ms": 2751.45,
+    "reply_preview": "Memory size is important in an AI chat system because it affects the system's ability to manage and store data efficient"
+  },
+  {
+    "memory_size": 30,
+    "prompt_tokens": 264,
+    "completion_tokens": 85,
+    "latency_ms": 4172.09,
+    "reply_preview": "Memory size is important in an AI chat system because it affects the system's ability to manage and process large amount"
+  }
+]

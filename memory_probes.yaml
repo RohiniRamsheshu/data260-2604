@@ -1,0 +1,20 @@
+probes:
+  - id: topic
+    question: "What topic was discussed earlier in the conversation?"
+    criterion: "The answer identifies MongoDB or conversation memory."
+
+  - id: purpose
+    question: "Why are we storing messages in MongoDB?"
+    criterion: "The answer explains persistence or remembering conversation history."
+
+  - id: memory_sizes
+    question: "Which memory sizes were compared in the experiment?"
+    criterion: "The answer mentions 4, 12, and 30 messages."
+
+  - id: tokens
+    question: "What are prompt tokens?"
+    criterion: "The answer explains that prompt tokens are text sent to the model."
+
+  - id: latency
+    question: "What does latency measure?"
+    criterion: "The answer explains that latency is the time required to receive a response."
