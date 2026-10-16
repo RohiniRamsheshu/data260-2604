@@ -8,6 +8,10 @@ mongo_db = client[MONGO_DB_NAME]
 
 vulnerability_documents = mongo_db["vulnerabilities_doc"]
 
+messages_collection = mongo_db["messages"]
+summaries_collection = mongo_db["summaries"]
+episodes_collection = mongo_db["episodes"]
+
 
 def ping_mongo():
     return client.admin.command("ping")
