@@ -1,0 +1,46 @@
+DATA-260 HW6 RUN LOG
+
+Configuration:
+SID4=2604
+PORT_BASE=8804
+PREFIX=s2604
+SEED=2604
+VERIFY_SEED=262604
+DOMAIN_ID=4
+
+Part 1:
+- Started MongoDB with Homebrew.
+- Verified MongoDB using mongosh ping.
+- Tested MongoDB document POST, GET, PUT, and DELETE endpoints in Postman.
+- Tested invalid enum and missing required field validation.
+- Saved MongoDB collection evidence.
+
+Part 2:
+- Created messages, summaries, and episodes collections.
+- Tested POST /api/chat with Ollama.
+- Ran 10 messages in one session.
+- Tested GET /api/memory/{user_id}.
+- Tested GET /api/aggregate/{user_id}.
+- Created a summary and episodic memory after five messages.
+- Tested episodic retrieval.
+
+Part 3:
+- Compared memory sizes of 4, 12, and 30 messages.
+- Measured prompt tokens, response tokens, and latency.
+- Evaluated five memory probes.
+- Compared full memory with compressed memory.
+- Estimated cost for 10,000 conversations with 30 turns.
+
+Part 4:
+- Created AGENT.md.
+- Created original MEMORY.md with duplicate and contradictory facts.
+- Created MEMORY_CONSOLIDATED.md.
+- Loaded file memory into the Ollama prompt.
+- Tested /memory, /compact, /dream, and /help commands.
+- Verified that AGENT.md influenced the generated response.
+
+Verification:
+- Python files compiled successfully.
+- MongoDB ping succeeded.
+- Ollama model was available.
+- Git changes were committed and pushed to origin/main.
