@@ -4,6 +4,13 @@ import urllib.error
 import hashlib
 import math
 
+from src.file_memory import (
+    build_file_memory_prompt,
+    load_file_memory,
+)
+
+from src.file_memory import build_file_memory_prompt
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
@@ -66,21 +73,22 @@ def call_ollama(prompt: str) -> str:
 
     try:
         with urllib.request.urlopen(request, timeout=300) as response:
-            data = json.loads(response.read().decode("utf-8"))
+            data = json.loads(
+                response.read().decode("utf-8")
+            )
+
+            print(
+                "Ollama response length:",
+                len(data.get("response", "")),
+            )
+
             return data.get("response", "").strip()
+
     except urllib.error.URLError as exc:
         raise HTTPException(
             status_code=503,
             detail=f"Ollama is unavailable: {exc}",
         )
-
-    query_embedding = make_embedding(request.message)
-
-    top_episodes = get_top_episodes(
-        user_id=request.user_id,
-        query_embedding=query_embedding,
-        limit=3,
-    )
 
 
 def build_prompt(
@@ -88,8 +96,11 @@ def build_prompt(
     summary: dict | None,
     episodes: list[dict],
 ) -> str:
+    file_memory_context = build_file_memory_prompt()
+
     lines = [
-        "You are a helpful assistant.",
+        file_memory_context,
+        "",
         "Use the conversation memory below to answer the user.",
         "",
     ]
@@ -107,6 +118,16 @@ def build_prompt(
         lines.append("")
 
     lines.append("Recent conversation:")
+
+    for message in recent_messages:
+        role = message.get("role", "user").capitalize()
+        content = message.get("content", "")
+        lines.append(f"{role}: {content}")
+
+    lines.append("")
+    lines.append("Assistant:")
+
+    return "\n".join(lines)
 
 def make_embedding(text: str, size: int = 8) -> list[float]:
     vector = [0.0] * size
@@ -147,6 +168,57 @@ Conversation:
 
 @router.post("/chat")
 def chat(request: ChatRequest):
+    command = request.message.strip().lower()
+
+    if command == "/memory":
+        file_memory = load_file_memory()
+
+        return {
+            "command": "/memory",
+            "memory_line_count": file_memory["memory_line_count"],
+            "needs_compaction": file_memory["needs_compaction"],
+            "agent_loaded": bool(
+                file_memory["agent_instructions"]
+            ),
+            "memory_loaded": bool(
+                file_memory["memory"]
+            ),
+        }
+
+    if command == "/compact":
+        file_memory = load_file_memory()
+
+        return {
+            "command": "/compact",
+            "message": (
+                "Memory is already consolidated."
+                if not file_memory["needs_compaction"]
+                else "Memory needs consolidation."
+            ),
+            "memory_line_count": file_memory["memory_line_count"],
+            "needs_compaction": file_memory["needs_compaction"],
+        }
+
+    if command == "/dream":
+        return {
+            "command": "/dream",
+            "message": (
+                "Dream mode reviews recent conversation "
+                "for possible durable facts."
+            ),
+            "status": "ready",
+        }
+
+    if command == "/help":
+        return {
+            "command": "/help",
+            "commands": [
+                "/memory",
+                "/compact",
+                "/dream",
+                "/help",
+            ],
+        }
     save_message(
         user_id=request.user_id,
         session_id=request.session_id,
