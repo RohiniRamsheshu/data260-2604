@@ -1,0 +1,17 @@
+HW7 RUN LOG
+SID4: 2604
+PORT_BASE: 8804
+PREFIX: s2604
+SEED: 2604
+VERIFY_SEED: 262604
+DOMAIN_ID: 4
+MODEL: qwen2.5:3b
+
+Part 1: JWT authentication, RBAC, CRUD, Ruff, and pre-commit completed.
+Part 2: Bounded multi-step agent loop completed.
+Part 3: Reflexion retry comparison completed.
+Part 4: Bike-share MRKL analysis completed with 600 CSV rows.
+Part 5: Prompt-injection defense tests completed.
+Part 6: Safe file tools and bash safety-gate tests completed.
+
+All commands were run locally in the project virtual environment.
