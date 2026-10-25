@@ -1,0 +1,55 @@
+{
+  "csv_rows": 600,
+  "results": [
+    {
+      "scenario": "frequent rider",
+      "rides": 10,
+      "membership_cost": 15.0,
+      "pay_per_use_cost": 35.0,
+      "recommendation": "membership wins",
+      "timeline": [
+        "csv_sql: inspect uploaded trip data",
+        "policy_retriever: retrieve pricing snapshot",
+        "calculator: compare membership and pay-per-use"
+      ],
+      "citations": [
+        {
+          "url": "https://www.baywheels.com/pricing",
+          "date": "2026-10-24",
+          "sha256": "b7ba57423315dbd39c4465282d73fedb0f1ddec631754dd2581f8195ce6ce3f5",
+          "text": "Bay Wheels pricing snapshot\nMembership: $15 per month\nPay-per-use: $3.50 per ride\nSource: https://www.baywheels.com/pricing\nSnapshot date: 2026-10-24\n"
+        }
+      ],
+      "assumptions": [
+        "All rides occur in one month",
+        "Each ride is priced at the snapshot pay-per-use rate",
+        "Membership cost is treated as a fixed monthly cost"
+      ]
+    },
+    {
+      "scenario": "occasional rider",
+      "rides": 2,
+      "membership_cost": 15.0,
+      "pay_per_use_cost": 7.0,
+      "recommendation": "pay-per-use wins",
+      "timeline": [
+        "csv_sql: inspect uploaded trip data",
+        "policy_retriever: retrieve pricing snapshot",
+        "calculator: compare membership and pay-per-use"
+      ],
+      "citations": [
+        {
+          "url": "https://www.baywheels.com/pricing",
+          "date": "2026-10-24",
+          "sha256": "b7ba57423315dbd39c4465282d73fedb0f1ddec631754dd2581f8195ce6ce3f5",
+          "text": "Bay Wheels pricing snapshot\nMembership: $15 per month\nPay-per-use: $3.50 per ride\nSource: https://www.baywheels.com/pricing\nSnapshot date: 2026-10-24\n"
+        }
+      ],
+      "assumptions": [
+        "All rides occur in one month",
+        "Each ride is priced at the snapshot pay-per-use rate",
+        "Membership cost is treated as a fixed monthly cost"
+      ]
+    }
+  ]
+}
