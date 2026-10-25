@@ -1,0 +1,26 @@
+{
+  "homework": "HW7",
+  "sid4": 2604,
+  "commit_hash": "02983b6321bc1532b9a11d599ce38dc5bade6212",
+  "model": "qwen2.5:3b",
+  "config": {
+    "PORT_BASE": 8804,
+    "PREFIX": "s2604",
+    "SEED": 2604,
+    "VERIFY_SEED": 262604,
+    "DOMAIN_ID": 4
+  },
+  "checks": {
+    "hw7_report_folder": true,
+    "run_log": true,
+    "metrics": true,
+    "ai_use": true,
+    "agent_loop_results": true,
+    "reflexion_results": true,
+    "bike_mrkl_results": true,
+    "prompt_injection_results": true,
+    "file_tools_results": true,
+    "screenshots_folder": true
+  },
+  "passed": true
+}
