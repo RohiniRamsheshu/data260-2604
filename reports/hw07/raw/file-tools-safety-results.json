@@ -1,0 +1,7 @@
+{
+  "integration_passed": true,
+  "safe_tests_passed": 5,
+  "blocked_tests_passed": 5,
+  "expected_safe_tests": 5,
+  "expected_blocked_tests": 5
+}
