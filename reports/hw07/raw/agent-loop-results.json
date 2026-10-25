@@ -1,0 +1,350 @@
+[
+  {
+    "task": "Task A: find CVE vulnerabilities and inspect one result",
+    "success": true,
+    "steps": 2,
+    "total_tool_calls": 2,
+    "repair_used": false,
+    "stop_reason": "completed",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Task A: find CVE vulnerabilities and inspect one result"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"search_vulnerabilities\", \"inputs\": {\"query\": \"CVE\", \"limit\": 2}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": [{\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, {\"id\": 5006, \"package_name\": \"package_33\", \"cve_id\": \"CVE-2026-1002\", \"severity\": 8, \"researcher_id\": 1}], \"error\": null}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"vulnerability_detail\", \"inputs\": {\"vulnerability_id\": 5005}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": {\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, \"error\": null}"
+      }
+    ],
+    "logs": [
+      {
+        "task": "Task A: find CVE vulnerabilities and inspect one result",
+        "step": 1,
+        "tool": "search_vulnerabilities",
+        "inputs": {
+          "query": "CVE",
+          "limit": 2
+        },
+        "result": {
+          "ok": true,
+          "data": [
+            {
+              "id": 5005,
+              "package_name": "package_1",
+              "cve_id": "CVE-2026-1001",
+              "severity": 5,
+              "researcher_id": 1
+            },
+            {
+              "id": 5006,
+              "package_name": "package_33",
+              "cve_id": "CVE-2026-1002",
+              "severity": 8,
+              "researcher_id": 1
+            }
+          ],
+          "error": null
+        }
+      },
+      {
+        "task": "Task A: find CVE vulnerabilities and inspect one result",
+        "step": 2,
+        "tool": "vulnerability_detail",
+        "inputs": {
+          "vulnerability_id": 5005
+        },
+        "result": {
+          "ok": true,
+          "data": {
+            "id": 5005,
+            "package_name": "package_1",
+            "cve_id": "CVE-2026-1001",
+            "severity": 5,
+            "researcher_id": 1
+          },
+          "error": null
+        }
+      }
+    ]
+  },
+  {
+    "task": "Task B: summarize vulnerabilities and find supporting examples",
+    "success": true,
+    "steps": 2,
+    "total_tool_calls": 2,
+    "repair_used": false,
+    "stop_reason": "completed",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Task B: summarize vulnerabilities and find supporting examples"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"vulnerability_summary\", \"inputs\": {\"min_severity\": 5}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": {\"total_vulnerabilities\": 2, \"by_severity\": {\"5\": 1, \"8\": 1}}, \"error\": null}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"search_vulnerabilities\", \"inputs\": {\"query\": \"package\", \"limit\": 2}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": [{\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, {\"id\": 5006, \"package_name\": \"package_33\", \"cve_id\": \"CVE-2026-1002\", \"severity\": 8, \"researcher_id\": 1}], \"error\": null}"
+      }
+    ],
+    "logs": [
+      {
+        "task": "Task B: summarize vulnerabilities and find supporting examples",
+        "step": 1,
+        "tool": "vulnerability_summary",
+        "inputs": {
+          "min_severity": 5
+        },
+        "result": {
+          "ok": true,
+          "data": {
+            "total_vulnerabilities": 2,
+            "by_severity": {
+              "5": 1,
+              "8": 1
+            }
+          },
+          "error": null
+        }
+      },
+      {
+        "task": "Task B: summarize vulnerabilities and find supporting examples",
+        "step": 2,
+        "tool": "search_vulnerabilities",
+        "inputs": {
+          "query": "package",
+          "limit": 2
+        },
+        "result": {
+          "ok": true,
+          "data": [
+            {
+              "id": 5005,
+              "package_name": "package_1",
+              "cve_id": "CVE-2026-1001",
+              "severity": 5,
+              "researcher_id": 1
+            },
+            {
+              "id": 5006,
+              "package_name": "package_33",
+              "cve_id": "CVE-2026-1002",
+              "severity": 8,
+              "researcher_id": 1
+            }
+          ],
+          "error": null
+        }
+      }
+    ]
+  },
+  {
+    "task": "Task C: compare two vulnerabilities",
+    "success": true,
+    "steps": 3,
+    "total_tool_calls": 3,
+    "repair_used": false,
+    "stop_reason": "completed",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Task C: compare two vulnerabilities"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"search_vulnerabilities\", \"inputs\": {\"query\": \"CVE\", \"limit\": 2}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": [{\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, {\"id\": 5006, \"package_name\": \"package_33\", \"cve_id\": \"CVE-2026-1002\", \"severity\": 8, \"researcher_id\": 1}], \"error\": null}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"vulnerability_detail\", \"inputs\": {\"vulnerability_id\": 5005}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": {\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, \"error\": null}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"vulnerability_detail\", \"inputs\": {\"vulnerability_id\": 5006, \"approved\": true}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": {\"id\": 5006, \"package_name\": \"package_33\", \"cve_id\": \"CVE-2026-1002\", \"severity\": 8, \"researcher_id\": 1}, \"error\": null}"
+      }
+    ],
+    "logs": [
+      {
+        "task": "Task C: compare two vulnerabilities",
+        "step": 1,
+        "tool": "search_vulnerabilities",
+        "inputs": {
+          "query": "CVE",
+          "limit": 2
+        },
+        "result": {
+          "ok": true,
+          "data": [
+            {
+              "id": 5005,
+              "package_name": "package_1",
+              "cve_id": "CVE-2026-1001",
+              "severity": 5,
+              "researcher_id": 1
+            },
+            {
+              "id": 5006,
+              "package_name": "package_33",
+              "cve_id": "CVE-2026-1002",
+              "severity": 8,
+              "researcher_id": 1
+            }
+          ],
+          "error": null
+        }
+      },
+      {
+        "task": "Task C: compare two vulnerabilities",
+        "step": 2,
+        "tool": "vulnerability_detail",
+        "inputs": {
+          "vulnerability_id": 5005
+        },
+        "result": {
+          "ok": true,
+          "data": {
+            "id": 5005,
+            "package_name": "package_1",
+            "cve_id": "CVE-2026-1001",
+            "severity": 5,
+            "researcher_id": 1
+          },
+          "error": null
+        }
+      },
+      {
+        "task": "Task C: compare two vulnerabilities",
+        "step": 3,
+        "tool": "vulnerability_detail",
+        "inputs": {
+          "vulnerability_id": 5006,
+          "approved": true
+        },
+        "result": {
+          "ok": true,
+          "data": {
+            "id": 5006,
+            "package_name": "package_33",
+            "cve_id": "CVE-2026-1002",
+            "severity": 8,
+            "researcher_id": 1
+          },
+          "error": null
+        }
+      }
+    ]
+  },
+  {
+    "task": "Task D: recover from a malformed tool call",
+    "success": true,
+    "steps": 2,
+    "total_tool_calls": 2,
+    "repair_used": true,
+    "stop_reason": "completed",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Task D: recover from a malformed tool call"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"search_vulnerabilities\", \"inputs\": {\"query\": \"CVE\", \"limit\": 2}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": [{\"id\": 5005, \"package_name\": \"package_1\", \"cve_id\": \"CVE-2026-1001\", \"severity\": 5, \"researcher_id\": 1}, {\"id\": 5006, \"package_name\": \"package_33\", \"cve_id\": \"CVE-2026-1002\", \"severity\": 8, \"researcher_id\": 1}], \"error\": null}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"tool\": \"vulnerability_summary\", \"inputs\": {\"min_severity\": 5}}"
+      },
+      {
+        "role": "tool",
+        "content": "{\"ok\": true, \"data\": {\"total_vulnerabilities\": 2, \"by_severity\": {\"5\": 1, \"8\": 1}}, \"error\": null}"
+      }
+    ],
+    "logs": [
+      {
+        "task": "Task D: recover from a malformed tool call",
+        "step": 1,
+        "tool": "search_vulnerabilities",
+        "inputs": {
+          "query": "CVE",
+          "limit": 2
+        },
+        "result": {
+          "ok": true,
+          "data": [
+            {
+              "id": 5005,
+              "package_name": "package_1",
+              "cve_id": "CVE-2026-1001",
+              "severity": 5,
+              "researcher_id": 1
+            },
+            {
+              "id": 5006,
+              "package_name": "package_33",
+              "cve_id": "CVE-2026-1002",
+              "severity": 8,
+              "researcher_id": 1
+            }
+          ],
+          "error": null
+        }
+      },
+      {
+        "task": "Task D: recover from a malformed tool call",
+        "step": 2,
+        "tool": "vulnerability_summary",
+        "inputs": {
+          "min_severity": 5
+        },
+        "result": {
+          "ok": true,
+          "data": {
+            "total_vulnerabilities": 2,
+            "by_severity": {
+              "5": 1,
+              "8": 1
+            }
+          },
+          "error": null
+        }
+      }
+    ]
+  }
+]
