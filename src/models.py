@@ -130,12 +130,39 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(255), nullable=False)
-    email = Column(String(255), unique=True, nullable=False)
-    password_hash = Column(String(255), nullable=False)
 
-    sessions = relationship("Session", back_populates="user")
+    name = Column(
+        String(255),
+        nullable=False
+    )
 
+    username = Column(
+        String(100),
+        unique=True,
+        nullable=False
+    )
+
+    email = Column(
+        String(255),
+        unique=True,
+        nullable=False
+    )
+
+    password_hash = Column(
+        String(255),
+        nullable=False
+    )
+
+    role = Column(
+        String(20),
+        nullable=False,
+        default="reader"
+    )
+
+    sessions = relationship(
+        "Session",
+        back_populates="user"
+    )
 
 class Session(Base):
     """

@@ -10,6 +10,8 @@ from src.hw5_api import router as hw5_router
 from src.mongo_api import router as mongo_router
 from src.chat_memory_api import router as chat_memory_router
 app = FastAPI()   # <-- must be created before any app.xxx() call
+from src.jwt_auth_api import router as jwt_auth_router
+
 
 # Explicit CORS configuration for React frontend
 app.add_middleware(
@@ -29,11 +31,12 @@ app.add_middleware(
     https_only=False,
     same_site="lax",
 )
-
+app.include_router(jwt_auth_router)
 app.include_router(auth_router)
 app.include_router(auth_api_router)
 app.include_router(hw5_router)   # <-- moved here, after app exists
-app.include_router(crud_api_router)
+#app.include_router(crud_api_router)
 app.include_router(mongo_router)
 app.include_router(chat_memory_router)
+app.include_router(hw5_router)
 
