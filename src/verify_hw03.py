@@ -54,12 +54,17 @@ def run_checks():
     questions_path = HW03_DIR / "questions.yaml"
     if questions_path.exists():
         import yaml
+
         with open(questions_path) as f:
             data = yaml.safe_load(f)
         n_questions = len(data.get("questions", []))
-        check("questions_yaml_has_5", n_questions == 5, f"{n_questions} questions found")
+        check(
+            "questions_yaml_has_5", n_questions == 5, f"{n_questions} questions found"
+        )
 
-        n_single_source = sum(1 for q in data.get("questions", []) if q.get("single_source"))
+        n_single_source = sum(
+            1 for q in data.get("questions", []) if q.get("single_source")
+        )
         check(
             "at_least_2_single_source_questions",
             n_single_source >= 2,
@@ -71,7 +76,11 @@ def run_checks():
 
     # 4. raw/ output files exist (CSV/JSON/JSONL)
     raw_dir = HW03_DIR / "raw"
-    for fname in ["retrieval_results.csv", "retrieval_results.json", "retrieval_results.jsonl"]:
+    for fname in [
+        "retrieval_results.csv",
+        "retrieval_results.json",
+        "retrieval_results.jsonl",
+    ]:
         fpath = raw_dir / fname
         check(f"raw_{fname}_exists", fpath.exists(), str(fpath))
 
@@ -88,12 +97,21 @@ def run_checks():
         check("run_log_non_empty", False, "RUN_LOG.txt not found")
 
     # 7. Auth app files exist
-    for relpath in ["src/auth.py", "src/templates/home.html", "src/templates/login.html", "src/templates/dashboard.html"]:
+    for relpath in [
+        "src/auth.py",
+        "src/templates/home.html",
+        "src/templates/login.html",
+        "src/templates/dashboard.html",
+    ]:
         p = REPO_ROOT / relpath
         check(f"auth_file_{relpath}", p.exists(), relpath)
 
     # 8. RAG code exists
-    for relpath in ["src/rag/chunking.py", "src/rag/retrieval.py", "src/rag/run_comparison.py"]:
+    for relpath in [
+        "src/rag/chunking.py",
+        "src/rag/retrieval.py",
+        "src/rag/run_comparison.py",
+    ]:
         p = REPO_ROOT / relpath
         check(f"rag_file_{relpath}", p.exists(), relpath)
 

@@ -38,8 +38,7 @@ def get_recent_messages(
     limit: int = 4,
 ) -> list[dict[str, Any]]:
     cursor = (
-        messages_collection
-        .find(
+        messages_collection.find(
             {
                 "user_id": user_id,
                 "session_id": session_id,
@@ -115,11 +114,12 @@ def get_recent_episodes(
     limit: int = 20,
 ) -> list[dict[str, Any]]:
     return list(
-        episodes_collection
-        .find({"user_id": user_id})
+        episodes_collection.find({"user_id": user_id})
         .sort("created_at", -1)
         .limit(limit)
     )
+
+
 def count_user_messages(
     user_id: str,
     session_id: str,
@@ -131,6 +131,8 @@ def count_user_messages(
             "role": "user",
         }
     )
+
+
 def cosine_similarity(
     first: list[float],
     second: list[float],
@@ -151,9 +153,7 @@ def get_top_episodes(
     query_embedding: list[float],
     limit: int = 3,
 ) -> list[dict]:
-    episodes = list(
-        episodes_collection.find({"user_id": user_id})
-    )
+    episodes = list(episodes_collection.find({"user_id": user_id}))
 
     scored_episodes = []
 

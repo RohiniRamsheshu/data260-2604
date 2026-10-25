@@ -47,7 +47,9 @@ def summarize():
         "sentence_window": build_sentence_window_nodes(docs),
     }
 
-    print("\n| Technique | Chunks | Avg chunk length | Top-1 cosine | Mean@k cosine | Mean retrieval latency (ms) |")
+    print(
+        "\n| Technique | Chunks | Avg chunk length | Top-1 cosine | Mean@k cosine | Mean retrieval latency (ms) |"
+    )
     print("|---|---|---|---|---|---|")
 
     for technique in ["token", "semantic", "sentence_window"]:
@@ -63,7 +65,9 @@ def summarize():
         for qid, qrows in by_question.items():
             qrows_sorted = sorted(qrows, key=lambda r: r["rank"])
             top1_cosines.append(qrows_sorted[0]["cosine_sim"])
-            mean_at_k_cosines.append(sum(r["cosine_sim"] for r in qrows_sorted) / len(qrows_sorted))
+            mean_at_k_cosines.append(
+                sum(r["cosine_sim"] for r in qrows_sorted) / len(qrows_sorted)
+            )
 
         avg_top1 = sum(top1_cosines) / len(top1_cosines)
         avg_mean_at_k = sum(mean_at_k_cosines) / len(mean_at_k_cosines)
@@ -73,7 +77,9 @@ def summarize():
         n_chunks = len(nodes)
         avg_len = sum(len(n.get_content()) for n in nodes) / n_chunks
 
-        print(f"| {technique} | {n_chunks} | {avg_len:.0f} | {avg_top1:.4f} | {avg_mean_at_k:.4f} | {avg_latency:.2f} |")
+        print(
+            f"| {technique} | {n_chunks} | {avg_len:.0f} | {avg_top1:.4f} | {avg_mean_at_k:.4f} | {avg_latency:.2f} |"
+        )
 
 
 if __name__ == "__main__":

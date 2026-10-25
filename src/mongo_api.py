@@ -116,9 +116,7 @@ def update_document(
 def delete_document(document_id: str):
     object_id = parse_id(document_id)
 
-    result = vulnerability_documents.delete_one(
-        {"_id": object_id}
-    )
+    result = vulnerability_documents.delete_one({"_id": object_id})
 
     if result.deleted_count == 0:
         raise HTTPException(

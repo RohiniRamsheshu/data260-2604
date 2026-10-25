@@ -1,5 +1,6 @@
 from model_client import ModelClient
 
+
 def main():
     client = ModelClient()
 
@@ -8,7 +9,7 @@ def main():
         "How does it affect libraries like lodash specifically?",
         "What's a real-world example of this being exploited?",
         "How can developers prevent it in their own code?",
-        "Summarize everything we discussed in 3 bullet points."
+        "Summarize everything we discussed in 3 bullet points.",
     ]
 
     for i, user_message in enumerate(conversation_turns, start=1):
@@ -24,6 +25,7 @@ def main():
         if i == 3 or i == 5:
             print(f"\n[/stats after turn {i}]")
             print(client.stats())
+
 
 if __name__ == "__main__":
     main()

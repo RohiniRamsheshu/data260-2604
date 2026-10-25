@@ -17,106 +17,60 @@ from src.db import Base
 
 class Vulnerability(Base):
     """Primary domain entity."""
+
     __tablename__ = "vulnerabilities"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    package_name = Column(
-        String(255),
-        nullable=False
-    )
+    package_name = Column(String(255), nullable=False)
 
-    cve_id = Column(
-        String(50),
-        nullable=False,
-        unique=True
-    )
+    cve_id = Column(String(50), nullable=False, unique=True)
 
-    severity = Column(
-        Integer,
-        nullable=False,
-        default=0
-    )
+    severity = Column(Integer, nullable=False, default=0)
 
     researcher_id = Column(
-        Integer,
-        ForeignKey("researchers.id", ondelete="RESTRICT"),
-        nullable=False
+        Integer, ForeignKey("researchers.id", ondelete="RESTRICT"), nullable=False
     )
 
-    created_at = Column(
-        DateTime,
-        default=datetime.utcnow,
-        nullable=False
-    )
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     updated_at = Column(
-        DateTime,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow,
-        nullable=False
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False
     )
 
-    researcher = relationship(
-        "Researcher",
-        back_populates="vulnerabilities"
-    )
+    researcher = relationship("Researcher", back_populates="vulnerabilities")
 
-    advisories = relationship(
-        "Advisory",
-        back_populates="vulnerability"
-    )
+    advisories = relationship("Advisory", back_populates="vulnerability")
+
 
 class Researcher(Base):
     """Related entity for HW5."""
 
     __tablename__ = "researchers"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True
-    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
 
-    first_name = Column(
-        String(100),
-        nullable=False
-    )
+    first_name = Column(String(100), nullable=False)
 
-    last_name = Column(
-        String(100),
-        nullable=False
-    )
+    last_name = Column(String(100), nullable=False)
 
-    email = Column(
-        String(255),
-        nullable=False,
-        unique=True
-    )
+    email = Column(String(255), nullable=False, unique=True)
 
-    created_at = Column(
-        DateTime,
-        default=datetime.utcnow,
-        nullable=False
-    )
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     updated_at = Column(
-        DateTime,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow,
-        nullable=False
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False
     )
 
-    vulnerabilities = relationship(
-        "Vulnerability",
-        back_populates="researcher"
-    )
+    vulnerabilities = relationship("Vulnerability", back_populates="researcher")
+
 
 class Advisory(Base):
     """
     Related table used for the N+1 demonstration in Part 3.
     Just test data for now -- a full CRUD-able related entity comes later.
     """
+
     __tablename__ = "advisories"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -131,38 +85,18 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
-    name = Column(
-        String(255),
-        nullable=False
-    )
+    name = Column(String(255), nullable=False)
 
-    username = Column(
-        String(100),
-        unique=True,
-        nullable=False
-    )
+    username = Column(String(100), unique=True, nullable=False)
 
-    email = Column(
-        String(255),
-        unique=True,
-        nullable=False
-    )
+    email = Column(String(255), unique=True, nullable=False)
 
-    password_hash = Column(
-        String(255),
-        nullable=False
-    )
+    password_hash = Column(String(255), nullable=False)
 
-    role = Column(
-        String(20),
-        nullable=False,
-        default="reader"
-    )
+    role = Column(String(20), nullable=False, default="reader")
 
-    sessions = relationship(
-        "Session",
-        back_populates="user"
-    )
+    sessions = relationship("Session", back_populates="user")
+
 
 class Session(Base):
     """
@@ -170,6 +104,7 @@ class Session(Base):
     browser's HTTP-only cookie stores -- no user data lives in the cookie
     itself, only this opaque reference.
     """
+
     __tablename__ = "sessions"
 
     id = Column(String(64), primary_key=True)  # the opaque session token

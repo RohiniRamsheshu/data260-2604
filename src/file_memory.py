@@ -37,10 +37,7 @@ def should_compact(path: Path) -> bool:
         tz=timezone.utc,
     )
 
-    older_than_one_day = (
-        datetime.now(timezone.utc) - modified_at
-        > timedelta(hours=24)
-    )
+    older_than_one_day = datetime.now(timezone.utc) - modified_at > timedelta(hours=24)
 
     return too_many_lines or older_than_one_day
 

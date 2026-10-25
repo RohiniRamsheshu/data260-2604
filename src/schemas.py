@@ -35,15 +35,9 @@ class ResearcherResponse(ResearcherBase):
 class VulnerabilityBase(BaseModel):
     package_name: str = Field(min_length=1, max_length=255)
 
-    cve_id: str = Field(
-        pattern=r"^CVE-\d{4}-\d{4,}$"
-    )
+    cve_id: str = Field(pattern=r"^CVE-\d{4}-\d{4,}$")
 
-    severity: int = Field(
-        default=0,
-        ge=0,
-        le=10
-    )
+    severity: int = Field(default=0, ge=0, le=10)
 
     researcher_id: int = Field(gt=0)
 

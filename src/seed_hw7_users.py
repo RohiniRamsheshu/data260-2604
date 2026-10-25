@@ -33,27 +33,19 @@ def seed_users():
 
     try:
         for account in TEST_USERS:
-            user = (
-                db.query(User)
-                .filter(User.username == account["username"])
-                .first()
-            )
+            user = db.query(User).filter(User.username == account["username"]).first()
 
             if user is None:
                 user = User(
                     name=account["name"],
                     username=account["username"],
                     email=account["email"],
-                    password_hash=hash_password(
-                        account["password"]
-                    ),
+                    password_hash=hash_password(account["password"]),
                     role=account["role"],
                 )
                 db.add(user)
             else:
-                user.password_hash = hash_password(
-                    account["password"]
-                )
+                user.password_hash = hash_password(account["password"])
                 user.role = account["role"]
 
         db.commit()

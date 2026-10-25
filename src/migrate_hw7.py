@@ -6,10 +6,7 @@ from src.db import engine
 def migrate_users_table():
     inspector = inspect(engine)
 
-    existing_columns = {
-        column["name"]
-        for column in inspector.get_columns("users")
-    }
+    existing_columns = {column["name"] for column in inspector.get_columns("users")}
 
     with engine.begin() as connection:
         if "username" not in existing_columns:

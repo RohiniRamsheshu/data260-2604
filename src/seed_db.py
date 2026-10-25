@@ -1,11 +1,11 @@
 import random
-import string
 from sqlalchemy.orm import Session
-from src.db import db_session_basede26, engine, Base
+from src.db import db_session_basede26
 from src.models import Vulnerability, Advisory
 
 SEED_VAL = 2604
 random.seed(SEED_VAL)
+
 
 def seed_database():
     db: Session = db_session_basede26()
@@ -20,10 +20,10 @@ def seed_database():
         for i in range(1, 5001):
             vuln = Vulnerability(
                 package_name=f"package_{random.randint(1, 100)}",
-                cve_id=f"CVE-2026-{1000 + i}"
+                cve_id=f"CVE-2026-{1000 + i}",
             )
             vulnerabilities.append(vuln)
-        
+
         db.add_all(vulnerabilities)
         db.commit()
 
@@ -33,7 +33,7 @@ def seed_database():
         for i in range(1, 201):
             adv = Advisory(
                 vulnerability_id=random.choice(vuln_ids),
-                note=f"Security advisory #{i}: Patch available for affected package."
+                note=f"Security advisory #{i}: Patch available for affected package.",
             )
             advisories.append(adv)
 
@@ -46,6 +46,7 @@ def seed_database():
         print(f"Error seeding database: {e}")
     finally:
         db.close()
+
 
 if __name__ == "__main__":
     seed_database()

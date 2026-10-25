@@ -5,10 +5,7 @@ from src.db import engine
 
 def get_columns(table_name: str) -> set[str]:
     inspector = inspect(engine)
-    return {
-        column["name"]
-        for column in inspector.get_columns(table_name)
-    }
+    return {column["name"] for column in inspector.get_columns(table_name)}
 
 
 with engine.begin() as connection:
@@ -158,8 +155,7 @@ with engine.begin() as connection:
     foreign_keys = inspect(engine).get_foreign_keys("vulnerabilities")
 
     has_researcher_foreign_key = any(
-        key.get("referred_table") == "researchers"
-        for key in foreign_keys
+        key.get("referred_table") == "researchers" for key in foreign_keys
     )
 
     if not has_researcher_foreign_key:

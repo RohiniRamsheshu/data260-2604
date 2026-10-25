@@ -13,15 +13,11 @@ JWT_SECRET = "hw7-development-secret-change-in-production"
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_MINUTES = 60
 
-oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="/auth/login"
-)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
 def create_access_token(user: User) -> str:
-    expires_at = datetime.now(timezone.utc) + timedelta(
-        minutes=JWT_EXPIRE_MINUTES
-    )
+    expires_at = datetime.now(timezone.utc) + timedelta(minutes=JWT_EXPIRE_MINUTES)
 
     payload = {
         "sub": user.username,
@@ -62,11 +58,7 @@ def get_current_jwt_user(
     except jwt.PyJWTError:
         raise credentials_error
 
-    user = (
-        db.query(User)
-        .filter(User.username == username)
-        .first()
-    )
+    user = db.query(User).filter(User.username == username).first()
 
     if user is None:
         raise credentials_error

@@ -12,6 +12,7 @@ with open("reports/hw02/cases/schema_input.json") as f:
 
 app = build_graph()
 
+
 def run_once():
     initial_state = {
         "title": case["title"],
@@ -20,7 +21,7 @@ def run_once():
         "reviewer_feedback": {},
         "turn_count": 0,
         "validation_error": "",
-        "schema_valid": False
+        "schema_valid": False,
     }
 
     start = time.time()
@@ -36,7 +37,8 @@ def run_once():
     latency_ms = (time.time() - start) * 1000
 
     if final_state.get("turn_count", 0) >= TURN_CEILING and not (
-        final_state.get("schema_valid") and not final_state.get("reviewer_feedback", {}).get("has_issues", True)
+        final_state.get("schema_valid")
+        and not final_state.get("reviewer_feedback", {}).get("has_issues", True)
     ):
         outcome = "abandoned_at_ceiling"
     elif planner_calls == 1:
@@ -48,11 +50,14 @@ def run_once():
 
     return outcome, latency_ms
 
+
 results = []
 for i in range(30):
-    print(f"Run {i+1}/30...")
+    print(f"Run {i + 1}/30...")
     outcome, latency_ms = run_once()
-    results.append({"run": i + 1, "outcome": outcome, "latency_ms": round(latency_ms, 2)})
+    results.append(
+        {"run": i + 1, "outcome": outcome, "latency_ms": round(latency_ms, 2)}
+    )
     print(f"  -> {outcome} ({latency_ms:.0f}ms)")
 
 with open("reports/hw02/raw/schema_validation_runs.csv", "w", newline="") as f:

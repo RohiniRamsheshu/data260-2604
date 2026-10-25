@@ -11,7 +11,6 @@ Each technique's build_*_nodes() function returns a list of LlamaIndex
 Node objects, ready to be indexed into an in-memory VectorStoreIndex.
 """
 
-import os
 import time
 from pathlib import Path
 
@@ -67,14 +66,18 @@ def build_token_nodes(documents: list[Document], chunk_size=200, chunk_overlap=2
         separator=" ",
     )
     nodes = splitter.get_nodes_from_documents(documents)
-    print(f"[token] {len(nodes)} nodes (chunk_size={chunk_size}, overlap={chunk_overlap})")
+    print(
+        f"[token] {len(nodes)} nodes (chunk_size={chunk_size}, overlap={chunk_overlap})"
+    )
     return nodes
 
 
 # ---------------------------------------------------------------------------
 # 2. Semantic chunking
 # ---------------------------------------------------------------------------
-def build_semantic_nodes(documents: list[Document], buffer_size=1, breakpoint_percentile=95):
+def build_semantic_nodes(
+    documents: list[Document], buffer_size=1, breakpoint_percentile=95
+):
     """
     Cuts where consecutive sentences' embeddings show a meaningful topic
     shift, rather than at a fixed token count. Uses the embed model

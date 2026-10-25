@@ -6,10 +6,10 @@ backed by MySQL via SQLAlchemy. Every route requires a valid session
 
 from fastapi import APIRouter, Depends, HTTPException, Form, Query
 from sqlalchemy.orm import Session as DBSession
-from sqlalchemy.orm import joinedload, selectinload
+from sqlalchemy.orm import selectinload
 
 from src.db import get_db
-from src.models import Vulnerability, Advisory, User
+from src.models import Vulnerability, User
 from src.auth_api import get_current_user
 
 router = APIRouter()
@@ -23,8 +23,7 @@ def list_vulnerabilities(
     """GET - view all records."""
     rows = db.query(Vulnerability).all()
     return [
-        {"id": v.id, "package_name": v.package_name, "cve_id": v.cve_id}
-        for v in rows
+        {"id": v.id, "package_name": v.package_name, "cve_id": v.cve_id} for v in rows
     ]
 
 
@@ -41,16 +40,15 @@ def get_vulnerabilities_naive(
     vulns = db.query(Vulnerability).offset(offset).limit(limit).all()
     results = []
     for vuln in vulns:
-        advisories_data = [
-            {"id": adv.id, "note": adv.note} 
-            for adv in vuln.advisories
-        ]
-        results.append({
-            "id": vuln.id,
-            "package_name": vuln.package_name,
-            "cve_id": vuln.cve_id,
-            "advisories": advisories_data
-        })
+        advisories_data = [{"id": adv.id, "note": adv.note} for adv in vuln.advisories]
+        results.append(
+            {
+                "id": vuln.id,
+                "package_name": vuln.package_name,
+                "cve_id": vuln.cve_id,
+                "advisories": advisories_data,
+            }
+        )
     return results
 
 
@@ -73,16 +71,15 @@ def get_vulnerabilities_fixed(
     )
     results = []
     for vuln in vulns:
-        advisories_data = [
-            {"id": adv.id, "note": adv.note} 
-            for adv in vuln.advisories
-        ]
-        results.append({
-            "id": vuln.id,
-            "package_name": vuln.package_name,
-            "cve_id": vuln.cve_id,
-            "advisories": advisories_data
-        })
+        advisories_data = [{"id": adv.id, "note": adv.note} for adv in vuln.advisories]
+        results.append(
+            {
+                "id": vuln.id,
+                "package_name": vuln.package_name,
+                "cve_id": vuln.cve_id,
+                "advisories": advisories_data,
+            }
+        )
     return results
 
 

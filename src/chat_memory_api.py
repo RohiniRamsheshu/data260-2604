@@ -9,7 +9,6 @@ from src.file_memory import (
     load_file_memory,
 )
 
-from src.file_memory import build_file_memory_prompt
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
@@ -25,26 +24,17 @@ from datetime import datetime
 from src.mongo_db import (
     messages_collection,
     summaries_collection,
-    episodes_collection,
 )
 from src.memory_store import get_recent_episodes
 from src.memory_store import (
-    save_message,
-    get_recent_messages,
-    get_latest_summary,
     save_summary,
     save_episode,
     count_user_messages,
 )
 from src.memory_store import (
-    save_message,
-    get_recent_messages,
-    get_latest_summary,
-    save_summary,
-    save_episode,
-    count_user_messages,
     get_top_episodes,
 )
+
 router = APIRouter(prefix="/api", tags=["Chat Memory"])
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
@@ -73,9 +63,7 @@ def call_ollama(prompt: str) -> str:
 
     try:
         with urllib.request.urlopen(request, timeout=300) as response:
-            data = json.loads(
-                response.read().decode("utf-8")
-            )
+            data = json.loads(response.read().decode("utf-8"))
 
             print(
                 "Ollama response length:",
@@ -129,6 +117,7 @@ def build_prompt(
 
     return "\n".join(lines)
 
+
 def make_embedding(text: str, size: int = 8) -> list[float]:
     vector = [0.0] * size
 
@@ -151,8 +140,7 @@ def create_memory_summary(
     messages: list[dict],
 ) -> str:
     conversation = "\n".join(
-        f"{message['role']}: {message['content']}"
-        for message in messages
+        f"{message['role']}: {message['content']}" for message in messages
     )
 
     summary_prompt = f"""
@@ -177,12 +165,8 @@ def chat(request: ChatRequest):
             "command": "/memory",
             "memory_line_count": file_memory["memory_line_count"],
             "needs_compaction": file_memory["needs_compaction"],
-            "agent_loaded": bool(
-                file_memory["agent_instructions"]
-            ),
-            "memory_loaded": bool(
-                file_memory["memory"]
-            ),
+            "agent_loaded": bool(file_memory["agent_instructions"]),
+            "memory_loaded": bool(file_memory["memory"]),
         }
 
     if command == "/compact":
@@ -203,8 +187,7 @@ def chat(request: ChatRequest):
         return {
             "command": "/dream",
             "message": (
-                "Dream mode reviews recent conversation "
-                "for possible durable facts."
+                "Dream mode reviews recent conversation for possible durable facts."
             ),
             "status": "ready",
         }
@@ -244,9 +227,11 @@ def chat(request: ChatRequest):
         limit=3,
     )
 
-    prompt = build_prompt(recent_messages,
+    prompt = build_prompt(
+        recent_messages,
         latest_summary,
-        top_episodes,)
+        top_episodes,
+    )
     reply = call_ollama(prompt)
 
     save_message(
@@ -303,6 +288,8 @@ def chat(request: ChatRequest):
             "model": OLLAMA_MODEL,
         },
     }
+
+
 def serialize_memory_document(document: dict) -> dict:
     result = dict(document)
 
@@ -319,45 +306,28 @@ def serialize_memory_document(document: dict) -> dict:
 @router.get("/memory/{user_id}")
 def get_memory(user_id: str):
     messages = list(
-        messages_collection
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
-        .limit(16)
+        messages_collection.find({"user_id": user_id}).sort("created_at", -1).limit(16)
     )
     messages.reverse()
 
     summaries = list(
-        summaries_collection
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
-        .limit(10)
+        summaries_collection.find({"user_id": user_id}).sort("created_at", -1).limit(10)
     )
 
     episodes = get_recent_episodes(user_id=user_id, limit=20)
 
     return {
         "user_id": user_id,
-        "messages": [
-            serialize_memory_document(message)
-            for message in messages
-        ],
-        "summaries": [
-            serialize_memory_document(summary)
-            for summary in summaries
-        ],
-        "episodes": [
-            serialize_memory_document(episode)
-            for episode in episodes
-        ],
+        "messages": [serialize_memory_document(message) for message in messages],
+        "summaries": [serialize_memory_document(summary) for summary in summaries],
+        "episodes": [serialize_memory_document(episode) for episode in episodes],
     }
 
 
 @router.get("/aggregate/{user_id}")
 def get_aggregate(user_id: str):
     messages = list(
-        messages_collection
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
+        messages_collection.find({"user_id": user_id}).sort("created_at", -1)
     )
 
     daily_counts: dict[str, int] = {}
@@ -373,10 +343,7 @@ def get_aggregate(user_id: str):
         daily_counts[day] = daily_counts.get(day, 0) + 1
 
     recent_summaries = list(
-        summaries_collection
-        .find({"user_id": user_id})
-        .sort("created_at", -1)
-        .limit(5)
+        summaries_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5)
     )
 
     return {
@@ -384,7 +351,6 @@ def get_aggregate(user_id: str):
         "total_messages": len(messages),
         "daily_message_counts": daily_counts,
         "recent_summaries": [
-            serialize_memory_document(summary)
-            for summary in recent_summaries
+            serialize_memory_document(summary) for summary in recent_summaries
         ],
     }

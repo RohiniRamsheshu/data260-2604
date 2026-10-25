@@ -1,7 +1,7 @@
 import csv
 import json
 from collections import Counter
-import statistics
+
 
 def analyze(temperature, rows):
     tag_sets = [tuple(sorted(json.loads(r["tags"]))) for r in rows]
@@ -28,6 +28,7 @@ def analyze(temperature, rows):
     print(f"Tags in all 20 runs: {in_all_20}")
     print(f"Tags in exactly 1 run: {in_exactly_1}")
     print(f"Latency p50/p95/p99 (ms): {p50:.0f} / {p95:.0f} / {p99:.0f}")
+
 
 with open("reports/hw01/raw/nondeterminism_results.csv") as f:
     rows = list(csv.DictReader(f))

@@ -4,6 +4,8 @@ import json
 import sys
 import os
 from pydantic import BaseModel, field_validator
+from model_client import ModelClient  # noqa: E402
+
 
 class PlannerOutput(BaseModel):
     tags: list[str]
@@ -27,10 +29,11 @@ class PlannerOutput(BaseModel):
             raise ValueError(f"Summary must be at most 25 words, got {word_count}")
         return v
 
+
 sys.path.append(os.path.dirname(__file__))
-from model_client import ModelClient
 
 TURN_CEILING = 6
+
 
 class AgentState(TypedDict):
     title: str
@@ -41,6 +44,7 @@ class AgentState(TypedDict):
     validation_error: str
     schema_valid: bool
 
+
 client = ModelClient()
 
 
@@ -48,22 +52,35 @@ def planner_node(state: AgentState) -> Dict[str, Any]:
     print("---NODE: Planner---")
 
     validation_error = state.get("validation_error", "")
-    error_context = f"\n\nYour previous attempt failed validation with this error: {validation_error}\nFix it." if validation_error else ""
+    error_context = (
+        f"\n\nYour previous attempt failed validation with this error: {validation_error}\nFix it."
+        if validation_error
+        else ""
+    )
 
     prompt = f"""You are a Planner agent. Given a title and content, propose exactly 3 topical tags (each 3-30 characters) and a one-sentence summary (max 25 words).
 Respond ONLY in valid JSON with keys "tags" (list of 3 strings) and "summary" (string).{error_context}
 
-Title: {state['title']}
-Content: {state['content']}
+Title: {state["title"]}
+Content: {state["content"]}
 """
     response = client.complete([{"role": "user", "content": prompt}])
 
     try:
         raw = json.loads(response)
         validated = PlannerOutput(**raw)
-        return {"planner_proposal": validated.model_dump(), "validation_error": "", "schema_valid": True}
+        return {
+            "planner_proposal": validated.model_dump(),
+            "validation_error": "",
+            "schema_valid": True,
+        }
     except Exception as e:
-        return {"planner_proposal": {}, "validation_error": str(e), "schema_valid": False}
+        return {
+            "planner_proposal": {},
+            "validation_error": str(e),
+            "schema_valid": False,
+        }
+
 
 def reviewer_node(state: AgentState) -> Dict[str, Any]:
     print("---NODE: Reviewer---")
@@ -111,6 +128,7 @@ def router_logic(state: AgentState) -> str:
     print("---ROUTER: No issues -> END---")
     return END
 
+
 def build_graph():
     graph = StateGraph(AgentState)
     graph.add_node("supervisor", supervisor_node)
@@ -118,11 +136,11 @@ def build_graph():
     graph.add_node("reviewer", reviewer_node)
 
     graph.set_entry_point("supervisor")
-    graph.add_conditional_edges("supervisor", router_logic, {
-        "planner": "planner",
-        "reviewer": "reviewer",
-        END: END
-    })
+    graph.add_conditional_edges(
+        "supervisor",
+        router_logic,
+        {"planner": "planner", "reviewer": "reviewer", END: END},
+    )
     graph.add_edge("planner", "supervisor")
     graph.add_edge("reviewer", "supervisor")
 
@@ -139,7 +157,7 @@ if __name__ == "__main__":
         "reviewer_feedback": {},
         "turn_count": 0,
         "validation_error": "",
-        "schema_valid": False
+        "schema_valid": False,
     }
 
     for step in app.stream(initial_state):

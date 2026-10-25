@@ -30,9 +30,7 @@ router = APIRouter(
 def create_researcher(
     payload: ResearcherCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("writer", "moderator")
-    ),
+    current_user: User = Depends(require_roles("writer", "moderator")),
 ):
     researcher = Researcher(**payload.model_dump())
     db.add(researcher)
@@ -60,12 +58,7 @@ def list_researchers(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_jwt_user),
 ):
-    return (
-        db.query(Researcher)
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
+    return db.query(Researcher).offset(offset).limit(limit).all()
 
 
 @router.get(
@@ -96,9 +89,7 @@ def update_researcher(
     researcher_id: int,
     payload: ResearcherCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("writer", "moderator")
-    ),
+    current_user: User = Depends(require_roles("writer", "moderator")),
 ):
     researcher = db.get(Researcher, researcher_id)
 
@@ -128,9 +119,7 @@ def update_researcher(
 def delete_researcher(
     researcher_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("moderator")
-    ),
+    current_user: User = Depends(require_roles("moderator")),
 ):
     researcher = db.get(Researcher, researcher_id)
 
@@ -144,20 +133,14 @@ def delete_researcher(
         raise HTTPException(
             status_code=409,
             detail=(
-                "Cannot delete researcher while vulnerabilities "
-                "are associated with it"
+                "Cannot delete researcher while vulnerabilities are associated with it"
             ),
         )
 
     db.delete(researcher)
     db.commit()
 
-    return {
-        "message": (
-            f"Researcher {researcher_id} "
-            "deleted successfully"
-        )
-    }
+    return {"message": (f"Researcher {researcher_id} deleted successfully")}
 
 
 @router.post(
@@ -168,9 +151,7 @@ def delete_researcher(
 def create_vulnerability(
     payload: VulnerabilityCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("writer", "moderator")
-    ),
+    current_user: User = Depends(require_roles("writer", "moderator")),
 ):
     researcher = db.get(Researcher, payload.researcher_id)
 
@@ -206,12 +187,7 @@ def list_vulnerabilities(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_jwt_user),
 ):
-    return (
-        db.query(Vulnerability)
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
+    return db.query(Vulnerability).offset(offset).limit(limit).all()
 
 
 @router.get(
@@ -242,9 +218,7 @@ def update_vulnerability(
     vulnerability_id: int,
     payload: VulnerabilityCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("writer", "moderator")
-    ),
+    current_user: User = Depends(require_roles("writer", "moderator")),
 ):
     vulnerability = db.get(Vulnerability, vulnerability_id)
 
@@ -282,9 +256,7 @@ def update_vulnerability(
 def delete_vulnerability(
     vulnerability_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(
-        require_roles("moderator")
-    ),
+    current_user: User = Depends(require_roles("moderator")),
 ):
     vulnerability = db.get(Vulnerability, vulnerability_id)
 
@@ -297,12 +269,7 @@ def delete_vulnerability(
     db.delete(vulnerability)
     db.commit()
 
-    return {
-        "message": (
-            f"Vulnerability {vulnerability_id} "
-            "deleted successfully"
-        )
-    }
+    return {"message": (f"Vulnerability {vulnerability_id} deleted successfully")}
 
 
 @router.get(
@@ -324,8 +291,6 @@ def get_researcher_vulnerabilities(
 
     return (
         db.query(Vulnerability)
-        .filter(
-            Vulnerability.researcher_id == researcher_id
-        )
+        .filter(Vulnerability.researcher_id == researcher_id)
         .all()
     )
