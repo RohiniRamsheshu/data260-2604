@@ -1,0 +1,118 @@
+{
+  "homework": "HW9",
+  "student": "Rohini Ramasheshu",
+  "sid4": 2604,
+  "passed": true,
+  "checks": [
+    {
+      "path": "semantic_cache.py",
+      "exists": true
+    },
+    {
+      "path": "semantic_cache_demo.py",
+      "exists": true
+    },
+    {
+      "path": "threshold_sweep.py",
+      "exists": true
+    },
+    {
+      "path": "cache_cases.yaml",
+      "exists": true
+    },
+    {
+      "path": "cache_invalidation_demo.py",
+      "exists": true
+    },
+    {
+      "path": "self_improving_agents.py",
+      "exists": true
+    },
+    {
+      "path": "part4_variant_comparison.py",
+      "exists": true
+    },
+    {
+      "path": "training_data.json",
+      "exists": true
+    },
+    {
+      "path": "validation_data.json",
+      "exists": true
+    },
+    {
+      "path": "test_data.json",
+      "exists": true
+    },
+    {
+      "path": "lessons.json",
+      "exists": true
+    },
+    {
+      "path": "src/migrate_hw9.py",
+      "exists": true
+    },
+    {
+      "path": "src/redis_counter.py",
+      "exists": true
+    },
+    {
+      "path": "redis_counter_demo.py",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/RUN_LOG.txt",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/METRICS.md",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/AI_USE.md",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/raw/threshold-sweep-results.json",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/raw/cache-invalidation-results.json",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/raw/part4-variant-comparison.json",
+      "exists": true
+    },
+    {
+      "path": "reports/hw09/raw/self-improving-agent-results.json",
+      "exists": true
+    },
+    {
+      "name": "five threshold results",
+      "passed": true
+    },
+    {
+      "name": "old version cache hit",
+      "passed": true
+    },
+    {
+      "name": "new version blocks stale cache",
+      "passed": true
+    },
+    {
+      "name": "four Part 4 variants",
+      "passed": true
+    },
+    {
+      "name": "lessons file is valid",
+      "passed": true
+    },
+    {
+      "name": "screenshots present",
+      "passed": true,
+      "count": 21
+    }
+  ],
+  "screenshot_count": 21
+}
