@@ -1,0 +1,1877 @@
+[
+  {
+    "threshold": 0.75,
+    "total_cases": 40,
+    "hits": 20,
+    "misses": 20,
+    "expected_hits": 20,
+    "false_hits": 10,
+    "hit_rate": 0.5,
+    "false_hit_rate": 0.25,
+    "accuracy": 0.5,
+    "mean_lookup_latency_ms": 1.1974,
+    "total_cost_units": 71.0,
+    "details": [
+      {
+        "case_id": "exact_01",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2763
+      },
+      {
+        "case_id": "exact_02",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.7118
+      },
+      {
+        "case_id": "exact_03",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2083
+      },
+      {
+        "case_id": "exact_04",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.928
+      },
+      {
+        "case_id": "exact_05",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.8321
+      },
+      {
+        "case_id": "exact_06",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.9765
+      },
+      {
+        "case_id": "exact_07",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.9835
+      },
+      {
+        "case_id": "exact_08",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.888
+      },
+      {
+        "case_id": "exact_09",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0464
+      },
+      {
+        "case_id": "exact_10",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2563
+      },
+      {
+        "case_id": "paraphrase_01",
+        "category": "paraphrase",
+        "query": "How severe is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.8607
+      },
+      {
+        "case_id": "paraphrase_02",
+        "category": "paraphrase",
+        "query": "Tell me the severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.9253
+      },
+      {
+        "case_id": "paraphrase_03",
+        "category": "paraphrase",
+        "query": "What severity does CVE-2026-1001 have?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.2213
+      },
+      {
+        "case_id": "paraphrase_04",
+        "category": "paraphrase",
+        "query": "Can you give the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6172133998483678,
+        "latency_ms": 1.3865
+      },
+      {
+        "case_id": "paraphrase_05",
+        "category": "paraphrase",
+        "query": "Report the severity level of CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.3608
+      },
+      {
+        "case_id": "paraphrase_06",
+        "category": "paraphrase",
+        "query": "Which severity is assigned to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.2664
+      },
+      {
+        "case_id": "paraphrase_07",
+        "category": "paraphrase",
+        "query": "How serious is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.0785
+      },
+      {
+        "case_id": "paraphrase_08",
+        "category": "paraphrase",
+        "query": "What is the CVE-2026-1001 severity rating?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 1.1081
+      },
+      {
+        "case_id": "paraphrase_09",
+        "category": "paraphrase",
+        "query": "Give me the risk severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4629100498862758,
+        "latency_ms": 0.956
+      },
+      {
+        "case_id": "paraphrase_10",
+        "category": "paraphrase",
+        "query": "What severity value belongs to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.9628
+      },
+      {
+        "case_id": "similar_miss_01",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.8905
+      },
+      {
+        "case_id": "similar_miss_02",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7162
+      },
+      {
+        "case_id": "similar_miss_03",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.8543
+      },
+      {
+        "case_id": "similar_miss_04",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 2.1691
+      },
+      {
+        "case_id": "similar_miss_05",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7914
+      },
+      {
+        "case_id": "similar_miss_06",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.3071
+      },
+      {
+        "case_id": "similar_miss_07",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 2.0863
+      },
+      {
+        "case_id": "similar_miss_08",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 2.4009
+      },
+      {
+        "case_id": "similar_miss_09",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.9437
+      },
+      {
+        "case_id": "similar_miss_10",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.691
+      },
+      {
+        "case_id": "unrelated_01",
+        "category": "unrelated",
+        "query": "How does Kafka use consumer groups?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.994
+      },
+      {
+        "case_id": "unrelated_02",
+        "category": "unrelated",
+        "query": "What is a Redis key?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.7077
+      },
+      {
+        "case_id": "unrelated_03",
+        "category": "unrelated",
+        "query": "What is a UUID?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.6935
+      },
+      {
+        "case_id": "unrelated_04",
+        "category": "unrelated",
+        "query": "Explain database normalization.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.0759
+      },
+      {
+        "case_id": "unrelated_05",
+        "category": "unrelated",
+        "query": "What is a Python decorator?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.1275
+      },
+      {
+        "case_id": "unrelated_06",
+        "category": "unrelated",
+        "query": "How does Docker isolate processes?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.2723
+      },
+      {
+        "case_id": "unrelated_07",
+        "category": "unrelated",
+        "query": "What is cosine similarity?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 1.5025
+      },
+      {
+        "case_id": "unrelated_08",
+        "category": "unrelated",
+        "query": "Explain an HTTP status code.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.774
+      },
+      {
+        "case_id": "unrelated_09",
+        "category": "unrelated",
+        "query": "What is a database index?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.6454
+      },
+      {
+        "case_id": "unrelated_10",
+        "category": "unrelated",
+        "query": "How does a message queue work?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.018
+      }
+    ]
+  },
+  {
+    "threshold": 0.8,
+    "total_cases": 40,
+    "hits": 20,
+    "misses": 20,
+    "expected_hits": 20,
+    "false_hits": 10,
+    "hit_rate": 0.5,
+    "false_hit_rate": 0.25,
+    "accuracy": 0.5,
+    "mean_lookup_latency_ms": 1.3113,
+    "total_cost_units": 71.0,
+    "details": [
+      {
+        "case_id": "exact_01",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.6369
+      },
+      {
+        "case_id": "exact_02",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.4777
+      },
+      {
+        "case_id": "exact_03",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.6029
+      },
+      {
+        "case_id": "exact_04",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0556
+      },
+      {
+        "case_id": "exact_05",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.86
+      },
+      {
+        "case_id": "exact_06",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 2.336
+      },
+      {
+        "case_id": "exact_07",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.8914
+      },
+      {
+        "case_id": "exact_08",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.5664
+      },
+      {
+        "case_id": "exact_09",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.305
+      },
+      {
+        "case_id": "exact_10",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.1669
+      },
+      {
+        "case_id": "paraphrase_01",
+        "category": "paraphrase",
+        "query": "How severe is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.9142
+      },
+      {
+        "case_id": "paraphrase_02",
+        "category": "paraphrase",
+        "query": "Tell me the severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.8165
+      },
+      {
+        "case_id": "paraphrase_03",
+        "category": "paraphrase",
+        "query": "What severity does CVE-2026-1001 have?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.9843
+      },
+      {
+        "case_id": "paraphrase_04",
+        "category": "paraphrase",
+        "query": "Can you give the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6172133998483678,
+        "latency_ms": 1.0481
+      },
+      {
+        "case_id": "paraphrase_05",
+        "category": "paraphrase",
+        "query": "Report the severity level of CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.1552
+      },
+      {
+        "case_id": "paraphrase_06",
+        "category": "paraphrase",
+        "query": "Which severity is assigned to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.7548
+      },
+      {
+        "case_id": "paraphrase_07",
+        "category": "paraphrase",
+        "query": "How serious is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.962
+      },
+      {
+        "case_id": "paraphrase_08",
+        "category": "paraphrase",
+        "query": "What is the CVE-2026-1001 severity rating?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 1.4252
+      },
+      {
+        "case_id": "paraphrase_09",
+        "category": "paraphrase",
+        "query": "Give me the risk severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4629100498862758,
+        "latency_ms": 0.9995
+      },
+      {
+        "case_id": "paraphrase_10",
+        "category": "paraphrase",
+        "query": "What severity value belongs to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.3693
+      },
+      {
+        "case_id": "similar_miss_01",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.1694
+      },
+      {
+        "case_id": "similar_miss_02",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.1974
+      },
+      {
+        "case_id": "similar_miss_03",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.1756
+      },
+      {
+        "case_id": "similar_miss_04",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.2463
+      },
+      {
+        "case_id": "similar_miss_05",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 2.3866
+      },
+      {
+        "case_id": "similar_miss_06",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 2.0066
+      },
+      {
+        "case_id": "similar_miss_07",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.4469
+      },
+      {
+        "case_id": "similar_miss_08",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 3.3441
+      },
+      {
+        "case_id": "similar_miss_09",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.4317
+      },
+      {
+        "case_id": "similar_miss_10",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": true,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.2537
+      },
+      {
+        "case_id": "unrelated_01",
+        "category": "unrelated",
+        "query": "How does Kafka use consumer groups?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.6081
+      },
+      {
+        "case_id": "unrelated_02",
+        "category": "unrelated",
+        "query": "What is a Redis key?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.9507
+      },
+      {
+        "case_id": "unrelated_03",
+        "category": "unrelated",
+        "query": "What is a UUID?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.9727
+      },
+      {
+        "case_id": "unrelated_04",
+        "category": "unrelated",
+        "query": "Explain database normalization.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.8232
+      },
+      {
+        "case_id": "unrelated_05",
+        "category": "unrelated",
+        "query": "What is a Python decorator?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.7768
+      },
+      {
+        "case_id": "unrelated_06",
+        "category": "unrelated",
+        "query": "How does Docker isolate processes?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.8665
+      },
+      {
+        "case_id": "unrelated_07",
+        "category": "unrelated",
+        "query": "What is cosine similarity?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 3.3821
+      },
+      {
+        "case_id": "unrelated_08",
+        "category": "unrelated",
+        "query": "Explain an HTTP status code.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.6807
+      },
+      {
+        "case_id": "unrelated_09",
+        "category": "unrelated",
+        "query": "What is a database index?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.6672
+      },
+      {
+        "case_id": "unrelated_10",
+        "category": "unrelated",
+        "query": "How does a message queue work?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.7397
+      }
+    ]
+  },
+  {
+    "threshold": 0.85,
+    "total_cases": 40,
+    "hits": 10,
+    "misses": 30,
+    "expected_hits": 20,
+    "false_hits": 0,
+    "hit_rate": 0.25,
+    "false_hit_rate": 0.0,
+    "accuracy": 0.75,
+    "mean_lookup_latency_ms": 0.8639,
+    "total_cost_units": 30.5,
+    "details": [
+      {
+        "case_id": "exact_01",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.6567
+      },
+      {
+        "case_id": "exact_02",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.8531
+      },
+      {
+        "case_id": "exact_03",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.705
+      },
+      {
+        "case_id": "exact_04",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.7363
+      },
+      {
+        "case_id": "exact_05",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2719
+      },
+      {
+        "case_id": "exact_06",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.773
+      },
+      {
+        "case_id": "exact_07",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.5251
+      },
+      {
+        "case_id": "exact_08",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.9011
+      },
+      {
+        "case_id": "exact_09",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.6802
+      },
+      {
+        "case_id": "exact_10",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.8716
+      },
+      {
+        "case_id": "paraphrase_01",
+        "category": "paraphrase",
+        "query": "How severe is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.7407
+      },
+      {
+        "case_id": "paraphrase_02",
+        "category": "paraphrase",
+        "query": "Tell me the severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.6002
+      },
+      {
+        "case_id": "paraphrase_03",
+        "category": "paraphrase",
+        "query": "What severity does CVE-2026-1001 have?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.5992
+      },
+      {
+        "case_id": "paraphrase_04",
+        "category": "paraphrase",
+        "query": "Can you give the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6172133998483678,
+        "latency_ms": 0.8381
+      },
+      {
+        "case_id": "paraphrase_05",
+        "category": "paraphrase",
+        "query": "Report the severity level of CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.1031
+      },
+      {
+        "case_id": "paraphrase_06",
+        "category": "paraphrase",
+        "query": "Which severity is assigned to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.125
+      },
+      {
+        "case_id": "paraphrase_07",
+        "category": "paraphrase",
+        "query": "How serious is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.7535
+      },
+      {
+        "case_id": "paraphrase_08",
+        "category": "paraphrase",
+        "query": "What is the CVE-2026-1001 severity rating?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.6586
+      },
+      {
+        "case_id": "paraphrase_09",
+        "category": "paraphrase",
+        "query": "Give me the risk severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4629100498862758,
+        "latency_ms": 0.627
+      },
+      {
+        "case_id": "paraphrase_10",
+        "category": "paraphrase",
+        "query": "What severity value belongs to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.7769
+      },
+      {
+        "case_id": "similar_miss_01",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.2061
+      },
+      {
+        "case_id": "similar_miss_02",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.994
+      },
+      {
+        "case_id": "similar_miss_03",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.8515
+      },
+      {
+        "case_id": "similar_miss_04",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7273
+      },
+      {
+        "case_id": "similar_miss_05",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7363
+      },
+      {
+        "case_id": "similar_miss_06",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.6849
+      },
+      {
+        "case_id": "similar_miss_07",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.6225
+      },
+      {
+        "case_id": "similar_miss_08",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.0246
+      },
+      {
+        "case_id": "similar_miss_09",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.6909
+      },
+      {
+        "case_id": "similar_miss_10",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.0871
+      },
+      {
+        "case_id": "unrelated_01",
+        "category": "unrelated",
+        "query": "How does Kafka use consumer groups?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.1213
+      },
+      {
+        "case_id": "unrelated_02",
+        "category": "unrelated",
+        "query": "What is a Redis key?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.809
+      },
+      {
+        "case_id": "unrelated_03",
+        "category": "unrelated",
+        "query": "What is a UUID?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.7543
+      },
+      {
+        "case_id": "unrelated_04",
+        "category": "unrelated",
+        "query": "Explain database normalization.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.7326
+      },
+      {
+        "case_id": "unrelated_05",
+        "category": "unrelated",
+        "query": "What is a Python decorator?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.671
+      },
+      {
+        "case_id": "unrelated_06",
+        "category": "unrelated",
+        "query": "How does Docker isolate processes?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.5953
+      },
+      {
+        "case_id": "unrelated_07",
+        "category": "unrelated",
+        "query": "What is cosine similarity?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.6308
+      },
+      {
+        "case_id": "unrelated_08",
+        "category": "unrelated",
+        "query": "Explain an HTTP status code.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.6623
+      },
+      {
+        "case_id": "unrelated_09",
+        "category": "unrelated",
+        "query": "What is a database index?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.7895
+      },
+      {
+        "case_id": "unrelated_10",
+        "category": "unrelated",
+        "query": "How does a message queue work?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.3667
+      }
+    ]
+  },
+  {
+    "threshold": 0.9,
+    "total_cases": 40,
+    "hits": 10,
+    "misses": 30,
+    "expected_hits": 20,
+    "false_hits": 0,
+    "hit_rate": 0.25,
+    "false_hit_rate": 0.0,
+    "accuracy": 0.75,
+    "mean_lookup_latency_ms": 1.1943,
+    "total_cost_units": 30.5,
+    "details": [
+      {
+        "case_id": "exact_01",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.9616
+      },
+      {
+        "case_id": "exact_02",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.1896
+      },
+      {
+        "case_id": "exact_03",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.099
+      },
+      {
+        "case_id": "exact_04",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2072
+      },
+      {
+        "case_id": "exact_05",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.3117
+      },
+      {
+        "case_id": "exact_06",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.9191
+      },
+      {
+        "case_id": "exact_07",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.1846
+      },
+      {
+        "case_id": "exact_08",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0424
+      },
+      {
+        "case_id": "exact_09",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.2755
+      },
+      {
+        "case_id": "exact_10",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.377
+      },
+      {
+        "case_id": "paraphrase_01",
+        "category": "paraphrase",
+        "query": "How severe is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 1.0006
+      },
+      {
+        "case_id": "paraphrase_02",
+        "category": "paraphrase",
+        "query": "Tell me the severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 1.0068
+      },
+      {
+        "case_id": "paraphrase_03",
+        "category": "paraphrase",
+        "query": "What severity does CVE-2026-1001 have?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.481
+      },
+      {
+        "case_id": "paraphrase_04",
+        "category": "paraphrase",
+        "query": "Can you give the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6172133998483678,
+        "latency_ms": 1.617
+      },
+      {
+        "case_id": "paraphrase_05",
+        "category": "paraphrase",
+        "query": "Report the severity level of CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.9555
+      },
+      {
+        "case_id": "paraphrase_06",
+        "category": "paraphrase",
+        "query": "Which severity is assigned to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.0992
+      },
+      {
+        "case_id": "paraphrase_07",
+        "category": "paraphrase",
+        "query": "How serious is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.0597
+      },
+      {
+        "case_id": "paraphrase_08",
+        "category": "paraphrase",
+        "query": "What is the CVE-2026-1001 severity rating?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 1.4294
+      },
+      {
+        "case_id": "paraphrase_09",
+        "category": "paraphrase",
+        "query": "Give me the risk severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4629100498862758,
+        "latency_ms": 0.7774
+      },
+      {
+        "case_id": "paraphrase_10",
+        "category": "paraphrase",
+        "query": "What severity value belongs to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 2.0172
+      },
+      {
+        "case_id": "similar_miss_01",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.9776
+      },
+      {
+        "case_id": "similar_miss_02",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.9707
+      },
+      {
+        "case_id": "similar_miss_03",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.3729
+      },
+      {
+        "case_id": "similar_miss_04",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.8986
+      },
+      {
+        "case_id": "similar_miss_05",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.376
+      },
+      {
+        "case_id": "similar_miss_06",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.3197
+      },
+      {
+        "case_id": "similar_miss_07",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.2096
+      },
+      {
+        "case_id": "similar_miss_08",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.819
+      },
+      {
+        "case_id": "similar_miss_09",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 1.6014
+      },
+      {
+        "case_id": "similar_miss_10",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.899
+      },
+      {
+        "case_id": "unrelated_01",
+        "category": "unrelated",
+        "query": "How does Kafka use consumer groups?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.2653
+      },
+      {
+        "case_id": "unrelated_02",
+        "category": "unrelated",
+        "query": "What is a Redis key?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.1769
+      },
+      {
+        "case_id": "unrelated_03",
+        "category": "unrelated",
+        "query": "What is a UUID?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 1.2363
+      },
+      {
+        "case_id": "unrelated_04",
+        "category": "unrelated",
+        "query": "Explain database normalization.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.7927
+      },
+      {
+        "case_id": "unrelated_05",
+        "category": "unrelated",
+        "query": "What is a Python decorator?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 2.3076
+      },
+      {
+        "case_id": "unrelated_06",
+        "category": "unrelated",
+        "query": "How does Docker isolate processes?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.8611
+      },
+      {
+        "case_id": "unrelated_07",
+        "category": "unrelated",
+        "query": "What is cosine similarity?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.9564
+      },
+      {
+        "case_id": "unrelated_08",
+        "category": "unrelated",
+        "query": "Explain an HTTP status code.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.0479
+      },
+      {
+        "case_id": "unrelated_09",
+        "category": "unrelated",
+        "query": "What is a database index?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.8925
+      },
+      {
+        "case_id": "unrelated_10",
+        "category": "unrelated",
+        "query": "How does a message queue work?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.7772
+      }
+    ]
+  },
+  {
+    "threshold": 0.95,
+    "total_cases": 40,
+    "hits": 10,
+    "misses": 30,
+    "expected_hits": 20,
+    "false_hits": 0,
+    "hit_rate": 0.25,
+    "false_hit_rate": 0.0,
+    "accuracy": 0.75,
+    "mean_lookup_latency_ms": 0.8656,
+    "total_cost_units": 30.5,
+    "details": [
+      {
+        "case_id": "exact_01",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.9625
+      },
+      {
+        "case_id": "exact_02",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0478
+      },
+      {
+        "case_id": "exact_03",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.9294
+      },
+      {
+        "case_id": "exact_04",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.5763
+      },
+      {
+        "case_id": "exact_05",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.8835
+      },
+      {
+        "case_id": "exact_06",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.943
+      },
+      {
+        "case_id": "exact_07",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0134
+      },
+      {
+        "case_id": "exact_08",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 0.616
+      },
+      {
+        "case_id": "exact_09",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0313
+      },
+      {
+        "case_id": "exact_10",
+        "category": "exact_duplicate",
+        "query": "What is the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": true,
+        "similarity": 1.0000000000000002,
+        "latency_ms": 1.0268
+      },
+      {
+        "case_id": "paraphrase_01",
+        "category": "paraphrase",
+        "query": "How severe is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.8973
+      },
+      {
+        "case_id": "paraphrase_02",
+        "category": "paraphrase",
+        "query": "Tell me the severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.628
+      },
+      {
+        "case_id": "paraphrase_03",
+        "category": "paraphrase",
+        "query": "What severity does CVE-2026-1001 have?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.7184
+      },
+      {
+        "case_id": "paraphrase_04",
+        "category": "paraphrase",
+        "query": "Can you give the severity of CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6172133998483678,
+        "latency_ms": 0.67
+      },
+      {
+        "case_id": "paraphrase_05",
+        "category": "paraphrase",
+        "query": "Report the severity level of CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.6615
+      },
+      {
+        "case_id": "paraphrase_06",
+        "category": "paraphrase",
+        "query": "Which severity is assigned to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 1.1823
+      },
+      {
+        "case_id": "paraphrase_07",
+        "category": "paraphrase",
+        "query": "How serious is CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.927
+      },
+      {
+        "case_id": "paraphrase_08",
+        "category": "paraphrase",
+        "query": "What is the CVE-2026-1001 severity rating?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.6666666666666669,
+        "latency_ms": 0.9884
+      },
+      {
+        "case_id": "paraphrase_09",
+        "category": "paraphrase",
+        "query": "Give me the risk severity for CVE-2026-1001.",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.4629100498862758,
+        "latency_ms": 1.0946
+      },
+      {
+        "case_id": "paraphrase_10",
+        "category": "paraphrase",
+        "query": "What severity value belongs to CVE-2026-1001?",
+        "expected_hit": true,
+        "actual_hit": false,
+        "similarity": 0.5000000000000001,
+        "latency_ms": 0.6085
+      },
+      {
+        "case_id": "similar_miss_01",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7494
+      },
+      {
+        "case_id": "similar_miss_02",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.691
+      },
+      {
+        "case_id": "similar_miss_03",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7459
+      },
+      {
+        "case_id": "similar_miss_04",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7549
+      },
+      {
+        "case_id": "similar_miss_05",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.566
+      },
+      {
+        "case_id": "similar_miss_06",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.6789
+      },
+      {
+        "case_id": "similar_miss_07",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.8118
+      },
+      {
+        "case_id": "similar_miss_08",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.835
+      },
+      {
+        "case_id": "similar_miss_09",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7252
+      },
+      {
+        "case_id": "similar_miss_10",
+        "category": "similar_different_answer",
+        "query": "What is the severity of CVE-2026-1002?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.8333333333333336,
+        "latency_ms": 0.7015
+      },
+      {
+        "case_id": "unrelated_01",
+        "category": "unrelated",
+        "query": "How does Kafka use consumer groups?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.7075
+      },
+      {
+        "case_id": "unrelated_02",
+        "category": "unrelated",
+        "query": "What is a Redis key?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.6295
+      },
+      {
+        "case_id": "unrelated_03",
+        "category": "unrelated",
+        "query": "What is a UUID?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 0.6443
+      },
+      {
+        "case_id": "unrelated_04",
+        "category": "unrelated",
+        "query": "Explain database normalization.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.6932
+      },
+      {
+        "case_id": "unrelated_05",
+        "category": "unrelated",
+        "query": "What is a Python decorator?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.7958
+      },
+      {
+        "case_id": "unrelated_06",
+        "category": "unrelated",
+        "query": "How does Docker isolate processes?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 1.387
+      },
+      {
+        "case_id": "unrelated_07",
+        "category": "unrelated",
+        "query": "What is cosine similarity?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.4082482904638631,
+        "latency_ms": 1.6111
+      },
+      {
+        "case_id": "unrelated_08",
+        "category": "unrelated",
+        "query": "Explain an HTTP status code.",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 1.2328
+      },
+      {
+        "case_id": "unrelated_09",
+        "category": "unrelated",
+        "query": "What is a database index?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.3651483716701108,
+        "latency_ms": 0.5974
+      },
+      {
+        "case_id": "unrelated_10",
+        "category": "unrelated",
+        "query": "How does a message queue work?",
+        "expected_hit": false,
+        "actual_hit": false,
+        "similarity": 0.0,
+        "latency_ms": 0.6606
+      }
+    ]
+  }
+]

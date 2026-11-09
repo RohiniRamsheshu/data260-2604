@@ -1,0 +1,16 @@
+[
+  {
+    "question": "Tell me the risk level for CVE-2026-1001.",
+    "answer": "The risk level for CVE-2026-1001 is 5.",
+    "decision": "PASS",
+    "explanation": "The answer 'The risk level for CVE-2026-1001 is 5.' accurately reflects the severity level provided in the context (severity 5).",
+    "attempts": 1
+  },
+  {
+    "question": "Which package has CVE-2026-1002?",
+    "answer": "Package_33 has CVE-2026-1002 and has a severity of 8.",
+    "decision": "PASS",
+    "explanation": "The answer correctly identifies the package with CVE-2026-1002 and its severity level.",
+    "attempts": 1
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "question": "Tell me the risk level for CVE-2026-1001.",
+    "context": "CVE-2026-1001 affects package_1 and has severity 5."
+  },
+  {
+    "question": "Which package has CVE-2026-1002?",
+    "context": "CVE-2026-1002 affects package_33 and has severity 8."
+  }
+]

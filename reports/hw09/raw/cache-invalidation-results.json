@@ -1,0 +1,18 @@
+{
+  "threshold": 0.85,
+  "before_data_change": {
+    "data_version": "v1",
+    "is_cached": true,
+    "answer": "CVE-2026-1001 has severity 5."
+  },
+  "after_data_change_before_refresh": {
+    "data_version": "v2",
+    "is_cached": false,
+    "answer": null
+  },
+  "after_cache_refresh": {
+    "data_version": "v2",
+    "is_cached": true,
+    "answer": "CVE-2026-1001 has severity 8."
+  }
+}

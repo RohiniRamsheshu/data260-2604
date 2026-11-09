@@ -1,0 +1,200 @@
+- case_id: exact_01
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_02
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_03
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_04
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_05
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_06
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_07
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_08
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_09
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: exact_10
+  category: exact_duplicate
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: paraphrase_01
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: How severe is CVE-2026-1001?
+  should_hit: true
+- case_id: paraphrase_02
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Tell me the severity for CVE-2026-1001.
+  should_hit: true
+- case_id: paraphrase_03
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What severity does CVE-2026-1001 have?
+  should_hit: true
+- case_id: paraphrase_04
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Can you give the severity of CVE-2026-1001?
+  should_hit: true
+- case_id: paraphrase_05
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Report the severity level of CVE-2026-1001.
+  should_hit: true
+- case_id: paraphrase_06
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Which severity is assigned to CVE-2026-1001?
+  should_hit: true
+- case_id: paraphrase_07
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: How serious is CVE-2026-1001?
+  should_hit: true
+- case_id: paraphrase_08
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the CVE-2026-1001 severity rating?
+  should_hit: true
+- case_id: paraphrase_09
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Give me the risk severity for CVE-2026-1001.
+  should_hit: true
+- case_id: paraphrase_10
+  category: paraphrase
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What severity value belongs to CVE-2026-1001?
+  should_hit: true
+- case_id: similar_miss_01
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_02
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_03
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_04
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_05
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_06
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_07
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_08
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_09
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: similar_miss_10
+  category: similar_different_answer
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is the severity of CVE-2026-1002?
+  should_hit: false
+- case_id: unrelated_01
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: How does Kafka use consumer groups?
+  should_hit: false
+- case_id: unrelated_02
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is a Redis key?
+  should_hit: false
+- case_id: unrelated_03
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is a UUID?
+  should_hit: false
+- case_id: unrelated_04
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Explain database normalization.
+  should_hit: false
+- case_id: unrelated_05
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is a Python decorator?
+  should_hit: false
+- case_id: unrelated_06
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: How does Docker isolate processes?
+  should_hit: false
+- case_id: unrelated_07
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is cosine similarity?
+  should_hit: false
+- case_id: unrelated_08
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: Explain an HTTP status code.
+  should_hit: false
+- case_id: unrelated_09
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: What is a database index?
+  should_hit: false
+- case_id: unrelated_10
+  category: unrelated
+  cached_query: What is the severity of CVE-2026-1001?
+  query: How does a message queue work?
+  should_hit: false

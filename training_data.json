@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is the severity of CVE-2026-1001?",
+    "context": "CVE-2026-1001 affects package_1 and has severity 5."
+  },
+  {
+    "question": "Which package is affected by CVE-2026-1002?",
+    "context": "CVE-2026-1002 affects package_33 and has severity 8."
+  },
+  {
+    "question": "What does Redis INCR do?",
+    "context": "Redis INCR atomically increases an integer value."
+  }
+]

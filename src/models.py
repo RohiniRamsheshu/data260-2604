@@ -27,6 +27,7 @@ class Vulnerability(Base):
     cve_id = Column(String(50), nullable=False, unique=True)
 
     severity = Column(Integer, nullable=False, default=0)
+    view_count = Column(Integer, nullable=False, default=0)
 
     researcher_id = Column(
         Integer, ForeignKey("researchers.id", ondelete="RESTRICT"), nullable=False

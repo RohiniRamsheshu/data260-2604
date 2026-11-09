@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "cases": 2,
+    "passed": 2,
+    "pass_rate": 1.0,
+    "average_attempts": 1.0
+  },
+  "evaluator_repair": {
+    "cases": 2,
+    "passed": 2,
+    "pass_rate": 1.0,
+    "average_attempts": 1.0
+  },
+  "lesson_memory": {
+    "cases": 2,
+    "passed": 2,
+    "pass_rate": 1.0,
+    "average_attempts": 1.0
+  },
+  "validated_improvement": {
+    "cases": 2,
+    "passed": 1,
+    "pass_rate": 0.5,
+    "average_attempts": 1.5
+  }
+}
