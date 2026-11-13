@@ -1,0 +1,37 @@
+{
+  "requested": 50,
+  "confirmed_cache_misses": 1,
+  "elapsed_seconds": 9.5,
+  "stage_metrics": {
+    "cache_lookup": {
+      "count": 1,
+      "p50_ms": 13.49,
+      "p95_ms": 13.49,
+      "mean_ms": 13.49
+    },
+    "planner": {
+      "count": 1,
+      "p50_ms": 2.711,
+      "p95_ms": 2.711,
+      "mean_ms": 2.711
+    },
+    "writer": {
+      "count": 1,
+      "p50_ms": 3.268,
+      "p95_ms": 3.268,
+      "mean_ms": 3.268
+    },
+    "reviewer": {
+      "count": 1,
+      "p50_ms": 3.31,
+      "p95_ms": 3.31,
+      "mean_ms": 3.31
+    },
+    "queue_wait": {
+      "count": 1,
+      "p50_ms": 141.34,
+      "p95_ms": 141.34,
+      "mean_ms": 141.34
+    }
+  }
+}
