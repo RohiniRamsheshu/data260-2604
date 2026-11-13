@@ -1,0 +1,546 @@
+{
+  "judge": {
+    "model": "qwen2.5:3b",
+    "framework": "DeepEval GEval",
+    "temperature": 0,
+    "scale": "1-5",
+    "runs": 3
+  },
+  "statistics": {
+    "spearman_correlation": 0.875,
+    "spearman_p_value": 0.0,
+    "mean_absolute_difference": 1.87,
+    "repeatability": {
+      "runs_per_case": 3,
+      "cases_with_score_changes": 0,
+      "score_change_rate_by_case": 0.0,
+      "pairwise_comparisons": 60,
+      "pairwise_changed_comparisons": 0,
+      "pairwise_change_rate": 0.0,
+      "mean_absolute_score_change": 0.0,
+      "maximum_absolute_score_change": 0.0
+    }
+  },
+  "cases": [
+    {
+      "case_id": "eval-01",
+      "question": "Why is message correlation important in Kafka?",
+      "writer_draft": "Correlation IDs connect related messages across Kafka topics and allow the system to trace one request end to end.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why is message correlation important in Kafka?' It provides a definition of what correlation IDs do, but does not explain the importance or benefits of message correlation in Kafka.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why is message correlation important in Kafka?' It provides a definition of what correlation IDs do, but does not explain the importance or benefits of message correlation in Kafka.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why is message correlation important in Kafka?' It provides a definition of what correlation IDs do, but does not explain the importance or benefits of message correlation in Kafka.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-02",
+      "question": "What does Redis INCR do?",
+      "writer_draft": "Redis INCR atomically increases an integer value stored at a key.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What does Redis INCR do?'. It provides a general description of what Redis INCR does without explaining what the command specifically does.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What does Redis INCR do?'. It provides a general description of what Redis INCR does without explaining what the command specifically does.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What does Redis INCR do?'. It provides a general description of what Redis INCR does without explaining what the command specifically does.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-03",
+      "question": "What is a cache hit?",
+      "writer_draft": "A cache hit occurs when the requested answer is found in the cache and can be returned without recomputing it.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache hit?'. It provides a definition of a cache hit but does not explain what a cache hit is.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache hit?'. It provides a definition of a cache hit but does not explain what a cache hit is.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache hit?'. It provides a definition of a cache hit but does not explain what a cache hit is.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-04",
+      "question": "What is a cache miss?",
+      "writer_draft": "A cache miss means the requested result was not available, so the application must compute or retrieve it.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache miss?'. Instead, it describes a general concept of a cache miss. It does not define what a cache miss actually is.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache miss?'. Instead, it describes a general concept of a cache miss. It does not define what a cache miss actually is.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a cache miss?'. Instead, it describes a general concept of a cache miss. It does not define what a cache miss actually is.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-05",
+      "question": "What is a trace ID?",
+      "writer_draft": "A trace ID is an identifier shared by spans belonging to the same request journey.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a trace ID?'. It provides a definition of what a trace ID is, but does not explain what a trace ID actually is.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a trace ID?'. It provides a definition of what a trace ID is, but does not explain what a trace ID actually is.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a trace ID?'. It provides a definition of what a trace ID is, but does not explain what a trace ID actually is.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-06",
+      "question": "Why use a reviewer agent?",
+      "writer_draft": "A reviewer checks the writer output for quality and may approve or request a revision.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why use a reviewer agent?' It describes the role of a reviewer but does not provide reasons or benefits for using a reviewer agent. This is a key shortcoming.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why use a reviewer agent?' It describes the role of a reviewer but does not provide reasons or benefits for using a reviewer agent. This is a key shortcoming.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why use a reviewer agent?' It describes the role of a reviewer but does not provide reasons or benefits for using a reviewer agent. This is a key shortcoming.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-07",
+      "question": "What is a Kafka topic?",
+      "writer_draft": "A Kafka topic is a named stream where producers publish records and consumers read them.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a Kafka topic?'. It provides a general description of what a Kafka topic is, but does not explicitly state what a Kafka topic is.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a Kafka topic?'. It provides a general description of what a Kafka topic is, but does not explicitly state what a Kafka topic is.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is a Kafka topic?'. It provides a general description of what a Kafka topic is, but does not explicitly state what a Kafka topic is.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-08",
+      "question": "Why measure p95 latency?",
+      "writer_draft": "P95 latency shows the response time below which 95 percent of requests completed.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why measure p95 latency?'. It only defines what P95 latency is without providing any reasons or benefits of measuring it.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why measure p95 latency?'. It only defines what P95 latency is without providing any reasons or benefits of measuring it.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'Why measure p95 latency?'. It only defines what P95 latency is without providing any reasons or benefits of measuring it.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-09",
+      "question": "What does data-version invalidation prevent?",
+      "writer_draft": "It prevents a cache from returning an answer created from an older version of the underlying data.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly address the question 'What does data-version invalidation prevent?'. It describes a consequence of data-version invalidation rather than explaining what it prevents.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly address the question 'What does data-version invalidation prevent?'. It describes a consequence of data-version invalidation rather than explaining what it prevents.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly address the question 'What does data-version invalidation prevent?'. It describes a consequence of data-version invalidation rather than explaining what it prevents.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-10",
+      "question": "What is cosine similarity used for?",
+      "writer_draft": "Cosine similarity compares the direction of two embedding vectors to estimate how similar their queries are.",
+      "human_label": 5,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is cosine similarity used for?'. It describes how cosine similarity works, but does not explain its use cases.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is cosine similarity used for?'. It describes how cosine similarity works, but does not explain its use cases.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not directly answer the question 'What is cosine similarity used for?'. It describes how cosine similarity works, but does not explain its use cases.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-11",
+      "question": "Why is message correlation important in Kafka?",
+      "writer_draft": "It makes Kafka faster.",
+      "human_label": 2,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question about why message correlation is important in Kafka. Instead, it only mentions that it makes Kafka faster, which is not a valid reason for message correlation's importance. This response lacks depth and fails to provide relevant information.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question about why message correlation is important in Kafka. Instead, it only mentions that it makes Kafka faster, which is not a valid reason for message correlation's importance. This response lacks depth and fails to provide relevant information.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question about why message correlation is important in Kafka. Instead, it only mentions that it makes Kafka faster, which is not a valid reason for message correlation's importance. This response lacks depth and fails to provide relevant information.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-12",
+      "question": "What does Redis INCR do?",
+      "writer_draft": "Redis stores documents.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question at all. It states that Redis stores documents, which is completely unrelated to the INCR command. This is a significant shortcoming.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question at all. It states that Redis stores documents, which is completely unrelated to the INCR command. This is a significant shortcoming.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question at all. It states that Redis stores documents, which is completely unrelated to the INCR command. This is a significant shortcoming.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-13",
+      "question": "What is a cache hit?",
+      "writer_draft": "A cache hit is when the server crashes.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache hit. It instead describes a scenario where the server crashes, which is unrelated to cache hits. This is a significant shortcoming.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache hit. It instead describes a scenario where the server crashes, which is unrelated to cache hits. This is a significant shortcoming.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache hit. It instead describes a scenario where the server crashes, which is unrelated to cache hits. This is a significant shortcoming.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-14",
+      "question": "What is a trace ID?",
+      "writer_draft": "A trace ID is a password for Redis.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about trace ID. It instead provides information about Redis, which is irrelevant and inaccurate.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about trace ID. It instead provides information about Redis, which is irrelevant and inaccurate.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about trace ID. It instead provides information about Redis, which is irrelevant and inaccurate.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-15",
+      "question": "Why measure p95 latency?",
+      "writer_draft": "Latency is the number of Kafka topics.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question 'Why measure p95 latency?' at all. Instead, it provides irrelevant information about Kafka topics. This shows a clear lack of understanding and alignment with the evaluation steps.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question 'Why measure p95 latency?' at all. Instead, it provides irrelevant information about Kafka topics. This shows a clear lack of understanding and alignment with the evaluation steps.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not address the question 'Why measure p95 latency?' at all. Instead, it provides irrelevant information about Kafka topics. This shows a clear lack of understanding and alignment with the evaluation steps.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-16",
+      "question": "What is a Kafka topic?",
+      "writer_draft": "A Kafka topic is a Python class.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about Kafka topics, instead mentioning a Python class. It lacks relevance and accuracy.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about Kafka topics, instead mentioning a Python class. It lacks relevance and accuracy.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about Kafka topics, instead mentioning a Python class. It lacks relevance and accuracy.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-17",
+      "question": "What is a cache miss?",
+      "writer_draft": "A cache miss means the user entered the wrong password.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache miss at all. It instead describes a scenario related to a wrong password, which is irrelevant to the question. There are no clear or useful elements in the response.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache miss at all. It instead describes a scenario related to a wrong password, which is irrelevant to the question. There are no clear or useful elements in the response.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about a cache miss at all. It instead describes a scenario related to a wrong password, which is irrelevant to the question. There are no clear or useful elements in the response.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-18",
+      "question": "Why use a reviewer agent?",
+      "writer_draft": "The reviewer is used to increase disk space.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The output does not answer the question 'Why use a reviewer agent?' at all. It instead discusses using a reviewer to increase disk space, which is irrelevant. This response lacks clarity and is not useful for the given question.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The output does not answer the question 'Why use a reviewer agent?' at all. It instead discusses using a reviewer to increase disk space, which is irrelevant. This response lacks clarity and is not useful for the given question.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The output does not answer the question 'Why use a reviewer agent?' at all. It instead discusses using a reviewer to increase disk space, which is irrelevant. This response lacks clarity and is not useful for the given question.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-19",
+      "question": "What does data-version invalidation prevent?",
+      "writer_draft": "It prevents all Kafka messages from being delivered.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not accurately answer the question. It states that data-version invalidation prevents all Kafka messages from being delivered, which is incorrect. Data-version invalidation is typically used to invalidate specific versions of data rather than all messages.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not accurately answer the question. It states that data-version invalidation prevents all Kafka messages from being delivered, which is incorrect. Data-version invalidation is typically used to invalidate specific versions of data rather than all messages.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.1,
+          "score_1_to_5": 1.4,
+          "reason": "The response does not accurately answer the question. It states that data-version invalidation prevents all Kafka messages from being delivered, which is incorrect. Data-version invalidation is typically used to invalidate specific versions of data rather than all messages.",
+          "run": 3
+        }
+      ]
+    },
+    {
+      "case_id": "eval-20",
+      "question": "What is cosine similarity used for?",
+      "writer_draft": "It measures the size of a Docker container.",
+      "human_label": 1,
+      "runs": [
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about cosine similarity at all. Instead, it provides information about Docker containers, which is completely irrelevant. This shows a clear failure in understanding the question and providing an accurate answer.",
+          "run": 1
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about cosine similarity at all. Instead, it provides information about Docker containers, which is completely irrelevant. This shows a clear failure in understanding the question and providing an accurate answer.",
+          "run": 2
+        },
+        {
+          "score_0_to_1": 0.0,
+          "score_1_to_5": 1.0,
+          "reason": "The response does not answer the question about cosine similarity at all. Instead, it provides information about Docker containers, which is completely irrelevant. This shows a clear failure in understanding the question and providing an accurate answer.",
+          "run": 3
+        }
+      ]
+    }
+  ]
+}
