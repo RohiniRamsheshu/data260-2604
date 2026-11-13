@@ -1,0 +1,6 @@
+{"trace_id": "30dde9b6-d568-482b-b432-500987d13bda", "stage": "planner", "start_time": "2026-11-13T06:11:55.797454+00:00", "end_time": "2026-11-13T06:11:55.806164+00:00", "duration_ms": 8.312, "status": "success", "error": null}
+{"trace_id": "30dde9b6-d568-482b-b432-500987d13bda", "stage": "writer", "start_time": "2026-11-13T06:12:06.980609+00:00", "end_time": "2026-11-13T06:12:06.993920+00:00", "duration_ms": 12.313, "status": "success", "error": null}
+{"trace_id": "30dde9b6-d568-482b-b432-500987d13bda", "stage": "reviewer", "start_time": "2026-11-13T06:12:21.329006+00:00", "end_time": "2026-11-13T06:12:21.342937+00:00", "duration_ms": 12.847, "status": "success", "error": null}
+{"trace_id": "65236867-3ab6-4430-97ca-ef36fd0320fd", "stage": "planner", "start_time": "2026-11-13T06:14:17.706595+00:00", "end_time": "2026-11-13T06:14:17.725071+00:00", "duration_ms": 18.354, "status": "success", "error": null}
+{"trace_id": "65236867-3ab6-4430-97ca-ef36fd0320fd", "stage": "writer", "start_time": "2026-11-13T06:14:17.725976+00:00", "end_time": "2026-11-13T06:14:17.759050+00:00", "duration_ms": 33.04, "status": "success", "error": null}
+{"trace_id": "65236867-3ab6-4430-97ca-ef36fd0320fd", "stage": "reviewer", "start_time": "2026-11-13T06:14:41.420743+00:00", "end_time": "2026-11-13T06:14:41.435363+00:00", "duration_ms": 11.388, "status": "success", "error": null}
