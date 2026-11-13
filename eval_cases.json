@@ -1,0 +1,122 @@
+[
+  {
+    "case_id": "eval-01",
+    "correlation_id": "hw10-eval-01",
+    "question": "Why is message correlation important in Kafka?",
+    "writer_draft": "Correlation IDs connect related messages across Kafka topics and allow the system to trace one request end to end."
+  },
+  {
+    "case_id": "eval-02",
+    "correlation_id": "hw10-eval-02",
+    "question": "What does Redis INCR do?",
+    "writer_draft": "Redis INCR atomically increases an integer value stored at a key."
+  },
+  {
+    "case_id": "eval-03",
+    "correlation_id": "hw10-eval-03",
+    "question": "What is a cache hit?",
+    "writer_draft": "A cache hit occurs when the requested answer is found in the cache and can be returned without recomputing it."
+  },
+  {
+    "case_id": "eval-04",
+    "correlation_id": "hw10-eval-04",
+    "question": "What is a cache miss?",
+    "writer_draft": "A cache miss means the requested result was not available, so the application must compute or retrieve it."
+  },
+  {
+    "case_id": "eval-05",
+    "correlation_id": "hw10-eval-05",
+    "question": "What is a trace ID?",
+    "writer_draft": "A trace ID is an identifier shared by spans belonging to the same request journey."
+  },
+  {
+    "case_id": "eval-06",
+    "correlation_id": "hw10-eval-06",
+    "question": "Why use a reviewer agent?",
+    "writer_draft": "A reviewer checks the writer output for quality and may approve or request a revision."
+  },
+  {
+    "case_id": "eval-07",
+    "correlation_id": "hw10-eval-07",
+    "question": "What is a Kafka topic?",
+    "writer_draft": "A Kafka topic is a named stream where producers publish records and consumers read them."
+  },
+  {
+    "case_id": "eval-08",
+    "correlation_id": "hw10-eval-08",
+    "question": "Why measure p95 latency?",
+    "writer_draft": "P95 latency shows the response time below which 95 percent of requests completed."
+  },
+  {
+    "case_id": "eval-09",
+    "correlation_id": "hw10-eval-09",
+    "question": "What does data-version invalidation prevent?",
+    "writer_draft": "It prevents a cache from returning an answer created from an older version of the underlying data."
+  },
+  {
+    "case_id": "eval-10",
+    "correlation_id": "hw10-eval-10",
+    "question": "What is cosine similarity used for?",
+    "writer_draft": "Cosine similarity compares the direction of two embedding vectors to estimate how similar their queries are."
+  },
+  {
+    "case_id": "eval-11",
+    "correlation_id": "hw10-eval-11",
+    "question": "Why is message correlation important in Kafka?",
+    "writer_draft": "It makes Kafka faster."
+  },
+  {
+    "case_id": "eval-12",
+    "correlation_id": "hw10-eval-12",
+    "question": "What does Redis INCR do?",
+    "writer_draft": "Redis stores documents."
+  },
+  {
+    "case_id": "eval-13",
+    "correlation_id": "hw10-eval-13",
+    "question": "What is a cache hit?",
+    "writer_draft": "A cache hit is when the server crashes."
+  },
+  {
+    "case_id": "eval-14",
+    "correlation_id": "hw10-eval-14",
+    "question": "What is a trace ID?",
+    "writer_draft": "A trace ID is a password for Redis."
+  },
+  {
+    "case_id": "eval-15",
+    "correlation_id": "hw10-eval-15",
+    "question": "Why measure p95 latency?",
+    "writer_draft": "Latency is the number of Kafka topics."
+  },
+  {
+    "case_id": "eval-16",
+    "correlation_id": "hw10-eval-16",
+    "question": "What is a Kafka topic?",
+    "writer_draft": "A Kafka topic is a Python class."
+  },
+  {
+    "case_id": "eval-17",
+    "correlation_id": "hw10-eval-17",
+    "question": "What is a cache miss?",
+    "writer_draft": "A cache miss means the user entered the wrong password."
+  },
+  {
+    "case_id": "eval-18",
+    "correlation_id": "hw10-eval-18",
+    "question": "Why use a reviewer agent?",
+    "writer_draft": "The reviewer is used to increase disk space."
+  },
+  {
+    "case_id": "eval-19",
+    "correlation_id": "hw10-eval-19",
+    "question": "What does data-version invalidation prevent?",
+    "writer_draft": "It prevents all Kafka messages from being delivered."
+  },
+  {
+    "case_id": "eval-20",
+    "correlation_id": "hw10-eval-20",
+    "question": "What is cosine similarity used for?",
+    "writer_draft": "It measures the size of a Docker container."
+  }
+]
